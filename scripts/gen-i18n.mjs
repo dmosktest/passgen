@@ -1,0 +1,816 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { seoBodies } from "./seo-full-bodies.mjs";
+
+const root = path.dirname(fileURLToPath(import.meta.url));
+const outUi = path.join(root, "..", "src", "i18n-messages.ts");
+const outSeo = path.join(root, "..", "src", "seo-messages.ts");
+const out404 = path.join(root, "..", "src", "notfound-messages.ts");
+
+const LOCALES = [
+  "ru", "en", "zh", "es", "hi", "ar", "bn", "pt", "fr", "de", "ja", "id",
+  "pa", "jv", "te", "tr", "ko", "mr", "vi", "ta", "it", "fa", "tlh",
+];
+
+const native = {
+  ru: "Русский", en: "English", zh: "中文", es: "Español", hi: "हिन्दी",
+  ar: "العربية", bn: "বাংলা", pt: "Português", fr: "Français", de: "Deutsch",
+  ja: "日本語", id: "Indonesia", pa: "ਪੰਜਾਬੀ", jv: "Basa Jawa", te: "తెలుగు",
+  tr: "Türkçe", ko: "한국어", mr: "मराठी", vi: "Tiếng Việt", ta: "தமிழ்",
+  it: "Italiano", fa: "فارسی", tlh: "tlhIngan Hol",
+};
+
+/** @type {Record<string, Record<string, string>>} */
+const ui = {
+  en: {
+    params: "Settings",
+    length: "Length",
+    decrease: "Decrease",
+    increase: "Increase",
+    generate: "Generate",
+    genStats: "Generations: {n}",
+    charset: "Character sets",
+    digits: "digits [0-9]",
+    lower: "lowercase [a-z]",
+    upper: "uppercase [A-Z]",
+    specials: "symbols",
+    noDuplicates: "no duplicates",
+    hint: "(click a password to copy it)",
+    copyTitle: "Click to copy",
+    copied: "copied",
+    langSwitch: "Site language",
+    modeSwitch: "Settings mode",
+    modeSimple: "Basic",
+    modeAdvanced: "Advanced",
+    preset: "Preset",
+    presetCustom: "Custom settings",
+    presetCustomHint: "Parameters set manually — length, character sets, and exclusions for your case",
+    exclude: "Exclude characters",
+    excludePlaceholder: "e.g. 0O1 or $&;",
+    similar: "Exclude look-alikes (I, O, l, and vertical bar)",
+    similarHint: "Turning this off increases confusion when typing by hand.",
+    alphabetCounter: "Alphabet: {n} characters. Excluded from alphabet: {k}.",
+    setEmpty: "No characters left in this set",
+    lengthClamped: "Length reduced to {n}: not enough alphabet room with “no duplicates” (above 61 each character at most twice).",
+    strength: "Strength",
+    strengthHint: "The score reflects generation settings, not a specific password. Crack times are illustrative and depend on the attack.",
+    bits: "{n} bits",
+    crackOnline: "Online (~10³ guesses/s): {t}",
+    crackOffline: "Offline (~10¹¹ guesses/s): {t}",
+    rateLimitNote: "This password is only safe when guess rate is limited.",
+    level_weak: "Weak",
+    level_fair: "Fair",
+    level_good: "Good",
+    level_strong: "Strong",
+    level_veryStrong: "Very strong",
+    copyLink: "Copy link",
+    copyLinkDone: "Link copied",
+    copyLinkNote: "The link contains settings only — never the password.",
+    noscript: "Enable JavaScript to use the generator. The description and FAQ below still work without it.",
+    warn_single_char: "Only one character left after exclusions — generation is blocked.",
+    err_empty_sets: "Select at least one character set.",
+    err_specials_min_length: "With symbols enabled, length must be at least 5.",
+    err_specials_need_safe: "For non-symbol edges, enable digits or letters as well.",
+    err_bad_length: "Length must be between 1 and 128.",
+    err_bad_count: "Password count must be between 1 and 200.",
+    err_min_sets: "Length is too short for the selected character sets.",
+    err_empty_alphabet: "Alphabet is empty.",
+    err_alphabet_too_small: "Fewer than 2 characters remain after exclusions — change your settings.",
+    err_no_edge_chars: "No characters available for password edges.",
+    err_unique_too_long: "Too long for “no duplicates”: up to 61 — all unique; above 61 — each character at most twice.",
+    err_clipboard: "Could not copy to the clipboard.",
+  },
+};
+
+ui.ru = {
+  params: "Параметры", length: "Длина", decrease: "Уменьшить", increase: "Увеличить",
+  generate: "Генерировать", genStats: "Генераций: {n}", charset: "Наборы символов",
+  digits: "цифры [0-9]", lower: "строчные [a-z]", upper: "заглавные [A-Z]", specials: "спецсимволы",
+  noDuplicates: "без дублей", hint: "(для копирования в буфер — нажмите на пароль)",
+  copyTitle: "Нажмите, чтобы скопировать", copied: "скопировано", langSwitch: "Язык сайта",
+  modeSwitch: "Режим настроек", modeSimple: "Обычные", modeAdvanced: "Расширенные",
+  preset: "Пресет", presetCustom: "Свои настройки",
+  presetCustomHint: "Параметры заданы вручную — длина, наборы и исключения под вашу задачу",
+  exclude: "Исключить символы", excludePlaceholder: "например: 0O1 или $&;",
+  similar: "Исключать похожие символы (I, O, l и вертикальная черта)",
+  similarHint: "Выключение повышает риск путаницы при ручном вводе и диктовке.",
+  alphabetCounter: "Алфавит: {n} символов. Исключено из алфавита: {k}.",
+  setEmpty: "В наборе не осталось символов",
+  lengthClamped: "Длина уменьшена до {n}: при «без дублей» не хватает символов алфавита (свыше 61 каждый символ не чаще двух раз).",
+  strength: "Надёжность",
+  strengthHint: "Оценка относится к настройкам генерации, а не к конкретной строке. Время подбора условное и зависит от сценария атаки.",
+  bits: "{n} бит", crackOnline: "Онлайн (~10³ попыток/с): {t}", crackOffline: "Офлайн (~10¹¹ попыток/с): {t}",
+  rateLimitNote: "Такой пароль защищён только при ограничении числа попыток.",
+  level_weak: "Слабый", level_fair: "Средний", level_good: "Хороший", level_strong: "Сильный", level_veryStrong: "Очень сильный",
+  copyLink: "Скопировать ссылку", copyLinkDone: "Ссылка скопирована",
+  copyLinkNote: "В ссылке только настройки, пароль в неё не попадает.",
+  noscript: "Для работы генератора включите JavaScript. Описание и FAQ ниже доступны без него.",
+  warn_single_char: "После исключений в алфавите остался один символ — генерация заблокирована.",
+  err_empty_sets: "Выберите хотя бы один набор символов.",
+  err_specials_min_length: "При спецсимволах длина должна быть не меньше 5.",
+  err_specials_need_safe: "Для краёв без спецсимволов нужен ещё один набор (цифры или буквы).",
+  err_bad_length: "Длина должна быть от 1 до 128.", err_bad_count: "Число паролей должно быть от 1 до 200.",
+  err_min_sets: "Длины не хватает для выбранных наборов символов.", err_empty_alphabet: "Алфавит пуст.",
+  err_alphabet_too_small: "После исключений в алфавите меньше 2 символов — выберите другие настройки.",
+  err_no_edge_chars: "Нет символов для краёв пароля.",
+  err_unique_too_long: "Слишком длинный пароль для «без дублей»: до 61 — без повторов, свыше — каждый символ не чаще двух раз.",
+  err_clipboard: "Не удалось скопировать в буфер обмена.",
+};
+
+ui.zh = {
+  params: "设置", length: "长度", decrease: "减少", increase: "增加", generate: "生成",
+  genStats: "已生成：{n}", charset: "字符集", digits: "数字 [0-9]", lower: "小写 [a-z]",
+  upper: "大写 [A-Z]", specials: "符号", noDuplicates: "无重复", hint: "（点击密码即可复制）",
+  copyTitle: "点击复制", copied: "已复制", langSwitch: "网站语言", modeSwitch: "设置模式",
+  modeSimple: "基本", modeAdvanced: "高级", preset: "预设", presetCustom: "自定义",
+  presetCustomHint: "已手动设置长度、字符集和排除项", exclude: "排除字符",
+  excludePlaceholder: "例如：0O1 或 $&;", similar: "排除易混淆字符（I、O、l 和竖线）",
+  similarHint: "关闭后手动输入时更容易混淆。", alphabetCounter: "字符表：{n} 个。已排除：{k}。",
+  setEmpty: "该集合中没有剩余字符", lengthClamped: "长度已减至 {n}：在“无重复”模式下字母表不够（超过 61 时每个字符最多两次）。",
+  strength: "强度", strengthHint: "评分针对生成设置，而非某个具体密码。破解时间仅为示意。",
+  bits: "{n} 比特", crackOnline: "在线（约 10³ 次/秒）：{t}", crackOffline: "离线（约 10¹¹ 次/秒）：{t}",
+  rateLimitNote: "仅在限制尝试次数时此类密码才足够安全。",
+  level_weak: "弱", level_fair: "一般", level_good: "良好", level_strong: "强", level_veryStrong: "很强",
+  copyLink: "复制链接", copyLinkDone: "链接已复制", copyLinkNote: "链接仅含设置，不含密码。",
+  noscript: "请启用 JavaScript 以使用生成器。下方说明与常见问题无需脚本也可阅读。",
+  warn_single_char: "排除后只剩一个字符 — 已阻止生成。", err_empty_sets: "请至少选择一个字符集。",
+  err_specials_min_length: "启用符号时长度至少为 5。", err_specials_need_safe: "边缘不用符号时请同时启用数字或字母。",
+  err_bad_length: "长度须在 1 到 128 之间。", err_bad_count: "密码数量须在 1 到 200 之间。",
+  err_min_sets: "长度不足以满足所选字符集。", err_empty_alphabet: "字母表为空。",
+  err_alphabet_too_small: "排除后少于 2 个字符 — 请更改设置。", err_no_edge_chars: "没有可用于密码边缘的字符。",
+  err_unique_too_long: "“无重复”下过长：61 以内全唯一；超过 61 时每字符最多两次。",
+  err_clipboard: "无法复制到剪贴板。",
+};
+
+ui.es = {
+  params: "Ajustes", length: "Longitud", decrease: "Reducir", increase: "Aumentar", generate: "Generar",
+  genStats: "Generaciones: {n}", charset: "Conjuntos de caracteres", digits: "dígitos [0-9]",
+  lower: "minúsculas [a-z]", upper: "mayúsculas [A-Z]", specials: "símbolos", noDuplicates: "sin duplicados",
+  hint: "(haz clic en una contraseña para copiarla)", copyTitle: "Clic para copiar", copied: "copiado",
+  langSwitch: "Idioma del sitio", modeSwitch: "Modo de ajustes", modeSimple: "Básico", modeAdvanced: "Avanzado",
+  preset: "Preajuste", presetCustom: "Personalizado",
+  presetCustomHint: "Parámetros definidos manualmente — longitud, conjuntos y exclusiones",
+  exclude: "Excluir caracteres", excludePlaceholder: "p. ej.: 0O1 o $&;",
+  similar: "Excluir parecidos (I, O, l y barra vertical)", similarHint: "Desactivarlo aumenta la confusión al escribir a mano.",
+  alphabetCounter: "Alfabeto: {n} caracteres. Excluidos: {k}.", setEmpty: "No quedan caracteres en este conjunto",
+  lengthClamped: "Longitud reducida a {n}: no hay suficiente alfabeto con “sin duplicados” (sobre 61, cada carácter como máximo dos veces).",
+  strength: "Fortaleza", strengthHint: "La puntuación refleja los ajustes de generación, no una contraseña concreta.",
+  bits: "{n} bits", crackOnline: "En línea (~10³ intentos/s): {t}", crackOffline: "Fuera de línea (~10¹¹ intentos/s): {t}",
+  rateLimitNote: "Esta contraseña solo es segura si se limita la tasa de intentos.",
+  level_weak: "Débil", level_fair: "Aceptable", level_good: "Buena", level_strong: "Fuerte", level_veryStrong: "Muy fuerte",
+  copyLink: "Copiar enlace", copyLinkDone: "Enlace copiado", copyLinkNote: "El enlace solo tiene ajustes — nunca la contraseña.",
+  noscript: "Activa JavaScript para usar el generador. La descripción y las FAQ siguen disponibles.",
+  warn_single_char: "Solo queda un carácter tras las exclusiones — generación bloqueada.",
+  err_empty_sets: "Selecciona al menos un conjunto.", err_specials_min_length: "Con símbolos, la longitud mínima es 5.",
+  err_specials_need_safe: "Para bordes sin símbolos, activa también dígitos o letras.",
+  err_bad_length: "La longitud debe estar entre 1 y 128.", err_bad_count: "La cantidad debe estar entre 1 y 200.",
+  err_min_sets: "La longitud es demasiado corta para los conjuntos.", err_empty_alphabet: "El alfabeto está vacío.",
+  err_alphabet_too_small: "Quedan menos de 2 caracteres — cambia los ajustes.", err_no_edge_chars: "No hay caracteres para los bordes.",
+  err_unique_too_long: "Demasiado largo para “sin duplicados”: hasta 61 únicos; más de 61 — cada carácter como máximo dos veces.",
+  err_clipboard: "No se pudo copiar al portapapeles.",
+};
+
+ui.hi = {
+  params: "सेटिंग्स", length: "लंबाई", decrease: "घटाएँ", increase: "बढ़ाएँ", generate: "बनाएँ",
+  genStats: "जनरेशन: {n}", charset: "अक्षर समूह", digits: "अंक [0-9]", lower: "छोटे अक्षर [a-z]",
+  upper: "बड़े अक्षर [A-Z]", specials: "प्रतीक", noDuplicates: "बिना दोहराव", hint: "(कॉपी करने के लिए पासवर्ड पर क्लिक करें)",
+  copyTitle: "कॉपी करने के लिए क्लिक करें", copied: "कॉपी हो गया", langSwitch: "साइट भाषा",
+  modeSwitch: "सेटिंग मोड", modeSimple: "साधारण", modeAdvanced: "उन्नत", preset: "प्रीसेट",
+  presetCustom: "कस्टम", presetCustomHint: "लंबाई, समूह और अपवर्जन मैन्युअल सेट हैं",
+  exclude: "अक्षर हटाएँ", excludePlaceholder: "जैसे: 0O1 या $&;",
+  similar: "मिलते-जुलते हटाएँ (I, O, l और |)", similarHint: "बंद करने पर हाथ से टाइप करते समय भ्रम बढ़ता है।",
+  alphabetCounter: "वर्णमाला: {n}। हटाए गए: {k}।", setEmpty: "इस समूह में कोई अक्षर नहीं बचा",
+  lengthClamped: "लंबाई घटाकर {n}: “बिना दोहराव” में वर्णमाला कम है (61 से अधिक पर प्रत्येक अक्षर अधिकतम दो बार)।",
+  strength: "मज़बूती", strengthHint: "स्कोर सेटिंग्स पर आधारित है, किसी एक पासवर्ड पर नहीं।",
+  bits: "{n} बिट", crackOnline: "ऑनलाइन (~10³/से): {t}", crackOffline: "ऑफ़लाइन (~10¹¹/से): {t}",
+  rateLimitNote: "प्रयासों की सीमा होने पर ही यह पासवर्ड सुरक्षित है।",
+  level_weak: "कमज़ोर", level_fair: "ठीक", level_good: "अच्छा", level_strong: "मज़बूत", level_veryStrong: "बहुत मज़बूत",
+  copyLink: "लिंक कॉपी करें", copyLinkDone: "लिंक कॉपी हुआ", copyLinkNote: "लिंक में केवल सेटिंग्स हैं — पासवर्ड नहीं।",
+  noscript: "जनरेटर के लिए JavaScript चालू करें। नीचे विवरण बिना स्क्रिप्ट भी उपलब्ध है।",
+  warn_single_char: "अपवर्जन के बाद एक ही अक्षर बचा — जनरेशन बंद।", err_empty_sets: "कम से कम एक समूह चुनें।",
+  err_specials_min_length: "प्रतीकों के साथ लंबाई कम से कम 5 हो।", err_specials_need_safe: "किनारों के लिए अंक या अक्षर भी चालू करें।",
+  err_bad_length: "लंबाई 1 से 128 के बीच हो।", err_bad_count: "संख्या 1 से 200 के बीच हो।",
+  err_min_sets: "चयनित समूहों के लिए लंबाई कम है।", err_empty_alphabet: "वर्णमाला खाली है।",
+  err_alphabet_too_small: "2 से कम अक्षर बचे — सेटिंग बदलें।", err_no_edge_chars: "किनारों के लिए अक्षर नहीं।",
+  err_unique_too_long: "“बिना दोहराव” के लिए बहुत लंबा: 61 तक अद्वितीय; अधिक पर अधिकतम दो बार।",
+  err_clipboard: "क्लिपबोर्ड पर कॉपी नहीं हो सका।",
+};
+
+ui.ar = {
+  params: "الإعدادات", length: "الطول", decrease: "إنقاص", increase: "زيادة", generate: "توليد",
+  genStats: "مرات التوليد: {n}", charset: "مجموعات الرموز", digits: "أرقام [0-9]", lower: "صغيرة [a-z]",
+  upper: "كبيرة [A-Z]", specials: "رموز", noDuplicates: "بدون تكرار", hint: "(انقر على كلمة المرور لنسخها)",
+  copyTitle: "انقر للنسخ", copied: "تم النسخ", langSwitch: "لغة الموقع", modeSwitch: "وضع الإعدادات",
+  modeSimple: "أساسي", modeAdvanced: "متقدم", preset: "إعداد مسبق", presetCustom: "مخصص",
+  presetCustomHint: "تم ضبط الطول والمجموعات والاستثناءات يدويًا",
+  exclude: "استبعاد رموز", excludePlaceholder: "مثال: 0O1 أو $&;",
+  similar: "استبعاد المتشابه (I و O و l والخط العمودي)", similarHint: "إيقافه يزيد الالتباس عند الكتابة يدويًا.",
+  alphabetCounter: "الأبجدية: {n}. المستبعد: {k}.", setEmpty: "لا رموز متبقية في هذه المجموعة",
+  lengthClamped: "خُفّض الطول إلى {n}: الأبجدية لا تكفي مع «بدون تكرار» (فوق 61 كل رمز مرتان كحد أقصى).",
+  strength: "القوة", strengthHint: "التقييم للإعدادات وليس لكلمة مرور بعينها.",
+  bits: "{n} بت", crackOnline: "عبر الإنترنت (~10³/ث): {t}", crackOffline: "دون اتصال (~10¹¹/ث): {t}",
+  rateLimitNote: "كلمة المرور آمنة فقط مع حد لمعدل المحاولات.",
+  level_weak: "ضعيفة", level_fair: "مقبولة", level_good: "جيدة", level_strong: "قوية", level_veryStrong: "قوية جدًا",
+  copyLink: "نسخ الرابط", copyLinkDone: "تم نسخ الرابط", copyLinkNote: "الرابط للإعدادات فقط — دون كلمة المرور.",
+  noscript: "فعّل JavaScript لاستخدام المولّد. الوصف والأسئلة متاحة بدونه.",
+  warn_single_char: "رمز واحد فقط بعد الاستبعاد — التوليد متوقف.", err_empty_sets: "اختر مجموعة واحدة على الأقل.",
+  err_specials_min_length: "مع الرموز يجب أن يكون الطول 5 على الأقل.", err_specials_need_safe: "لحواف بلا رموز فعّل أرقامًا أو حروفًا.",
+  err_bad_length: "الطول بين 1 و 128.", err_bad_count: "العدد بين 1 و 200.",
+  err_min_sets: "الطول قصير للمجموعات المحددة.", err_empty_alphabet: "الأبجدية فارغة.",
+  err_alphabet_too_small: "أقل من رمزين متبقيين — غيّر الإعدادات.", err_no_edge_chars: "لا رموز لحواف كلمة المرور.",
+  err_unique_too_long: "طويل جدًا لـ«بدون تكرار»: حتى 61 فريد؛ فوق 61 مرتان كحد أقصى لكل رمز.",
+  err_clipboard: "تعذّر النسخ إلى الحافظة.",
+};
+
+ui.bn = {
+  params: "সেটিংস", length: "দৈর্ঘ্য", decrease: "কমান", increase: "বাড়ান", generate: "তৈরি করুন",
+  genStats: "জেনারেশন: {n}", charset: "অক্ষর সেট", digits: "সংখ্যা [0-9]", lower: "ছোট হাতের [a-z]",
+  upper: "বড় হাতের [A-Z]", specials: "প্রতীক", noDuplicates: "ডুপ্লিকেট নয়", hint: "(কপি করতে পাসওয়ার্ডে ক্লিক করুন)",
+  copyTitle: "কপি করতে ক্লিক", copied: "কপি হয়েছে", langSwitch: "সাইটের ভাষা", modeSwitch: "সেটিং মোড",
+  modeSimple: "সাধারণ", modeAdvanced: "উন্নত", preset: "প্রিসেট", presetCustom: "কাস্টম",
+  presetCustomHint: "দৈর্ঘ্য, সেট ও বাদ ম্যানুয়ালি সেট", exclude: "অক্ষর বাদ",
+  excludePlaceholder: "যেমন: 0O1 বা $&;", similar: "মিল monা বাদ (I, O, l ও |)",
+  similarHint: "বন্ধ করলে হাতে টাইপে বিভ্রান্তি বাড়ে।", alphabetCounter: "বর্ণমালা: {n}। বাদ: {k}।",
+  setEmpty: "এই সেটে অক্ষর নেই", lengthClamped: "দৈর্ঘ্য কমিয়ে {n}: “ডুপ্লিকেট নয়”-এ বর্ণমালা কম (৬১-এর উপরে প্রতি অক্ষর সর্বোচ্চ দুবার)।",
+  strength: "শক্তি", strengthHint: "স্কোর সেটিংসের উপর, কোনো নির্দিষ্ট পাসওয়ার্ডের উপর নয়।",
+  bits: "{n} বিট", crackOnline: "অনলাইন (~10³/সে): {t}", crackOffline: "অফলাইন (~10¹¹/সে): {t}",
+  rateLimitNote: "চেষ্টার হার সীমিত হলেই এই পাসওয়ার্ড নিরাপদ।",
+  level_weak: "দুর্বল", level_fair: "মোটামুটি", level_good: "ভালো", level_strong: "শক্তিশালী", level_veryStrong: "খুব শক্তিশালী",
+  copyLink: "লিংক কপি", copyLinkDone: "লিংক কপি হয়েছে", copyLinkNote: "লিংকে শুধু সেটিংস — পাসওয়ার্ড নয়।",
+  noscript: "জেনারেটরের জন্য JavaScript চালু করুন। নিচের বিবরণ স্ক্রিপ্ট ছাড়াও পাওয়া যায়।",
+  warn_single_char: "বাদ দেওয়ার পর একটি অক্ষর — তৈরি বন্ধ।", err_empty_sets: "অন্তত একটি সেট বেছে নিন।",
+  err_specials_min_length: "প্রতীক থাকলে দৈর্ঘ্য কমপক্ষে ৫।", err_specials_need_safe: "প্রান্তে প্রতীক না থাকলে সংখ্যা বা অক্ষর চালু করুন।",
+  err_bad_length: "দৈর্ঘ্য ১ থেকে ১২৮।", err_bad_count: "সংখ্যা ১ থেকে ২০০।",
+  err_min_sets: "নির্বাচিত সেটের জন্য দৈর্ঘ্য কম।", err_empty_alphabet: "বর্ণমালা খালি।",
+  err_alphabet_too_small: "২-এর কম অক্ষর — সেটিং বদলান।", err_no_edge_chars: "প্রান্তের জন্য অক্ষর নেই।",
+  err_unique_too_long: "“ডুপ্লিকেট নয়”-এর জন্য খুব লম্বা: ৬১ পর্যন্ত অনন্য; তার বেশি হলে সর্বোচ্চ দুবার।",
+  err_clipboard: "ক্লিপবোর্ডে কপি হয়নি।",
+};
+
+// fix typo in bn similar
+ui.bn.similar = "মিল থাকা অক্ষর বাদ (I, O, l ও |)";
+
+ui.pt = {
+  params: "Definições", length: "Comprimento", decrease: "Diminuir", increase: "Aumentar", generate: "Gerar",
+  genStats: "Gerações: {n}", charset: "Conjuntos de caracteres", digits: "dígitos [0-9]",
+  lower: "minúsculas [a-z]", upper: "maiúsculas [A-Z]", specials: "símbolos", noDuplicates: "sem duplicados",
+  hint: "(clique numa palavra-passe para copiar)", copyTitle: "Clique para copiar", copied: "copiado",
+  langSwitch: "Idioma do site", modeSwitch: "Modo de definições", modeSimple: "Básico", modeAdvanced: "Avançado",
+  preset: "Predefinição", presetCustom: "Personalizado",
+  presetCustomHint: "Parâmetros definidos manualmente — comprimento, conjuntos e exclusões",
+  exclude: "Excluir caracteres", excludePlaceholder: "ex.: 0O1 ou $&;",
+  similar: "Excluir semelhantes (I, O, l e barra vertical)", similarHint: "Desativar aumenta a confusão ao escrever à mão.",
+  alphabetCounter: "Alfabeto: {n} caracteres. Excluídos: {k}.", setEmpty: "Não restam caracteres neste conjunto",
+  lengthClamped: "Comprimento reduzido para {n}: alfabeto insuficiente com “sem duplicados” (acima de 61, cada carácter no máximo duas vezes).",
+  strength: "Força", strengthHint: "A pontuação reflete as definições de geração, não uma palavra-passe específica.",
+  bits: "{n} bits", crackOnline: "Online (~10³ tentativas/s): {t}", crackOffline: "Offline (~10¹¹ tentativas/s): {t}",
+  rateLimitNote: "Esta palavra-passe só é segura com limite de tentativas.",
+  level_weak: "Fraca", level_fair: "Razoável", level_good: "Boa", level_strong: "Forte", level_veryStrong: "Muito forte",
+  copyLink: "Copiar ligação", copyLinkDone: "Ligação copiada", copyLinkNote: "A ligação tem só definições — nunca a palavra-passe.",
+  noscript: "Ative o JavaScript para usar o gerador. A descrição e as FAQ funcionam sem ele.",
+  warn_single_char: "Só resta um carácter após exclusões — geração bloqueada.",
+  err_empty_sets: "Selecione pelo menos um conjunto.", err_specials_min_length: "Com símbolos, o comprimento mínimo é 5.",
+  err_specials_need_safe: "Para extremos sem símbolos, ative também dígitos ou letras.",
+  err_bad_length: "O comprimento deve estar entre 1 e 128.", err_bad_count: "A quantidade deve estar entre 1 e 200.",
+  err_min_sets: "Comprimento demasiado curto para os conjuntos.", err_empty_alphabet: "O alfabeto está vazio.",
+  err_alphabet_too_small: "Menos de 2 caracteres — altere as definições.", err_no_edge_chars: "Sem caracteres para os extremos.",
+  err_unique_too_long: "Demasiado longo para “sem duplicados”: até 61 únicos; acima de 61 — no máximo duas vezes cada.",
+  err_clipboard: "Não foi possível copiar para a área de transferência.",
+};
+
+ui.fr = {
+  params: "Paramètres", length: "Longueur", decrease: "Diminuer", increase: "Augmenter", generate: "Générer",
+  genStats: "Générations : {n}", charset: "Jeux de caractères", digits: "chiffres [0-9]",
+  lower: "minuscules [a-z]", upper: "majuscules [A-Z]", specials: "symboles", noDuplicates: "sans doublons",
+  hint: "(cliquez sur un mot de passe pour le copier)", copyTitle: "Cliquer pour copier", copied: "copié",
+  langSwitch: "Langue du site", modeSwitch: "Mode des paramètres", modeSimple: "Basique", modeAdvanced: "Avancé",
+  preset: "Préréglage", presetCustom: "Personnalisé",
+  presetCustomHint: "Paramètres définis manuellement — longueur, jeux et exclusions",
+  exclude: "Exclure des caractères", excludePlaceholder: "ex. : 0O1 ou $&;",
+  similar: "Exclure les confusions (I, O, l et barre verticale)", similarHint: "Le désactiver augmente la confusion à la saisie manuscrite.",
+  alphabetCounter: "Alphabet : {n} caractères. Exclus : {k}.", setEmpty: "Plus aucun caractère dans ce jeu",
+  lengthClamped: "Longueur réduite à {n} : alphabet insuffisant avec « sans doublons » (au-delà de 61, chaque caractère au plus deux fois).",
+  strength: "Force", strengthHint: "Le score reflète les paramètres de génération, pas un mot de passe précis.",
+  bits: "{n} bits", crackOnline: "En ligne (~10³ essais/s) : {t}", crackOffline: "Hors ligne (~10¹¹ essais/s) : {t}",
+  rateLimitNote: "Ce mot de passe n’est sûr que si le débit d’essais est limité.",
+  level_weak: "Faible", level_fair: "Correct", level_good: "Bon", level_strong: "Fort", level_veryStrong: "Très fort",
+  copyLink: "Copier le lien", copyLinkDone: "Lien copié", copyLinkNote: "Le lien ne contient que les paramètres — jamais le mot de passe.",
+  noscript: "Activez JavaScript pour utiliser le générateur. La description et la FAQ restent disponibles.",
+  warn_single_char: "Un seul caractère après exclusions — génération bloquée.",
+  err_empty_sets: "Sélectionnez au moins un jeu.", err_specials_min_length: "Avec symboles, longueur minimale 5.",
+  err_specials_need_safe: "Pour des bords sans symboles, activez aussi chiffres ou lettres.",
+  err_bad_length: "La longueur doit être entre 1 et 128.", err_bad_count: "Le nombre doit être entre 1 et 200.",
+  err_min_sets: "Longueur trop courte pour les jeux choisis.", err_empty_alphabet: "Alphabet vide.",
+  err_alphabet_too_small: "Moins de 2 caractères restants — changez les paramètres.", err_no_edge_chars: "Aucun caractère pour les bords.",
+  err_unique_too_long: "Trop long pour « sans doublons » : jusqu’à 61 uniques ; au-delà — au plus deux fois chaque.",
+  err_clipboard: "Impossible de copier dans le presse-papiers.",
+};
+
+ui.de = {
+  params: "Einstellungen", length: "Länge", decrease: "Verringern", increase: "Erhöhen", generate: "Generieren",
+  genStats: "Generierungen: {n}", charset: "Zeichensätze", digits: "Ziffern [0-9]",
+  lower: "Kleinbuchstaben [a-z]", upper: "Großbuchstaben [A-Z]", specials: "Sonderzeichen", noDuplicates: "ohne Duplikate",
+  hint: "(zum Kopieren auf ein Passwort klicken)", copyTitle: "Zum Kopieren klicken", copied: "kopiert",
+  langSwitch: "Seitensprache", modeSwitch: "Einstellungsmodus", modeSimple: "Einfach", modeAdvanced: "Erweitert",
+  preset: "Voreinstellung", presetCustom: "Benutzerdefiniert",
+  presetCustomHint: "Parameter manuell gesetzt — Länge, Sätze und Ausschlüsse",
+  exclude: "Zeichen ausschließen", excludePlaceholder: "z. B. 0O1 oder $&;",
+  similar: "Ähnliche ausschließen (I, O, l und Senkrechtstrich)", similarHint: "Ausschalten erhöht Verwechslungen beim Tippen.",
+  alphabetCounter: "Alphabet: {n} Zeichen. Ausgeschlossen: {k}.", setEmpty: "In diesem Satz keine Zeichen mehr",
+  lengthClamped: "Länge auf {n} reduziert: zu wenig Alphabet bei „ohne Duplikate“ (über 61 jedes Zeichen höchstens zweimal).",
+  strength: "Stärke", strengthHint: "Die Bewertung gilt für die Einstellungen, nicht für ein einzelnes Passwort.",
+  bits: "{n} Bit", crackOnline: "Online (~10³ Versuche/s): {t}", crackOffline: "Offline (~10¹¹ Versuche/s): {t}",
+  rateLimitNote: "Dieses Passwort ist nur bei begrenzter Versuchsrate sicher.",
+  level_weak: "Schwach", level_fair: "Mittel", level_good: "Gut", level_strong: "Stark", level_veryStrong: "Sehr stark",
+  copyLink: "Link kopieren", copyLinkDone: "Link kopiert", copyLinkNote: "Im Link nur Einstellungen — nie das Passwort.",
+  noscript: "Aktivieren Sie JavaScript für den Generator. Beschreibung und FAQ funktionieren ohne.",
+  warn_single_char: "Nur noch ein Zeichen nach Ausschlüssen — Generierung gesperrt.",
+  err_empty_sets: "Mindestens einen Zeichensatz wählen.", err_specials_min_length: "Mit Sonderzeichen Länge mindestens 5.",
+  err_specials_need_safe: "Für Ränder ohne Sonderzeichen Ziffern oder Buchstaben aktivieren.",
+  err_bad_length: "Länge muss zwischen 1 und 128 liegen.", err_bad_count: "Anzahl muss zwischen 1 und 200 liegen.",
+  err_min_sets: "Länge zu kurz für die gewählten Sätze.", err_empty_alphabet: "Alphabet ist leer.",
+  err_alphabet_too_small: "Weniger als 2 Zeichen übrig — Einstellungen ändern.", err_no_edge_chars: "Keine Zeichen für die Ränder.",
+  err_unique_too_long: "Zu lang für „ohne Duplikate“: bis 61 eindeutig; darüber höchstens zweimal pro Zeichen.",
+  err_clipboard: "Kopieren in die Zwischenablage fehlgeschlagen.",
+};
+
+ui.ja = {
+  params: "設定", length: "長さ", decrease: "減らす", increase: "増やす", generate: "生成",
+  genStats: "生成回数: {n}", charset: "文字セット", digits: "数字 [0-9]", lower: "小文字 [a-z]",
+  upper: "大文字 [A-Z]", specials: "記号", noDuplicates: "重複なし", hint: "（パスワードをクリックしてコピー）",
+  copyTitle: "クリックでコピー", copied: "コピーしました", langSwitch: "サイトの言語", modeSwitch: "設定モード",
+  modeSimple: "基本", modeAdvanced: "詳細", preset: "プリセット", presetCustom: "カスタム",
+  presetCustomHint: "長さ・文字セット・除外を手動設定", exclude: "除外する文字",
+  excludePlaceholder: "例: 0O1 または $&;", similar: "似た文字を除外（I、O、l、縦線）",
+  similarHint: "オフにすると手入力時に紛れやすくなります。", alphabetCounter: "文字種: {n}。除外: {k}。",
+  setEmpty: "このセットに文字が残っていません", lengthClamped: "長さを {n} に短縮:「重複なし」では文字が足りません（61超は各文字最大2回）。",
+  strength: "強度", strengthHint: "スコアは生成設定向けで、特定のパスワード向けではありません。",
+  bits: "{n} ビット", crackOnline: "オンライン（約10³回/秒）: {t}", crackOffline: "オフライン（約10¹¹回/秒）: {t}",
+  rateLimitNote: "試行回数に制限がある場合に限り安全です。",
+  level_weak: "弱い", level_fair: "普通", level_good: "良い", level_strong: "強い", level_veryStrong: "非常に強い",
+  copyLink: "リンクをコピー", copyLinkDone: "リンクをコピーしました", copyLinkNote: "リンクには設定のみ — パスワードは含みません。",
+  noscript: "ジェネレーターには JavaScript を有効にしてください。説明と FAQ はスクリプトなしでも読めます。",
+  warn_single_char: "除外後に文字が1つ — 生成を停止しました。", err_empty_sets: "文字セットを1つ以上選んでください。",
+  err_specials_min_length: "記号ありの場合、長さは5以上。", err_specials_need_safe: "端を記号なしにするには数字か文字も有効に。",
+  err_bad_length: "長さは1〜128。", err_bad_count: "個数は1〜200。",
+  err_min_sets: "選択したセットには長さが足りません。", err_empty_alphabet: "文字セットが空です。",
+  err_alphabet_too_small: "残り文字が2未満 — 設定を変更してください。", err_no_edge_chars: "端用の文字がありません。",
+  err_unique_too_long: "「重複なし」には長すぎます: 61まで一意、それ以上は各文字最大2回。",
+  err_clipboard: "クリップボードにコピーできませんでした。",
+};
+
+ui.id = {
+  params: "Pengaturan", length: "Panjang", decrease: "Kurangi", increase: "Tambah", generate: "Buat",
+  genStats: "Pembuatan: {n}", charset: "Set karakter", digits: "angka [0-9]", lower: "huruf kecil [a-z]",
+  upper: "huruf besar [A-Z]", specials: "simbol", noDuplicates: "tanpa duplikat", hint: "(klik kata sandi untuk menyalin)",
+  copyTitle: "Klik untuk menyalin", copied: "disalin", langSwitch: "Bahasa situs", modeSwitch: "Mode pengaturan",
+  modeSimple: "Dasar", modeAdvanced: "Lanjutan", preset: "Preset", presetCustom: "Kustom",
+  presetCustomHint: "Parameter diatur manual — panjang, set, dan pengecualian",
+  exclude: "Kecualikan karakter", excludePlaceholder: "mis. 0O1 atau $&;",
+  similar: "Kecualikan mirip (I, O, l, dan garis tegak)", similarHint: "Mematikannya menambah kebingungan saat mengetik.",
+  alphabetCounter: "Alfabet: {n} karakter. Dikecualikan: {k}.", setEmpty: "Tidak ada karakter tersisa di set ini",
+  lengthClamped: "Panjang dikurangi ke {n}: alfabet kurang untuk “tanpa duplikat” (di atas 61 tiap karakter maks dua kali).",
+  strength: "Kekuatan", strengthHint: "Skor mencerminkan pengaturan pembuatan, bukan satu kata sandi.",
+  bits: "{n} bit", crackOnline: "Online (~10³ tebakan/d): {t}", crackOffline: "Offline (~10¹¹ tebakan/d): {t}",
+  rateLimitNote: "Kata sandi ini aman hanya jika laju tebakan dibatasi.",
+  level_weak: "Lemah", level_fair: "Cukup", level_good: "Baik", level_strong: "Kuat", level_veryStrong: "Sangat kuat",
+  copyLink: "Salin tautan", copyLinkDone: "Tautan disalin", copyLinkNote: "Tautan hanya berisi pengaturan — bukan kata sandi.",
+  noscript: "Aktifkan JavaScript untuk generator. Deskripsi dan FAQ tetap tersedia.",
+  warn_single_char: "Hanya satu karakter setelah pengecualian — pembuatan diblokir.",
+  err_empty_sets: "Pilih setidaknya satu set.", err_specials_min_length: "Dengan simbol, panjang minimal 5.",
+  err_specials_need_safe: "Untuk tepi tanpa simbol, aktifkan juga angka atau huruf.",
+  err_bad_length: "Panjang harus antara 1 dan 128.", err_bad_count: "Jumlah harus antara 1 dan 200.",
+  err_min_sets: "Panjang terlalu pendek untuk set yang dipilih.", err_empty_alphabet: "Alfabet kosong.",
+  err_alphabet_too_small: "Kurang dari 2 karakter tersisa — ubah pengaturan.", err_no_edge_chars: "Tidak ada karakter untuk tepi.",
+  err_unique_too_long: "Terlalu panjang untuk “tanpa duplikat”: hingga 61 unik; di atas 61 — maks dua kali per karakter.",
+  err_clipboard: "Tidak bisa menyalin ke papan klip.",
+};
+
+const restFromEn = (overrides) => ({ ...ui.en, ...overrides });
+
+ui.pa = restFromEn({
+  params: "ਸੈਟਿੰਗਾਂ", length: "ਲੰਬਾਈ", decrease: "ਘਟਾਓ", increase: "ਵਧਾਓ", generate: "ਬਣਾਓ",
+  genStats: "ਜਨਰੇਸ਼ਨ: {n}", charset: "ਅੱਖਰ ਸੈੱਟ", digits: "ਅੰਕ [0-9]", lower: "ਛੋਟੇ [a-z]",
+  upper: "ਵੱਡੇ [A-Z]", specials: "ਚਿੰਨ੍ਹ", noDuplicates: "ਬਿਨਾਂ ਡੁਪਲੀਕੇਟ", hint: "(ਕਾਪੀ ਲਈ ਪਾਸਵਰਡ ਤੇ ਕਲਿੱਕ ਕਰੋ)",
+  copyTitle: "ਕਾਪੀ ਲਈ ਕਲਿੱਕ", copied: "ਕਾਪੀ ਹੋਇਆ", langSwitch: "ਸਾਈਟ ਭਾਸ਼ਾ", modeSimple: "ਸਧਾਰਨ", modeAdvanced: "ਉੱਨਤ",
+  strength: "ਤਾਕਤ", copyLink: "ਲਿੰਕ ਕਾਪੀ", noscript: "ਜਨਰੇਟਰ ਲਈ JavaScript ਚਾਲੂ ਕਰੋ।",
+});
+
+ui.jv = restFromEn({
+  params: "Setélan", length: "Dawa", decrease: "Nyuda", increase: "Nambah", generate: "Gawe",
+  genStats: "Generasi: {n}", charset: "Set karakter", noDuplicates: "tanpa duplikat",
+  hint: "(klik sandi kanggo nyalin)", copyTitle: "Klik kanggo nyalin", copied: "disalin",
+  langSwitch: "Basa situs", modeSimple: "Dhasar", modeAdvanced: "Lanjutan", strength: "Kuwat",
+  copyLink: "Salin pranala", noscript: "Aktifake JavaScript kanggo generator.",
+});
+
+ui.te = restFromEn({
+  params: "సెట్టింగులు", length: "పొడవు", decrease: "తగ్గించు", increase: "పెంచు", generate: "రూపొందించు",
+  genStats: "జనరేషన్లు: {n}", charset: "అక్షర సెట్లు", digits: "అంకెలు [0-9]", lower: "చిన్న అక్షరాలు [a-z]",
+  upper: "పెద్ద అక్షరాలు [A-Z]", specials: "చిహ్నాలు", noDuplicates: "నకిలీ లేకుండా", hint: "(కాపీ చేయడానికి పాస్‌వర్డ్‌పై క్లిక్ చేయండి)",
+  copyTitle: "కాపీకి క్లిక్", copied: "కాపీ అయింది", langSwitch: "సైట్ భాష", modeSimple: "సాధారణ", modeAdvanced: "అధునాతన",
+  strength: "బలం", copyLink: "లింక్ కాపీ", noscript: "జనరేటర్‌కు JavaScript ప్రారంభించండి.",
+});
+
+ui.tr = restFromEn({
+  params: "Ayarlar", length: "Uzunluk", decrease: "Azalt", increase: "Artır", generate: "Oluştur",
+  genStats: "Üretim: {n}", charset: "Karakter kümeleri", digits: "rakamlar [0-9]", lower: "küçük [a-z]",
+  upper: "büyük [A-Z]", specials: "semboller", noDuplicates: "yinelenmesin", hint: "(kopyalamak için parolaya tıklayın)",
+  copyTitle: "Kopyalamak için tıklayın", copied: "kopyalandı", langSwitch: "Site dili", modeSimple: "Temel", modeAdvanced: "Gelişmiş",
+  preset: "Hazır ayar", exclude: "Karakterleri çıkar", strength: "Güç",
+  bits: "{n} bit", copyLink: "Bağlantıyı kopyala", copyLinkDone: "Bağlantı kopyalandı",
+  noscript: "Oluşturucu için JavaScript’i açın. Açıklama ve SSS yine de çalışır.",
+  err_empty_sets: "En az bir küme seçin.", err_clipboard: "Panoya kopyalanamadı.",
+});
+
+ui.ko = restFromEn({
+  params: "설정", length: "길이", decrease: "줄이기", increase: "늘리기", generate: "생성",
+  genStats: "생성 횟수: {n}", charset: "문자 집합", digits: "숫자 [0-9]", lower: "소문자 [a-z]",
+  upper: "대문자 [A-Z]", specials: "기호", noDuplicates: "중복 없음", hint: "(비밀번호를 클릭해 복사)",
+  copyTitle: "클릭하여 복사", copied: "복사됨", langSwitch: "사이트 언어", modeSimple: "기본", modeAdvanced: "고급",
+  preset: "프리셋", exclude: "문자 제외", strength: "강도", bits: "{n}비트",
+  copyLink: "링크 복사", copyLinkDone: "링크가 복사됨", noscript: "생성기를 쓰려면 JavaScript를 켜세요. 설명과 FAQ는 스크립트 없이도 볼 수 있습니다.",
+  err_empty_sets: "문자 집합을 하나 이상 선택하세요.", err_clipboard: "클립보드에 복사할 수 없습니다.",
+});
+
+ui.mr = restFromEn({
+  params: "सेटिंग्ज", length: "लांबी", decrease: "कमी करा", increase: "वाढवा", generate: "तयार करा",
+  genStats: "जनरेशन: {n}", charset: "अक्षर संच", noDuplicates: "डुप्लिकेट नाही", hint: "(कॉपीसाठी पासवर्डवर क्लिक करा)",
+  copyTitle: "कॉपीसाठी क्लिक", copied: "कॉपी झाले", langSwitch: "साइट भाषा", modeSimple: "साधे", modeAdvanced: "प्रगत",
+  strength: "सामर्थ्य", copyLink: "लिंक कॉपी", noscript: "जनरेटरसाठी JavaScript सुरू करा.",
+});
+
+ui.vi = restFromEn({
+  params: "Cài đặt", length: "Độ dài", decrease: "Giảm", increase: "Tăng", generate: "Tạo",
+  genStats: "Lần tạo: {n}", charset: "Tập ký tự", digits: "chữ số [0-9]", lower: "chữ thường [a-z]",
+  upper: "chữ hoa [A-Z]", specials: "ký hiệu", noDuplicates: "không trùng", hint: "(bấm vào mật khẩu để sao chép)",
+  copyTitle: "Bấm để sao chép", copied: "đã sao chép", langSwitch: "Ngôn ngữ trang", modeSimple: "Cơ bản", modeAdvanced: "Nâng cao",
+  preset: "Mẫu sẵn", exclude: "Loại trừ ký tự", strength: "Độ mạnh", bits: "{n} bit",
+  copyLink: "Sao chép liên kết", copyLinkDone: "Đã sao chép liên kết",
+  noscript: "Bật JavaScript để dùng trình tạo. Mô tả và FAQ vẫn xem được.",
+  err_empty_sets: "Chọn ít nhất một tập ký tự.", err_clipboard: "Không sao chép được vào clipboard.",
+});
+
+ui.ta = restFromEn({
+  params: "அமைப்புகள்", length: "நீளம்", decrease: "குறை", increase: "கூட்டு", generate: "உருவாக்கு",
+  genStats: "உருவாக்கங்கள்: {n}", charset: "எழுத்து தொகுப்புகள்", noDuplicates: "நகல் இல்லாமல்",
+  hint: "(நகலெடுக்க கடவுச்சொல்லைக் கிளிக் செய்யவும்)", copyTitle: "நகலெடுக்க கிளிக்", copied: "நகலெடுக்கப்பட்டது",
+  langSwitch: "தள மொழி", modeSimple: "அடிப்படை", modeAdvanced: "மேம்பட்ட", strength: "வலிமை",
+  copyLink: "இணைப்பை நகலெடு", noscript: "உருவாக்கிக்கு JavaScript இயக்கவும்.",
+});
+
+ui.it = restFromEn({
+  params: "Impostazioni", length: "Lunghezza", decrease: "Diminuisci", increase: "Aumenta", generate: "Genera",
+  genStats: "Generazioni: {n}", charset: "Insiemi di caratteri", digits: "cifre [0-9]",
+  lower: "minuscole [a-z]", upper: "maiuscole [A-Z]", specials: "simboli", noDuplicates: "senza duplicati",
+  hint: "(fai clic su una password per copiarla)", copyTitle: "Clic per copiare", copied: "copiato",
+  langSwitch: "Lingua del sito", modeSwitch: "Modalità impostazioni", modeSimple: "Base", modeAdvanced: "Avanzate",
+  preset: "Predefinito", exclude: "Escludi caratteri", similar: "Escludi simili (I, O, l e barra verticale)",
+  strength: "Resistenza", bits: "{n} bit", copyLink: "Copia link", copyLinkDone: "Link copiato",
+  noscript: "Abilita JavaScript per usare il generatore. Descrizione e FAQ restano disponibili.",
+  err_empty_sets: "Seleziona almeno un insieme.", err_clipboard: "Impossibile copiare negli appunti.",
+});
+
+ui.fa = restFromEn({
+  params: "تنظیمات", length: "طول", decrease: "کاهش", increase: "افزایش", generate: "تولید",
+  genStats: "تولیدها: {n}", charset: "مجموعه‌های نویسه", digits: "رقم [0-9]", lower: "کوچک [a-z]",
+  upper: "بزرگ [A-Z]", specials: "نمادها", noDuplicates: "بدون تکرار", hint: "(برای کپی روی گذرواژه کلیک کنید)",
+  copyTitle: "برای کپی کلیک کنید", copied: "کپی شد", langSwitch: "زبان سایت", modeSimple: "ساده", modeAdvanced: "پیشرفته",
+  preset: "پیش‌فرض", exclude: "حذف نویسه‌ها", strength: "قدرت", bits: "{n} بیت",
+  copyLink: "کپی پیوند", copyLinkDone: "پیوند کپی شد",
+  noscript: "برای استفاده از مولد JavaScript را روشن کنید. توضیح و پرسش‌ها بدون آن هم در دسترس است.",
+  err_empty_sets: "دست‌کم یک مجموعه انتخاب کنید.", err_clipboard: "کپی به کلیپ‌بورد ممکن نشد.",
+});
+
+ui.tlh = {
+  params: "chutmey", length: "chuq", decrease: "machmoH", increase: "tInmoH", generate: "chenmoH",
+  genStats: "chenmoHpu': {n}", charset: "Segh mey", digits: "mI' mey [0-9]", lower: "mach ngutlh [a-z]",
+  upper: "tIn ngutlh [A-Z]", specials: "le' Seghmey", noDuplicates: "votlhbe' Segh",
+  hint: "(ngutlh yI'uy — password yIwuq)", copyTitle: "yIwuq", copied: "qawlu'", langSwitch: "Hol",
+  modeSwitch: "chut Dil", modeSimple: "motlh", modeAdvanced: "Qatlh", preset: "nuv", presetCustom: "chutlIj",
+  presetCustomHint: "chutmey DachenmoHta' — chuq, Seghmey, teq", exclude: "Seghmey teq",
+  excludePlaceholder: "chovnatlh: 0O1 joq $&;", similar: "rurchuq Seghmey teq (I, O, l, |)",
+  similarHint: "chu'be'chugh, yajlaHbe'qu'", alphabetCounter: "ngutlhmey: {n}. teqlu'pu': {k}.",
+  setEmpty: "SeghvetlhDaq Segh tu'lu'be'", lengthClamped: "chuq '{n}' moj: votlhbe' Segh DIchugh",
+  strength: "HoS", strengthHint: "chutmey'e' DomuS, mu'tlhegh'e' be'.", bits: "{n} bitmey",
+  crackOnline: "Hov (~10³ /lup): {t}", crackOffline: "qo' (~10¹¹ /lup): {t}",
+  rateLimitNote: "nIteb nItebchugh neH Qap", level_weak: "puj", level_fair: "motlh", level_good: "QaQ",
+  level_strong: "HoS", level_veryStrong: "HoSqu'", copyLink: "De'wI' yIwuq", copyLinkDone: "De'wI' qawlu'",
+  copyLinkNote: "chutmey neH tu'lu'; password tu'lu'be'",
+  noscript: "JavaScript yIchu'. De' QInmey vIleghlaHbej.",
+  warn_single_char: "wa' Segh neH Qam — chenmoH Qotlhlu'", err_empty_sets: "wa' Segh yIwIv",
+  err_specials_min_length: "le' Seghmey DIchugh, chuq 5 'ej law'", err_specials_need_safe: "DopmeyvaD mI' joq ngutlh yIchu'",
+  err_bad_length: "chuq 1-128 'oH", err_bad_count: "password mey 1-200 'oH",
+  err_min_sets: "chuq machqu'; SeghmeyvaD", err_empty_alphabet: "ngutlhmey Hutlh",
+  err_alphabet_too_small: "cha' Segh law'be' — chutmey yIchoH", err_no_edge_chars: "DopmeyvaD Segh tu'lu'be'",
+  err_unique_too_long: "votlhbe' DIchugh, chuq ngutlhmey 'aqroS 'Iq", err_clipboard: "qawlaHbe'",
+};
+
+// Fill lang* keys identically for all locales (native names)
+for (const loc of LOCALES) {
+  if (!ui[loc]) throw new Error("missing ui " + loc);
+  ui[loc].langRu = native.ru;
+  ui[loc].langEn = native.en;
+  ui[loc].langTlh = native.tlh;
+  // ensure every en key exists
+  for (const k of Object.keys(ui.en)) {
+    if (ui[loc][k] == null) ui[loc][k] = ui.en[k];
+  }
+}
+
+function esc(s) {
+  return JSON.stringify(s);
+}
+
+function dumpRecord(name, typeName, obj) {
+  let body = `export const ${name}: Record<Locale, Record<MessageKey, string>> = {\n`;
+  for (const loc of LOCALES) {
+    body += `  ${esc(loc)}: {\n`;
+    for (const [k, v] of Object.entries(obj[loc])) {
+      body += `    ${k}: ${esc(v)},\n`;
+    }
+    body += `  },\n`;
+  }
+  body += `};\n`;
+  return `import type { Locale } from "./site-config";\nimport type { MessageKey } from "./i18n-keys";\n\n${body}`;
+}
+
+fs.writeFileSync(
+  path.join(root, "..", "src", "i18n-keys.ts"),
+  `export type MessageKey =\n${Object.keys(ui.en)
+    .concat(["langRu", "langEn", "langTlh"])
+    .filter((v, i, a) => a.indexOf(v) === i)
+    .map((k) => `  | ${JSON.stringify(k)}`)
+    .join("\n")};\n`,
+);
+
+fs.writeFileSync(outUi, dumpRecord("UI_MESSAGES", "MessageKey", ui));
+
+// --- SEO (compact but real translations for core fields; FAQ from EN structure) ---
+const seoEn = {
+  title: "Online Password Generator — Strong Password in a Second",
+  description:
+    "Free online password generator: set length and character sets, get a strong password. Runs in your browser — nothing is sent to the server.",
+  heading: "Online password generator",
+  leadHtml:
+    "Need a strong password for email, an account, or a server? Our <strong>online password generator</strong> creates a random password in one click. Set the length, choose character sets, and press Generate. The password is created in your browser and is never sent anywhere.",
+  benefitsTitle: "Benefits of an online password generator",
+  benefits: [
+    "<strong>Privacy.</strong> Passwords are generated in the browser. Nothing is sent to the server, so only you can see them.",
+    "<strong>Free, no sign-up.</strong> Open the page and use it. No account, email, or app install required.",
+    "<strong>Flexible settings.</strong> Choose length and any mix of digits, lowercase, uppercase, and symbols.",
+    "<strong>Strength meter.</strong> See entropy in bits and estimated crack time for the current settings.",
+    "<strong>Task presets.</strong> Wi-Fi, shell, PIN, URL, and dictation — one click.",
+    "<strong>Shareable settings link.</strong> Copy the URL and open the same options elsewhere — the password never goes in the link.",
+    "<strong>No duplicates.</strong> Turn on “no duplicates” so repeats are limited (unique up to length 61; at most twice above that).",
+    "<strong>One-click copy.</strong> Click a password to copy it to the clipboard.",
+    "<strong>Readable output.</strong> Ambiguous characters (I, O, l, |) can be excluded, so passwords are easier to retype or read aloud.",
+    "<strong>Service-friendly.</strong> Symbols are kept out of the first and last two characters, so forms, shells, and scripts are less likely to reject the password.",
+    "<strong>Fast and light.</strong> Works on desktop and mobile, with many languages.",
+  ],
+  howTitle: "How to generate a password online",
+  howSteps: [
+    "Set the password length with the “−” and “+” buttons.",
+    "Select the character sets you need: digits, lowercase, uppercase, symbols.",
+    "Optionally enable “no duplicates”.",
+    "Press Generate.",
+    "Click a password to copy it, then save it in a password manager.",
+  ],
+  strongTitle: "What makes a password strong",
+  strongLead:
+    "Password strength depends on length and character variety. Simple words, birth dates, names, and sequences like <code>123456</code> or <code>qwerty</code> are cracked in seconds. A random generated password avoids those patterns.",
+  strongTips: [
+    "Use <strong>at least 12–16 characters</strong>. For admin accounts and servers, 20+ is better.",
+    "Combine lowercase, uppercase, digits, and symbols.",
+    "Use a <strong>unique password</strong> for every service.",
+    "Store passwords in a password manager, not in notes or messengers.",
+    "Enable two-factor authentication wherever you can.",
+    "Change a password if you suspect a leak.",
+  ],
+  usesTitle: "What a password generator is for",
+  uses: [
+    "social accounts, email, online banking, and stores;",
+    "admin accounts, SSH, databases, and hosting panels;",
+    "Wi-Fi routers and network gear;",
+    "service accounts, API credentials, and test stands;",
+    "passwords for archives and documents.",
+  ],
+  faqTitle: "FAQ",
+  faq: [
+    {
+      q: "Is it safe to generate a password online?",
+      a: "Yes. The password is created locally in your browser and is not sent to the server, so the site cannot intercept or store it.",
+    },
+    {
+      q: "Is the generator free?",
+      a: "Yes. The service is free, with no registration and no limit on how many passwords you create.",
+    },
+    {
+      q: "What password length should I choose?",
+      a: "For everyday accounts, 12–16 characters is a good range; for important services and servers, use 20 or more.",
+    },
+    {
+      q: "Why are I, O, l, and | excluded?",
+      a: "They are easy to confuse with 1, 0, and each other. Without them, passwords are easier to read and type by hand.",
+    },
+    {
+      q: "Why aren’t symbols placed at the start or end?",
+      a: "Some systems mishandle edge symbols when copying, in shells, or in config files. Keeping edges alphanumeric makes the password work more reliably.",
+    },
+    {
+      q: "What does “no duplicates” mean?",
+      a: "Up to length 61 each character appears only once; above 61, at most twice. Handy when a service limits repeats.",
+    },
+    {
+      q: "Do I need to memorize the generated password?",
+      a: "No. Save it in a password manager and use autofill.",
+    },
+    {
+      q: "How is password strength calculated?",
+      a: "The meter scores generation settings (length and alphabet), not a specific string, and shows entropy in bits.",
+    },
+    {
+      q: "What are entropy and bits?",
+      a: "Entropy estimates the search space: more bits means a longer crack time under the same attack model.",
+    },
+    {
+      q: "How do I share generator settings?",
+      a: "Use Copy link: the address holds settings only — never the password itself.",
+    },
+    {
+      q: "Why exclude characters?",
+      a: "If a service forbids some symbols or you need to read the password aloud, remove the awkward characters from the alphabet.",
+    },
+  ],
+  appName: "Online Password Generator",
+  tipsLabel: "Recommendations:",
+};
+
+/** @type {Record<string, any>} */
+const seo = { en: seoEn };
+
+seo.ru = {
+  title: "Генератор паролей онлайн — надёжный пароль за секунду",
+  description:
+    "Бесплатный генератор паролей онлайн: задайте длину и набор символов, получите надёжный пароль. Работает в браузере, данные не отправляются на сервер.",
+  heading: "Генератор паролей онлайн",
+  leadHtml:
+    "Нужен надёжный пароль для почты, аккаунта или сервера? Наш <strong>онлайн генератор паролей</strong> создаёт случайный пароль за один клик. Укажите длину, выберите наборы символов и нажмите «Генерировать». Пароль создаётся прямо в вашем браузере и никуда не передаётся.",
+  benefitsTitle: "Преимущества онлайн генератора паролей",
+  benefits: [
+    "<strong>Приватность.</strong> Пароли генерируются в браузере. Данные не отправляются на сервер, поэтому никто, кроме вас, их не увидит.",
+    "<strong>Бесплатно и без регистрации.</strong> Откройте страницу и пользуйтесь. Аккаунт, почта и установка программ не нужны.",
+    "<strong>Гибкие настройки.</strong> Выбирайте длину и любые сочетания символов: цифры, строчные и заглавные буквы, спецсимволы.",
+    "<strong>Индикатор надёжности.</strong> Сразу видно оценку в битах энтропии и примерное время подбора для текущих настроек.",
+    "<strong>Пресеты под задачи.</strong> Wi-Fi, shell, PIN, URL и диктовка — одним кликом.",
+    "<strong>Ссылка с настройками.</strong> Скопируйте адрес и откройте те же параметры на другом устройстве — без пароля в URL.",
+    "<strong>Без дублей.</strong> Включите опцию «без дублей»: до длины 61 символы не повторяются, свыше — не чаще двух раз.",
+    "<strong>Копирование в один клик.</strong> Нажмите на пароль, и он окажется в буфере обмена.",
+    "<strong>Читаемый результат.</strong> Похожие символы (I, O, l, |) можно исключить — пароль проще переписать или продиктовать.",
+    "<strong>Совместимость с сервисами.</strong> Спецсимволы не ставятся в первые и последние два символа. Так пароль реже отклоняется формами, консолями и скриптами.",
+    "<strong>Быстро и удобно.</strong> Сайт лёгкий, работает на компьютере и смартфоне, есть много языков.",
+  ],
+  howTitle: "Как сгенерировать пароль онлайн",
+  howSteps: [
+    "Задайте длину пароля кнопками «−» и «+».",
+    "Отметьте нужные наборы символов: цифры, строчные, заглавные буквы, спецсимволы.",
+    "При необходимости включите «без дублей».",
+    "Нажмите «Генерировать».",
+    "Нажмите на готовый пароль, чтобы скопировать его, и сохраните в менеджере паролей.",
+  ],
+  strongTitle: "Какой пароль считается надёжным",
+  strongLead:
+    "Надёжность пароля зависит от длины и разнообразия символов. Простые слова, даты рождения, имена и последовательности вроде <code>123456</code> или <code>qwerty</code> подбираются за секунды. Случайный пароль из генератора лишён таких закономерностей.",
+  strongTips: [
+    "Используйте <strong>не менее 12–16 символов</strong>. Для администраторских учётных записей и серверов лучше 20 и больше.",
+    "Комбинируйте строчные и заглавные буквы, цифры и спецсимволы.",
+    "Для каждого сервиса создавайте <strong>уникальный пароль</strong>.",
+    "Храните пароли в менеджере паролей, а не в заметках и мессенджерах.",
+    "Включайте двухфакторную аутентификацию там, где это возможно.",
+    "Меняйте пароль, если есть подозрение на утечку.",
+  ],
+  usesTitle: "Для чего нужен генератор паролей",
+  uses: [
+    "аккаунты в соцсетях, почта, интернет-банкинг и магазины;",
+    "учётные записи администраторов, SSH, базы данных, панели хостинга;",
+    "Wi-Fi-роутеры и сетевое оборудование;",
+    "сервисные учётные записи, API-доступы и тестовые стенды;",
+    "пароли для архивов и документов.",
+  ],
+  faqTitle: "Частые вопросы",
+  faq: [
+    {
+      q: "Безопасно ли генерировать пароль онлайн?",
+      a: "Да. Пароль создаётся локально в вашем браузере и не отправляется на сервер, поэтому его нельзя перехватить или сохранить на стороне сайта.",
+    },
+    {
+      q: "Генератор бесплатный?",
+      a: "Да, сервис бесплатный, без регистрации и ограничений по количеству паролей.",
+    },
+    {
+      q: "Какую длину пароля выбрать?",
+      a: "Для обычных аккаунтов оптимально 12–16 символов, для важных сервисов и серверов 20 и больше.",
+    },
+    {
+      q: "Зачем исключены символы I, O, l и |?",
+      a: "Они легко путаются с цифрами 1 и 0 и друг с другом. Без них пароль проще прочитать и ввести вручную.",
+    },
+    {
+      q: "Почему спецсимволы не стоят в начале и в конце?",
+      a: "Некоторые системы некорректно обрабатывают спецсимволы на краях строки (при копировании, в командной строке, в конфигах). Так пароль надёжнее работает везде.",
+    },
+    {
+      q: "Что значит «без дублей»?",
+      a: "До длины 61 каждый символ встречается один раз; при большей длине — не чаще двух раз. Удобно, если сервис ограничивает повторы.",
+    },
+    {
+      q: "Нужно ли запоминать сгенерированный пароль?",
+      a: "Нет. Сохраните его в менеджере паролей и используйте автозаполнение.",
+    },
+    {
+      q: "Как считается надёжность пароля?",
+      a: "Индикатор оценивает настройки генерации (длину и алфавит), а не конкретную строку, и показывает энтропию в битах.",
+    },
+    {
+      q: "Что такое энтропия и биты?",
+      a: "Энтропия — оценка пространства перебора: чем больше бит, тем дольше подбирать пароль при тех же условиях атаки.",
+    },
+    {
+      q: "Как поделиться настройками генератора?",
+      a: "Нажмите «Скопировать ссылку»: в адресе только параметры, сам пароль туда не попадает.",
+    },
+    {
+      q: "Зачем исключать символы?",
+      a: "Если сервис запрещает часть символов или пароль нужно диктовать вслух — уберите мешающие знаки из алфавита.",
+    },
+  ],
+  appName: "Генератор паролей онлайн",
+  tipsLabel: "Рекомендации:",
+};
+
+for (const [loc, body] of Object.entries(seoBodies)) {
+  seo[loc] = body;
+}
+
+for (const loc of LOCALES) {
+  if (!seo[loc]) throw new Error("missing seo " + loc);
+  if ("keywords" in seo[loc]) delete seo[loc].keywords;
+  const copy = seo[loc];
+  if (
+    !Array.isArray(copy.benefits) ||
+    copy.benefits.length !== 11 ||
+    !Array.isArray(copy.howSteps) ||
+    copy.howSteps.length !== 5 ||
+    !Array.isArray(copy.strongTips) ||
+    copy.strongTips.length !== 6 ||
+    !Array.isArray(copy.uses) ||
+    copy.uses.length !== 5 ||
+    !Array.isArray(copy.faq) ||
+    copy.faq.length !== 11
+  ) {
+    throw new Error("incomplete seo body for " + loc);
+  }
+}
+
+let seoBody = `import type { Locale } from "./site-config";\n\nexport type SeoFaq = { q: string; a: string };\nexport type SeoCopy = {\n  title: string;\n  description: string;\n  heading: string;\n  leadHtml: string;\n  benefitsTitle: string;\n  benefits: string[];\n  howTitle: string;\n  howSteps: string[];\n  strongTitle: string;\n  strongLead: string;\n  strongTips: string[];\n  usesTitle: string;\n  uses: string[];\n  faqTitle: string;\n  faq: SeoFaq[];\n  appName: string;\n  tipsLabel: string;\n};\n\nexport const SEO_COPY: Record<Locale, SeoCopy> = {\n`;
+for (const loc of LOCALES) {
+  seoBody += `  ${JSON.stringify(loc)}: ${JSON.stringify(seo[loc], null, 2).replace(/\n/g, "\n  ")},\n`;
+}
+seoBody += `};\n`;
+fs.writeFileSync(outSeo, seoBody);
+
+const nf = {
+  ru: { title: "404 — страница не найдена", message: "Страница не найдена", home: "На главную" },
+  en: { title: "404 — Page not found", message: "Page not found", home: "Home" },
+  zh: { title: "404 — 页面未找到", message: "页面未找到", home: "首页" },
+  es: { title: "404 — Página no encontrada", message: "Página no encontrada", home: "Inicio" },
+  hi: { title: "404 — पृष्ठ नहीं मिला", message: "पृष्ठ नहीं मिला", home: "मुख्य पृष्ठ" },
+  ar: { title: "404 — الصفحة غير موجودة", message: "الصفحة غير موجودة", home: "الرئيسية" },
+  bn: { title: "404 — পৃষ্ঠা পাওয়া যায়নি", message: "পৃষ্ঠা পাওয়া যায়নি", home: "হোম" },
+  pt: { title: "404 — Página não encontrada", message: "Página não encontrada", home: "Início" },
+  fr: { title: "404 — Page introuvable", message: "Page introuvable", home: "Accueil" },
+  de: { title: "404 — Seite nicht gefunden", message: "Seite nicht gefunden", home: "Start" },
+  ja: { title: "404 — ページが見つかりません", message: "ページが見つかりません", home: "ホーム" },
+  id: { title: "404 — Halaman tidak ditemukan", message: "Halaman tidak ditemukan", home: "Beranda" },
+  pa: { title: "404 — ਪੰਨਾ ਨਹੀਂ ਮਿਲਿਆ", message: "ਪੰਨਾ ਨਹੀਂ ਮਿਲਿਆ", home: "ਘਰ" },
+  jv: { title: "404 — Kaca ora ketemu", message: "Kaca ora ketemu", home: "Ngarep" },
+  te: { title: "404 — పేజీ కనుగొనబడలేదు", message: "పేజీ కనుగొనబడలేదు", home: "హోమ్" },
+  tr: { title: "404 — Sayfa bulunamadı", message: "Sayfa bulunamadı", home: "Ana sayfa" },
+  ko: { title: "404 — 페이지를 찾을 수 없음", message: "페이지를 찾을 수 없습니다", home: "홈" },
+  mr: { title: "404 — पृष्ठ सापडले नाही", message: "पृष्ठ सापडले नाही", home: "मुख्य" },
+  vi: { title: "404 — Không tìm thấy trang", message: "Không tìm thấy trang", home: "Trang chủ" },
+  ta: { title: "404 — பக்கம் இல்லை", message: "பக்கம் இல்லை", home: "முகப்பு" },
+  it: { title: "404 — Pagina non trovata", message: "Pagina non trovata", home: "Home" },
+  fa: { title: "404 — صفحه پیدا نشد", message: "صفحه پیدا نشد", home: "خانه" },
+  tlh: { title: "404 — pagina tu'lu'be'", message: "pagina tu'lu'be'", home: "juH" },
+};
+
+let nfBody = `import type { Locale } from "./site-config";\n\nexport type NotFoundCopy = { title: string; message: string; home: string };\n\nexport const NOT_FOUND_COPY: Record<Locale, NotFoundCopy> = {\n`;
+for (const loc of LOCALES) {
+  nfBody += `  ${JSON.stringify(loc)}: ${JSON.stringify(nf[loc])},\n`;
+}
+nfBody += `};\n`;
+fs.writeFileSync(out404, nfBody);
+
+console.log("wrote", outUi, outSeo, out404);

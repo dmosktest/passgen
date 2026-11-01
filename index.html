@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#17110c" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="PassGen" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="icon" href="/icon.png" type="image/png" sizes="512x512" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <title>Генератор паролей онлайн — надёжный пароль за секунду</title>
+    <meta
+      name="description"
+      content="Бесплатный генератор паролей онлайн: задайте длину и набор символов, получите надёжный пароль. Работает в браузере, данные не отправляются на сервер."
+    />
+    <link rel="canonical" href="https://passgen.dmosk.net/ru/" />
+    <link rel="alternate" hreflang="ru" href="https://passgen.dmosk.net/ru/" />
+    <link rel="alternate" hreflang="en" href="https://passgen.dmosk.net/en/" />
+    <link rel="alternate" hreflang="tlh" href="https://passgen.dmosk.net/tlh/" />
+    <link rel="alternate" hreflang="x-default" href="https://passgen.dmosk.net/en/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://passgen.dmosk.net/ru/" />
+    <meta property="og:title" content="Генератор паролей онлайн — надёжный пароль за секунду" />
+    <meta
+      property="og:description"
+      content="Бесплатный генератор паролей онлайн: задайте длину и набор символов, получите надёжный пароль. Работает в браузере, данные не отправляются на сервер."
+    />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:image" content="https://passgen.dmosk.net/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json" id="ld-app"></script>
+    <script type="application/ld+json" id="ld-faq"></script>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="topbar">
+        <p class="brand">mksrv / password-generator</p>
+        <div class="topbar-actions">
+          <a
+            class="github-link"
+            href="https://github.com/dmosktest/passgen"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <svg class="github-icon" viewBox="0 0 16 16" width="20" height="20" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              />
+            </svg>
+          </a>
+          <details class="lang">
+            <summary class="lang-summary" aria-label="Язык сайта">
+              <img class="lang-flag" src="/flags/1f1f7-1f1fa.png" alt="" width="20" height="20" decoding="async" aria-hidden="true" />
+              <span class="lang-current-name">Русский</span>
+            </summary>
+            <div class="lang-menu" role="list">
+              <a href="/ru/" class="lang-option active" id="lang-ru" data-locale="ru" hreflang="ru" lang="ru" aria-current="page"><img class="lang-flag" src="/flags/1f1f7-1f1fa.png" alt="" width="20" height="20" decoding="async" aria-hidden="true" /><span class="lang-name">Русский</span></a>
+              <a href="/en/" class="lang-option" id="lang-en" data-locale="en" hreflang="en" lang="en" aria-current="false"><img class="lang-flag" src="/flags/1f1ec-1f1e7.png" alt="" width="20" height="20" decoding="async" aria-hidden="true" /><span class="lang-name">English</span></a>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <h1 id="heading">Генератор паролей онлайн</h1>
+      <p class="lead" id="lead">
+        Нужен надёжный пароль для почты, аккаунта или сервера? Наш
+        <strong>онлайн генератор паролей</strong> создаёт случайный пароль за один клик.
+        Укажите длину, выберите наборы символов и нажмите «Генерировать». Пароль создаётся
+        прямо в вашем браузере и никуда не передаётся.
+      </p>
+
+      <noscript>
+        <p class="noscript" data-i18n="noscript">
+          Для работы генератора включите JavaScript. Описание и FAQ ниже доступны без него.
+        </p>
+      </noscript>
+
+      <section class="panel" aria-label="Параметры" data-i18n-aria="params" id="generator">
+        <div class="mode-switch" role="group" aria-label="Режим настроек" data-i18n-aria="modeSwitch">
+          <button type="button" class="mode-btn active" id="mode-simple" data-mode="simple" data-i18n="modeSimple">
+            Обычные
+          </button>
+          <button type="button" class="mode-btn" id="mode-advanced" data-mode="advanced" data-i18n="modeAdvanced">
+            Расширенные
+          </button>
+        </div>
+
+        <div class="advanced-only" id="advanced-preset" hidden>
+          <div class="field">
+            <label for="preset" data-i18n="preset">Пресет</label>
+            <select id="preset" class="select"></select>
+            <p class="field-hint" id="preset-hint"></p>
+          </div>
+        </div>
+
+        <div class="panel-top">
+          <div class="field">
+            <span id="length-label" data-i18n="length">Длина</span>
+            <div class="length-row">
+              <button type="button" class="btn btn-icon" id="dec" aria-label="Уменьшить" data-i18n-aria="decrease">
+                <span class="btn-glyph">−</span>
+              </button>
+              <input
+                id="length"
+                type="number"
+                min="1"
+                max="128"
+                value="12"
+                inputmode="numeric"
+                aria-labelledby="length-label"
+              />
+              <button type="button" class="btn btn-icon" id="inc" aria-label="Увеличить" data-i18n-aria="increase">
+                <span class="btn-glyph">+</span>
+              </button>
+            </div>
+            <p class="field-hint" id="length-note" hidden></p>
+          </div>
+
+          <div class="generate-wrap">
+            <button type="button" class="btn btn-primary" id="generate" data-i18n="generate">
+              Генерировать
+            </button>
+            <p class="gen-stats" id="gen-stats" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <fieldset class="checks">
+          <legend class="visually-hidden" data-i18n="charset">Наборы символов</legend>
+          <label id="label-digits">
+            <input type="checkbox" id="digits" checked />
+            <span data-i18n="digits">цифры [0-9]</span>
+          </label>
+          <label id="label-lower">
+            <input type="checkbox" id="lower" checked />
+            <span data-i18n="lower">строчные [a-z]</span>
+          </label>
+          <label id="label-upper">
+            <input type="checkbox" id="upper" checked />
+            <span data-i18n="upper">заглавные [A-Z]</span>
+          </label>
+          <label id="label-specials">
+            <input type="checkbox" id="specials" checked />
+            <span data-i18n="specials">спецсимволы</span>
+          </label>
+          <label>
+            <input type="checkbox" id="no-duplicates" checked />
+            <span data-i18n="noDuplicates">без дублей</span>
+          </label>
+        </fieldset>
+
+        <div class="advanced-only" id="advanced-extra" hidden>
+          <div class="field">
+            <label for="exclude" data-i18n="exclude">Исключить символы</label>
+            <input
+              id="exclude"
+              class="text-input"
+              type="text"
+              maxlength="64"
+              autocomplete="off"
+              spellcheck="false"
+              data-i18n-placeholder="excludePlaceholder"
+              placeholder="например: 0O1 или $&;"
+            />
+            <p class="field-hint" id="alphabet-counter" aria-live="polite"></p>
+          </div>
+
+          <label class="check-row">
+            <input type="checkbox" id="similar" checked />
+            <span>
+              <span data-i18n="similar">Исключать похожие символы (I, O, l и вертикальная черта)</span>
+              <span class="field-hint" data-i18n="similarHint">Выключение повышает риск путаницы при ручном вводе и диктовке.</span>
+            </span>
+          </label>
+
+          <div class="actions-row">
+            <button type="button" class="btn" id="copy-link" data-i18n="copyLink">
+              Скопировать ссылку
+            </button>
+          </div>
+          <p class="field-hint" data-i18n="copyLinkNote">
+            В ссылке только настройки, пароль в неё не попадает.
+          </p>
+          <p class="field-hint" id="copy-link-status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <p class="error" id="error" role="alert" aria-live="polite"></p>
+      <p class="hint" data-i18n="hint">(для копирования в буфер — нажмите на пароль)</p>
+      <div class="results" id="results" aria-live="polite"></div>
+
+      <section class="strength" id="strength" hidden>
+        <div class="strength-head">
+          <h2 class="strength-title" data-i18n="strength">Надёжность</h2>
+          <div class="hint-wrap">
+            <button
+              type="button"
+              class="hint-btn"
+              id="strength-hint-btn"
+              aria-expanded="false"
+              aria-controls="strength-hint"
+              data-i18n-aria="strengthHint"
+            >
+              ?
+            </button>
+            <p class="hint-pop" id="strength-hint" hidden data-i18n="strengthHint"></p>
+          </div>
+        </div>
+        <div
+          class="meter"
+          id="strength-meter"
+          role="meter"
+          aria-valuemin="0"
+          aria-valuemax="5"
+          aria-valuenow="0"
+          aria-valuetext=""
+        >
+          <span class="meter-seg" data-seg="1"></span>
+          <span class="meter-seg" data-seg="2"></span>
+          <span class="meter-seg" data-seg="3"></span>
+          <span class="meter-seg" data-seg="4"></span>
+          <span class="meter-seg" data-seg="5"></span>
+        </div>
+        <p class="strength-meta" id="strength-meta" aria-live="polite"></p>
+        <p class="strength-time" id="strength-online"></p>
+        <p class="strength-time" id="strength-offline"></p>
+        <p class="strength-note" id="strength-note" hidden></p>
+      </section>
+
+      <article class="seo" id="seo-root">
+        <section class="seo-block" aria-labelledby="seo-benefits">
+          <h2 id="seo-benefits">Преимущества онлайн генератора паролей</h2>
+          <ul>
+            <li><strong>Приватность.</strong> Пароли генерируются в браузере. Данные не отправляются на сервер, поэтому никто, кроме вас, их не увидит.</li>
+            <li><strong>Бесплатно и без регистрации.</strong> Откройте страницу и пользуйтесь. Аккаунт, почта и установка программ не нужны.</li>
+            <li><strong>Гибкие настройки.</strong> Выбирайте длину и любые сочетания символов: цифры, строчные и заглавные буквы, спецсимволы.</li>
+            <li><strong>Индикатор надёжности.</strong> Сразу видно оценку в битах энтропии и примерное время подбора для текущих настроек.</li>
+            <li><strong>Пресеты под задачи.</strong> Wi-Fi, shell, PIN, URL и диктовка — одним кликом.</li>
+            <li><strong>Ссылка с настройками.</strong> Скопируйте адрес и откройте те же параметры на другом устройстве — без пароля в URL.</li>
+            <li><strong>Без дублей.</strong> Включите опцию «без дублей»: до длины 61 символы не повторяются, свыше — не чаще двух раз.</li>
+            <li><strong>Копирование в один клик.</strong> Нажмите на пароль, и он окажется в буфере обмена.</li>
+            <li><strong>Читаемый результат.</strong> Похожие символы (I, O, l, |) можно исключить — пароль проще переписать или продиктовать.</li>
+            <li><strong>Совместимость с сервисами.</strong> Спецсимволы не ставятся в первые и последние два символа. Так пароль реже отклоняется формами, консолями и скриптами.</li>
+            <li><strong>Быстро и удобно.</strong> Сайт лёгкий, работает на компьютере и смартфоне, есть много языков.</li>
+          </ul>
+        </section>
+        <section class="seo-block" aria-labelledby="seo-how">
+          <h2 id="seo-how">Как сгенерировать пароль онлайн</h2>
+          <ol>
+            <li>Задайте длину пароля кнопками «−» и «+».</li>
+            <li>Отметьте нужные наборы символов: цифры, строчные, заглавные буквы, спецсимволы.</li>
+            <li>При необходимости включите «без дублей».</li>
+            <li>Нажмите «Генерировать».</li>
+            <li>Нажмите на готовый пароль, чтобы скопировать его, и сохраните в менеджере паролей.</li>
+          </ol>
+        </section>
+        <section class="seo-block" aria-labelledby="seo-strong">
+          <h2 id="seo-strong">Какой пароль считается надёжным</h2>
+          <p>Надёжность пароля зависит от длины и разнообразия символов. Простые слова, даты рождения, имена и последовательности вроде <code>123456</code> или <code>qwerty</code> подбираются за секунды. Случайный пароль из генератора лишён таких закономерностей.</p>
+          <p class="seo-label">Рекомендации:</p>
+          <ul>
+            <li>Используйте <strong>не менее 12–16 символов</strong>. Для администраторских учётных записей и серверов лучше 20 и больше.</li>
+            <li>Комбинируйте строчные и заглавные буквы, цифры и спецсимволы.</li>
+            <li>Для каждого сервиса создавайте <strong>уникальный пароль</strong>.</li>
+            <li>Храните пароли в менеджере паролей, а не в заметках и мессенджерах.</li>
+            <li>Включайте двухфакторную аутентификацию там, где это возможно.</li>
+            <li>Меняйте пароль, если есть подозрение на утечку.</li>
+          </ul>
+        </section>
+        <section class="seo-block" aria-labelledby="seo-uses">
+          <h2 id="seo-uses">Для чего нужен генератор паролей</h2>
+          <ul>
+            <li>аккаунты в соцсетях, почта, интернет-банкинг и магазины;</li>
+            <li>учётные записи администраторов, SSH, базы данных, панели хостинга;</li>
+            <li>Wi-Fi-роутеры и сетевое оборудование;</li>
+            <li>сервисные учётные записи, API-доступы и тестовые стенды;</li>
+            <li>пароли для архивов и документов.</li>
+          </ul>
+        </section>
+        <section class="seo-block" aria-labelledby="seo-faq">
+          <h2 id="seo-faq">Частые вопросы</h2>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Безопасно ли генерировать пароль онлайн?</summary>
+              <p>Да. Пароль создаётся локально в вашем браузере и не отправляется на сервер, поэтому его нельзя перехватить или сохранить на стороне сайта.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Генератор бесплатный?</summary>
+              <p>Да, сервис бесплатный, без регистрации и ограничений по количеству паролей.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Какую длину пароля выбрать?</summary>
+              <p>Для обычных аккаунтов оптимально 12–16 символов, для важных сервисов и серверов 20 и больше.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Зачем исключены символы I, O, l и |?</summary>
+              <p>Они легко путаются с цифрами 1 и 0 и друг с другом. Без них пароль проще прочитать и ввести вручную.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Почему спецсимволы не стоят в начале и в конце?</summary>
+              <p>Некоторые системы некорректно обрабатывают спецсимволы на краях строки (при копировании, в командной строке, в конфигах). Так пароль надёжнее работает везде.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Что значит «без дублей»?</summary>
+              <p>До длины 61 каждый символ встречается один раз; при большей длине — не чаще двух раз. Удобно, если сервис ограничивает повторы.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Нужно ли запоминать сгенерированный пароль?</summary>
+              <p>Нет. Сохраните его в менеджере паролей и используйте автозаполнение.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Как считается надёжность пароля?</summary>
+              <p>Индикатор оценивает настройки генерации (длину и алфавит), а не конкретную строку, и показывает энтропию в битах.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Что такое энтропия и биты?</summary>
+              <p>Энтропия — оценка пространства перебора: чем больше бит, тем дольше подбирать пароль при тех же условиях атаки.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Как поделиться настройками генератора?</summary>
+              <p>Нажмите «Скопировать ссылку»: в адресе только параметры, сам пароль туда не попадает.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Зачем исключать символы?</summary>
+              <p>Если сервис запрещает часть символов или пароль нужно диктовать вслух — уберите мешающие знаки из алфавита.</p>
+            </details>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

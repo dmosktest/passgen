@@ -1,0 +1,2210 @@
+import type { Locale } from "./site-config";
+
+export type SeoFaq = { q: string; a: string };
+export type SeoCopy = {
+  title: string;
+  description: string;
+  heading: string;
+  leadHtml: string;
+  benefitsTitle: string;
+  benefits: string[];
+  howTitle: string;
+  howSteps: string[];
+  strongTitle: string;
+  strongLead: string;
+  strongTips: string[];
+  usesTitle: string;
+  uses: string[];
+  faqTitle: string;
+  faq: SeoFaq[];
+  appName: string;
+  tipsLabel: string;
+};
+
+export const SEO_COPY: Record<Locale, SeoCopy> = {
+  "ru": {
+    "title": "Генератор паролей онлайн — надёжный пароль за секунду",
+    "description": "Бесплатный генератор паролей онлайн: задайте длину и набор символов, получите надёжный пароль. Работает в браузере, данные не отправляются на сервер.",
+    "heading": "Генератор паролей онлайн",
+    "leadHtml": "Нужен надёжный пароль для почты, аккаунта или сервера? Наш <strong>онлайн генератор паролей</strong> создаёт случайный пароль за один клик. Укажите длину, выберите наборы символов и нажмите «Генерировать». Пароль создаётся прямо в вашем браузере и никуда не передаётся.",
+    "benefitsTitle": "Преимущества онлайн генератора паролей",
+    "benefits": [
+      "<strong>Приватность.</strong> Пароли генерируются в браузере. Данные не отправляются на сервер, поэтому никто, кроме вас, их не увидит.",
+      "<strong>Бесплатно и без регистрации.</strong> Откройте страницу и пользуйтесь. Аккаунт, почта и установка программ не нужны.",
+      "<strong>Гибкие настройки.</strong> Выбирайте длину и любые сочетания символов: цифры, строчные и заглавные буквы, спецсимволы.",
+      "<strong>Индикатор надёжности.</strong> Сразу видно оценку в битах энтропии и примерное время подбора для текущих настроек.",
+      "<strong>Пресеты под задачи.</strong> Wi-Fi, shell, PIN, URL и диктовка — одним кликом.",
+      "<strong>Ссылка с настройками.</strong> Скопируйте адрес и откройте те же параметры на другом устройстве — без пароля в URL.",
+      "<strong>Без дублей.</strong> Включите опцию «без дублей»: до длины 61 символы не повторяются, свыше — не чаще двух раз.",
+      "<strong>Копирование в один клик.</strong> Нажмите на пароль, и он окажется в буфере обмена.",
+      "<strong>Читаемый результат.</strong> Похожие символы (I, O, l, |) можно исключить — пароль проще переписать или продиктовать.",
+      "<strong>Совместимость с сервисами.</strong> Спецсимволы не ставятся в первые и последние два символа. Так пароль реже отклоняется формами, консолями и скриптами.",
+      "<strong>Быстро и удобно.</strong> Сайт лёгкий, работает на компьютере и смартфоне, есть много языков."
+    ],
+    "howTitle": "Как сгенерировать пароль онлайн",
+    "howSteps": [
+      "Задайте длину пароля кнопками «−» и «+».",
+      "Отметьте нужные наборы символов: цифры, строчные, заглавные буквы, спецсимволы.",
+      "При необходимости включите «без дублей».",
+      "Нажмите «Генерировать».",
+      "Нажмите на готовый пароль, чтобы скопировать его, и сохраните в менеджере паролей."
+    ],
+    "strongTitle": "Какой пароль считается надёжным",
+    "strongLead": "Надёжность пароля зависит от длины и разнообразия символов. Простые слова, даты рождения, имена и последовательности вроде <code>123456</code> или <code>qwerty</code> подбираются за секунды. Случайный пароль из генератора лишён таких закономерностей.",
+    "strongTips": [
+      "Используйте <strong>не менее 12–16 символов</strong>. Для администраторских учётных записей и серверов лучше 20 и больше.",
+      "Комбинируйте строчные и заглавные буквы, цифры и спецсимволы.",
+      "Для каждого сервиса создавайте <strong>уникальный пароль</strong>.",
+      "Храните пароли в менеджере паролей, а не в заметках и мессенджерах.",
+      "Включайте двухфакторную аутентификацию там, где это возможно.",
+      "Меняйте пароль, если есть подозрение на утечку."
+    ],
+    "usesTitle": "Для чего нужен генератор паролей",
+    "uses": [
+      "аккаунты в соцсетях, почта, интернет-банкинг и магазины;",
+      "учётные записи администраторов, SSH, базы данных, панели хостинга;",
+      "Wi-Fi-роутеры и сетевое оборудование;",
+      "сервисные учётные записи, API-доступы и тестовые стенды;",
+      "пароли для архивов и документов."
+    ],
+    "faqTitle": "Частые вопросы",
+    "faq": [
+      {
+        "q": "Безопасно ли генерировать пароль онлайн?",
+        "a": "Да. Пароль создаётся локально в вашем браузере и не отправляется на сервер, поэтому его нельзя перехватить или сохранить на стороне сайта."
+      },
+      {
+        "q": "Генератор бесплатный?",
+        "a": "Да, сервис бесплатный, без регистрации и ограничений по количеству паролей."
+      },
+      {
+        "q": "Какую длину пароля выбрать?",
+        "a": "Для обычных аккаунтов оптимально 12–16 символов, для важных сервисов и серверов 20 и больше."
+      },
+      {
+        "q": "Зачем исключены символы I, O, l и |?",
+        "a": "Они легко путаются с цифрами 1 и 0 и друг с другом. Без них пароль проще прочитать и ввести вручную."
+      },
+      {
+        "q": "Почему спецсимволы не стоят в начале и в конце?",
+        "a": "Некоторые системы некорректно обрабатывают спецсимволы на краях строки (при копировании, в командной строке, в конфигах). Так пароль надёжнее работает везде."
+      },
+      {
+        "q": "Что значит «без дублей»?",
+        "a": "До длины 61 каждый символ встречается один раз; при большей длине — не чаще двух раз. Удобно, если сервис ограничивает повторы."
+      },
+      {
+        "q": "Нужно ли запоминать сгенерированный пароль?",
+        "a": "Нет. Сохраните его в менеджере паролей и используйте автозаполнение."
+      },
+      {
+        "q": "Как считается надёжность пароля?",
+        "a": "Индикатор оценивает настройки генерации (длину и алфавит), а не конкретную строку, и показывает энтропию в битах."
+      },
+      {
+        "q": "Что такое энтропия и биты?",
+        "a": "Энтропия — оценка пространства перебора: чем больше бит, тем дольше подбирать пароль при тех же условиях атаки."
+      },
+      {
+        "q": "Как поделиться настройками генератора?",
+        "a": "Нажмите «Скопировать ссылку»: в адресе только параметры, сам пароль туда не попадает."
+      },
+      {
+        "q": "Зачем исключать символы?",
+        "a": "Если сервис запрещает часть символов или пароль нужно диктовать вслух — уберите мешающие знаки из алфавита."
+      }
+    ],
+    "appName": "Генератор паролей онлайн",
+    "tipsLabel": "Рекомендации:"
+  },
+  "en": {
+    "title": "Online Password Generator — Strong Password in a Second",
+    "description": "Free online password generator: set length and character sets, get a strong password. Runs in your browser — nothing is sent to the server.",
+    "heading": "Online password generator",
+    "leadHtml": "Need a strong password for email, an account, or a server? Our <strong>online password generator</strong> creates a random password in one click. Set the length, choose character sets, and press Generate. The password is created in your browser and is never sent anywhere.",
+    "benefitsTitle": "Benefits of an online password generator",
+    "benefits": [
+      "<strong>Privacy.</strong> Passwords are generated in the browser. Nothing is sent to the server, so only you can see them.",
+      "<strong>Free, no sign-up.</strong> Open the page and use it. No account, email, or app install required.",
+      "<strong>Flexible settings.</strong> Choose length and any mix of digits, lowercase, uppercase, and symbols.",
+      "<strong>Strength meter.</strong> See entropy in bits and estimated crack time for the current settings.",
+      "<strong>Task presets.</strong> Wi-Fi, shell, PIN, URL, and dictation — one click.",
+      "<strong>Shareable settings link.</strong> Copy the URL and open the same options elsewhere — the password never goes in the link.",
+      "<strong>No duplicates.</strong> Turn on “no duplicates” so repeats are limited (unique up to length 61; at most twice above that).",
+      "<strong>One-click copy.</strong> Click a password to copy it to the clipboard.",
+      "<strong>Readable output.</strong> Ambiguous characters (I, O, l, |) can be excluded, so passwords are easier to retype or read aloud.",
+      "<strong>Service-friendly.</strong> Symbols are kept out of the first and last two characters, so forms, shells, and scripts are less likely to reject the password.",
+      "<strong>Fast and light.</strong> Works on desktop and mobile, with many languages."
+    ],
+    "howTitle": "How to generate a password online",
+    "howSteps": [
+      "Set the password length with the “−” and “+” buttons.",
+      "Select the character sets you need: digits, lowercase, uppercase, symbols.",
+      "Optionally enable “no duplicates”.",
+      "Press Generate.",
+      "Click a password to copy it, then save it in a password manager."
+    ],
+    "strongTitle": "What makes a password strong",
+    "strongLead": "Password strength depends on length and character variety. Simple words, birth dates, names, and sequences like <code>123456</code> or <code>qwerty</code> are cracked in seconds. A random generated password avoids those patterns.",
+    "strongTips": [
+      "Use <strong>at least 12–16 characters</strong>. For admin accounts and servers, 20+ is better.",
+      "Combine lowercase, uppercase, digits, and symbols.",
+      "Use a <strong>unique password</strong> for every service.",
+      "Store passwords in a password manager, not in notes or messengers.",
+      "Enable two-factor authentication wherever you can.",
+      "Change a password if you suspect a leak."
+    ],
+    "usesTitle": "What a password generator is for",
+    "uses": [
+      "social accounts, email, online banking, and stores;",
+      "admin accounts, SSH, databases, and hosting panels;",
+      "Wi-Fi routers and network gear;",
+      "service accounts, API credentials, and test stands;",
+      "passwords for archives and documents."
+    ],
+    "faqTitle": "FAQ",
+    "faq": [
+      {
+        "q": "Is it safe to generate a password online?",
+        "a": "Yes. The password is created locally in your browser and is not sent to the server, so the site cannot intercept or store it."
+      },
+      {
+        "q": "Is the generator free?",
+        "a": "Yes. The service is free, with no registration and no limit on how many passwords you create."
+      },
+      {
+        "q": "What password length should I choose?",
+        "a": "For everyday accounts, 12–16 characters is a good range; for important services and servers, use 20 or more."
+      },
+      {
+        "q": "Why are I, O, l, and | excluded?",
+        "a": "They are easy to confuse with 1, 0, and each other. Without them, passwords are easier to read and type by hand."
+      },
+      {
+        "q": "Why aren’t symbols placed at the start or end?",
+        "a": "Some systems mishandle edge symbols when copying, in shells, or in config files. Keeping edges alphanumeric makes the password work more reliably."
+      },
+      {
+        "q": "What does “no duplicates” mean?",
+        "a": "Up to length 61 each character appears only once; above 61, at most twice. Handy when a service limits repeats."
+      },
+      {
+        "q": "Do I need to memorize the generated password?",
+        "a": "No. Save it in a password manager and use autofill."
+      },
+      {
+        "q": "How is password strength calculated?",
+        "a": "The meter scores generation settings (length and alphabet), not a specific string, and shows entropy in bits."
+      },
+      {
+        "q": "What are entropy and bits?",
+        "a": "Entropy estimates the search space: more bits means a longer crack time under the same attack model."
+      },
+      {
+        "q": "How do I share generator settings?",
+        "a": "Use Copy link: the address holds settings only — never the password itself."
+      },
+      {
+        "q": "Why exclude characters?",
+        "a": "If a service forbids some symbols or you need to read the password aloud, remove the awkward characters from the alphabet."
+      }
+    ],
+    "appName": "Online Password Generator",
+    "tipsLabel": "Recommendations:"
+  },
+  "zh": {
+    "title": "在线密码生成器 — 一秒生成强密码",
+    "description": "免费在线密码生成器：设置长度和字符集，在浏览器中生成强密码，数据不会发送到服务器。",
+    "heading": "在线密码生成器",
+    "leadHtml": "需要为邮箱、账号或服务器设置强密码？我们的<strong>在线密码生成器</strong>一键即可生成随机密码。设置长度、选择字符集，然后点击“生成”。密码在您的浏览器中生成，绝不会发送到任何地方。",
+    "benefitsTitle": "在线密码生成器的优势",
+    "benefits": [
+      "<strong>隐私。</strong>密码在浏览器中生成，不会发送到服务器，因此只有您自己能看到。",
+      "<strong>免费且无需注册。</strong>打开页面即可使用，无需账号、邮箱或安装应用。",
+      "<strong>设置灵活。</strong>可自由选择长度，以及数字、小写字母、大写字母和符号的任意组合。",
+      "<strong>强度指示器。</strong>针对当前设置显示以比特为单位的熵值和预估破解时间。",
+      "<strong>场景预设。</strong>Wi-Fi、shell、PIN、URL 和口述——一键切换。",
+      "<strong>可分享的设置链接。</strong>复制网址即可在其他设备上打开相同的选项——密码绝不会出现在链接中。",
+      "<strong>不含重复字符。</strong>开启“不重复”后可限制重复字符（长度不超过 61 时每个字符只出现一次，超过后最多出现两次）。",
+      "<strong>一键复制。</strong>点击密码即可将其复制到剪贴板。",
+      "<strong>易读的结果。</strong>可以排除易混淆的字符（I、O、l、|），让密码更容易手动输入或口头念出。",
+      "<strong>兼容各类服务。</strong>符号不会出现在开头和结尾的两个字符中，表单、命令行和脚本更不容易拒绝该密码。",
+      "<strong>快速轻便。</strong>支持桌面端和手机端，并提供多种语言。"
+    ],
+    "howTitle": "如何在线生成密码",
+    "howSteps": [
+      "使用“−”和“+”按钮设置密码长度。",
+      "选择所需的字符集：数字、小写字母、大写字母、符号。",
+      "如有需要，开启“不重复”。",
+      "点击“生成”。",
+      "点击密码即可复制，然后将其保存到密码管理器中。"
+    ],
+    "strongTitle": "怎样的密码才算强",
+    "strongLead": "密码的强度取决于长度和字符的多样性。简单的单词、生日、姓名以及 <code>123456</code> 或 <code>qwerty</code> 这样的序列在几秒内就会被破解。由生成器产生的随机密码则不含这些规律。",
+    "strongTips": [
+      "使用<strong>至少 12–16 个字符</strong>。管理员账号和服务器最好使用 20 个以上。",
+      "混合使用小写字母、大写字母、数字和符号。",
+      "为每个服务使用<strong>独一无二的密码</strong>。",
+      "将密码保存在密码管理器中，而不是记事本或聊天软件里。",
+      "只要条件允许，就启用双重身份验证。",
+      "如果怀疑密码已泄露，请立即更换。"
+    ],
+    "usesTitle": "密码生成器的用途",
+    "uses": [
+      "社交账号、邮箱、网上银行和购物网站；",
+      "管理员账号、SSH、数据库和主机控制面板；",
+      "Wi-Fi 路由器和网络设备；",
+      "服务账号、API 凭据和测试环境；",
+      "压缩包和文档的密码。"
+    ],
+    "faqTitle": "常见问题",
+    "faq": [
+      {
+        "q": "在线生成密码安全吗？",
+        "a": "安全。密码在您的浏览器本地生成，不会发送到服务器，因此网站无法截获或保存它。"
+      },
+      {
+        "q": "这个生成器免费吗？",
+        "a": "免费。本服务无需注册，生成密码的数量也没有限制。"
+      },
+      {
+        "q": "应该选择多长的密码？",
+        "a": "日常账号建议使用 12–16 个字符；重要服务和服务器请使用 20 个或更多字符。"
+      },
+      {
+        "q": "为什么排除了 I、O、l 和 |？",
+        "a": "它们很容易与 1、0 以及彼此混淆。去掉它们后，密码更容易阅读和手动输入。"
+      },
+      {
+        "q": "为什么符号不放在开头或结尾？",
+        "a": "某些系统在复制、命令行或配置文件中会错误处理首尾的符号。让首尾保持字母数字，可以让密码更稳定地工作。"
+      },
+      {
+        "q": "“不重复”是什么意思？",
+        "a": "长度不超过 61 时每个字符只出现一次；超过 61 时最多出现两次。当服务限制重复字符时很有用。"
+      },
+      {
+        "q": "我需要记住生成的密码吗？",
+        "a": "不需要。把它保存到密码管理器，并使用自动填充即可。"
+      },
+      {
+        "q": "密码强度是如何计算的？",
+        "a": "指示器评估的是生成设置（长度和字符集），而不是某个具体的字符串，并以比特显示熵值。"
+      },
+      {
+        "q": "什么是熵和比特？",
+        "a": "熵用来估算可能的搜索空间：在相同的攻击模型下，比特数越多，破解所需时间越长。"
+      },
+      {
+        "q": "如何分享生成器的设置？",
+        "a": "使用“复制链接”：地址中只包含设置，绝不会包含密码本身。"
+      },
+      {
+        "q": "为什么要排除字符？",
+        "a": "如果某个服务禁止使用部分符号，或者您需要把密码念出来，就可以把不方便的字符从字符集中去掉。"
+      }
+    ],
+    "appName": "在线密码生成器",
+    "tipsLabel": "建议："
+  },
+  "es": {
+    "title": "Generador de contraseñas online — contraseña fuerte en un segundo",
+    "description": "Generador de contraseñas online gratis: elige la longitud y los tipos de caracteres. Funciona en el navegador; nada se envía al servidor.",
+    "heading": "Generador de contraseñas online",
+    "leadHtml": "¿Necesitas una contraseña fuerte para el correo, una cuenta o un servidor? Nuestro <strong>generador de contraseñas online</strong> crea una contraseña aleatoria con un solo clic. Indica la longitud, elige los conjuntos de caracteres y pulsa Generar. La contraseña se crea en tu navegador y no se envía a ningún sitio.",
+    "benefitsTitle": "Ventajas de un generador de contraseñas online",
+    "benefits": [
+      "<strong>Privacidad.</strong> Las contraseñas se generan en el navegador. No se envía nada al servidor, así que solo tú puedes verlas.",
+      "<strong>Gratis y sin registro.</strong> Abre la página y úsala. No hace falta cuenta, correo ni instalar ninguna aplicación.",
+      "<strong>Ajustes flexibles.</strong> Elige la longitud y cualquier combinación de dígitos, minúsculas, mayúsculas y símbolos.",
+      "<strong>Medidor de seguridad.</strong> Consulta la entropía en bits y el tiempo estimado para descifrarla con los ajustes actuales.",
+      "<strong>Ajustes predefinidos por tarea.</strong> Wi-Fi, shell, PIN, URL y dictado: con un clic.",
+      "<strong>Enlace para compartir los ajustes.</strong> Copia la URL y abre las mismas opciones en otro dispositivo; la contraseña nunca va en el enlace.",
+      "<strong>Sin duplicados.</strong> Activa «sin duplicados» para limitar las repeticiones (únicos hasta longitud 61; como máximo dos veces a partir de ahí).",
+      "<strong>Copia con un clic.</strong> Haz clic en una contraseña para copiarla al portapapeles.",
+      "<strong>Resultado legible.</strong> Puedes excluir los caracteres ambiguos (I, O, l, |) para que la contraseña sea más fácil de reescribir o de leer en voz alta.",
+      "<strong>Compatible con los servicios.</strong> Los símbolos no aparecen en los dos primeros ni en los dos últimos caracteres, así que formularios, terminales y scripts rechazan menos la contraseña.",
+      "<strong>Rápido y ligero.</strong> Funciona en ordenador y móvil, y está disponible en muchos idiomas."
+    ],
+    "howTitle": "Cómo generar una contraseña online",
+    "howSteps": [
+      "Define la longitud de la contraseña con los botones «−» y «+».",
+      "Selecciona los conjuntos de caracteres que necesites: dígitos, minúsculas, mayúsculas, símbolos.",
+      "Si lo deseas, activa «sin duplicados».",
+      "Pulsa Generar.",
+      "Haz clic en una contraseña para copiarla y guárdala en un gestor de contraseñas."
+    ],
+    "strongTitle": "Qué hace fuerte a una contraseña",
+    "strongLead": "La seguridad de una contraseña depende de su longitud y de la variedad de caracteres. Las palabras simples, las fechas de nacimiento, los nombres y secuencias como <code>123456</code> o <code>qwerty</code> se descifran en segundos. Una contraseña aleatoria generada evita esos patrones.",
+    "strongTips": [
+      "Usa <strong>al menos 12–16 caracteres</strong>. Para cuentas de administrador y servidores, es mejor usar 20 o más.",
+      "Combina minúsculas, mayúsculas, dígitos y símbolos.",
+      "Usa una <strong>contraseña única</strong> para cada servicio.",
+      "Guarda las contraseñas en un gestor de contraseñas, no en notas ni en aplicaciones de mensajería.",
+      "Activa la autenticación en dos pasos siempre que puedas.",
+      "Cambia la contraseña si sospechas que se ha filtrado."
+    ],
+    "usesTitle": "Para qué sirve un generador de contraseñas",
+    "uses": [
+      "redes sociales, correo electrónico, banca online y tiendas;",
+      "cuentas de administrador, SSH, bases de datos y paneles de hosting;",
+      "routers Wi-Fi y equipos de red;",
+      "cuentas de servicio, credenciales de API y entornos de pruebas;",
+      "contraseñas para archivos comprimidos y documentos."
+    ],
+    "faqTitle": "Preguntas frecuentes",
+    "faq": [
+      {
+        "q": "¿Es seguro generar una contraseña online?",
+        "a": "Sí. La contraseña se crea localmente en tu navegador y no se envía al servidor, por lo que el sitio no puede interceptarla ni almacenarla."
+      },
+      {
+        "q": "¿El generador es gratuito?",
+        "a": "Sí. El servicio es gratuito, sin registro y sin límite en el número de contraseñas que puedes crear."
+      },
+      {
+        "q": "¿Qué longitud de contraseña debo elegir?",
+        "a": "Para cuentas de uso diario, entre 12 y 16 caracteres es un buen rango; para servicios importantes y servidores, usa 20 o más."
+      },
+      {
+        "q": "¿Por qué se excluyen I, O, l y |?",
+        "a": "Se confunden fácilmente con 1, 0 y entre sí. Sin ellos, las contraseñas son más fáciles de leer y de escribir a mano."
+      },
+      {
+        "q": "¿Por qué no se colocan símbolos al principio ni al final?",
+        "a": "Algunos sistemas gestionan mal los símbolos en los extremos al copiar, en terminales o en archivos de configuración. Mantener los extremos alfanuméricos hace que la contraseña funcione con más fiabilidad."
+      },
+      {
+        "q": "¿Qué significa «sin duplicados»?",
+        "a": "Hasta longitud 61, cada carácter aparece una sola vez; por encima de 61, como máximo dos veces. Es útil cuando un servicio limita las repeticiones."
+      },
+      {
+        "q": "¿Tengo que memorizar la contraseña generada?",
+        "a": "No. Guárdala en un gestor de contraseñas y usa el autocompletado."
+      },
+      {
+        "q": "¿Cómo se calcula la seguridad de la contraseña?",
+        "a": "El medidor puntúa los ajustes de generación (longitud y alfabeto), no una cadena concreta, y muestra la entropía en bits."
+      },
+      {
+        "q": "¿Qué son la entropía y los bits?",
+        "a": "La entropía estima el espacio de búsqueda: cuantos más bits, más tiempo se necesita para descifrarla con el mismo modelo de ataque."
+      },
+      {
+        "q": "¿Cómo comparto los ajustes del generador?",
+        "a": "Usa Copiar enlace: la dirección contiene solo los ajustes, nunca la contraseña."
+      },
+      {
+        "q": "¿Por qué excluir caracteres?",
+        "a": "Si un servicio prohíbe algunos símbolos o necesitas leer la contraseña en voz alta, quita del alfabeto los caracteres incómodos."
+      }
+    ],
+    "appName": "Generador de contraseñas online",
+    "tipsLabel": "Recomendaciones:"
+  },
+  "hi": {
+    "title": "ऑनलाइन पासवर्ड जनरेटर — एक सेकंड में मजबूत पासवर्ड",
+    "description": "मुफ़्त ऑनलाइन पासवर्ड जनरेटर: लंबाई और वर्ण सेट चुनें और मजबूत पासवर्ड पाएँ। यह आपके ब्राउज़र में चलता है, सर्वर पर कुछ नहीं भेजा जाता।",
+    "heading": "ऑनलाइन पासवर्ड जनरेटर",
+    "leadHtml": "ईमेल, अकाउंट या सर्वर के लिए मजबूत पासवर्ड चाहिए? हमारा <strong>ऑनलाइन पासवर्ड जनरेटर</strong> एक क्लिक में रैंडम पासवर्ड बना देता है। लंबाई तय करें, वर्ण सेट चुनें और “जनरेट करें” दबाएँ। पासवर्ड आपके ब्राउज़र में बनता है और कहीं नहीं भेजा जाता।",
+    "benefitsTitle": "ऑनलाइन पासवर्ड जनरेटर के फ़ायदे",
+    "benefits": [
+      "<strong>गोपनीयता।</strong> पासवर्ड ब्राउज़र में ही बनते हैं। सर्वर पर कुछ नहीं भेजा जाता, इसलिए उन्हें सिर्फ़ आप देख सकते हैं।",
+      "<strong>मुफ़्त, साइन-अप के बिना।</strong> पेज खोलें और इस्तेमाल करें। अकाउंट, ईमेल या ऐप इंस्टॉल करने की ज़रूरत नहीं।",
+      "<strong>लचीली सेटिंग।</strong> लंबाई चुनें और अंकों, छोटे अक्षरों, बड़े अक्षरों और चिह्नों का कोई भी मेल चुनें।",
+      "<strong>मजबूती मीटर।</strong> मौजूदा सेटिंग के लिए बिट्स में एंट्रॉपी और पासवर्ड तोड़ने का अनुमानित समय देखें।",
+      "<strong>काम के अनुसार प्रीसेट।</strong> Wi-Fi, शेल, PIN, URL और बोलकर बताने के लिए — एक क्लिक में।",
+      "<strong>सेटिंग साझा करने वाला लिंक।</strong> URL कॉपी करें और वही विकल्प कहीं और खोलें — पासवर्ड कभी लिंक में नहीं जाता।",
+      "<strong>दोहराव नहीं।</strong> “दोहराव नहीं” चालू करें ताकि अक्षर कम दोहराए जाएँ (लंबाई 61 तक हर अक्षर एक बार; उससे ज़्यादा होने पर अधिकतम दो बार)।",
+      "<strong>एक क्लिक में कॉपी।</strong> पासवर्ड पर क्लिक करें और वह क्लिपबोर्ड में कॉपी हो जाएगा।",
+      "<strong>पढ़ने में आसान नतीजा।</strong> मिलते-जुलते वर्ण (I, O, l, |) हटाए जा सकते हैं, ताकि पासवर्ड दोबारा टाइप करना या बोलकर बताना आसान हो।",
+      "<strong>सेवाओं के अनुकूल।</strong> चिह्न पहले और आख़िरी दो वर्णों में नहीं रखे जाते, इसलिए फ़ॉर्म, शेल और स्क्रिप्ट पासवर्ड को कम ठुकराते हैं।",
+      "<strong>तेज़ और हल्का।</strong> कंप्यूटर और मोबाइल दोनों पर चलता है और कई भाषाओं में उपलब्ध है।"
+    ],
+    "howTitle": "ऑनलाइन पासवर्ड कैसे बनाएँ",
+    "howSteps": [
+      "“−” और “+” बटनों से पासवर्ड की लंबाई तय करें।",
+      "ज़रूरी वर्ण सेट चुनें: अंक, छोटे अक्षर, बड़े अक्षर, चिह्न।",
+      "चाहें तो “दोहराव नहीं” चालू करें।",
+      "“जनरेट करें” दबाएँ।",
+      "पासवर्ड पर क्लिक करके उसे कॉपी करें, फिर पासवर्ड मैनेजर में सहेज लें।"
+    ],
+    "strongTitle": "मजबूत पासवर्ड किसे कहते हैं",
+    "strongLead": "पासवर्ड की मजबूती उसकी लंबाई और वर्णों की विविधता पर निर्भर करती है। सरल शब्द, जन्मतिथि, नाम और <code>123456</code> या <code>qwerty</code> जैसे क्रम कुछ ही सेकंड में तोड़ लिए जाते हैं। जनरेटर से बना रैंडम पासवर्ड ऐसे पैटर्न से बचता है।",
+    "strongTips": [
+      "<strong>कम से कम 12–16 वर्ण</strong> रखें। एडमिन अकाउंट और सर्वर के लिए 20 या उससे ज़्यादा बेहतर हैं।",
+      "छोटे अक्षर, बड़े अक्षर, अंक और चिह्न मिलाकर इस्तेमाल करें।",
+      "हर सेवा के लिए <strong>अलग पासवर्ड</strong> रखें।",
+      "पासवर्ड नोट्स या मैसेंजर में नहीं, पासवर्ड मैनेजर में रखें।",
+      "जहाँ भी संभव हो, टू-फ़ैक्टर ऑथेंटिकेशन चालू करें।",
+      "लीक का शक हो तो पासवर्ड बदल दें।"
+    ],
+    "usesTitle": "पासवर्ड जनरेटर किसलिए है",
+    "uses": [
+      "सोशल अकाउंट, ईमेल, ऑनलाइन बैंकिंग और ऑनलाइन स्टोर;",
+      "एडमिन अकाउंट, SSH, डेटाबेस और होस्टिंग पैनल;",
+      "Wi-Fi राउटर और नेटवर्क उपकरण;",
+      "सर्विस अकाउंट, API क्रेडेंशियल और टेस्ट सर्वर;",
+      "आर्काइव और दस्तावेज़ों के पासवर्ड।"
+    ],
+    "faqTitle": "अक्सर पूछे जाने वाले प्रश्न",
+    "faq": [
+      {
+        "q": "क्या ऑनलाइन पासवर्ड बनाना सुरक्षित है?",
+        "a": "हाँ। पासवर्ड आपके ब्राउज़र में स्थानीय रूप से बनता है और सर्वर पर नहीं भेजा जाता, इसलिए साइट उसे न तो पकड़ सकती है और न सहेज सकती है।"
+      },
+      {
+        "q": "क्या यह जनरेटर मुफ़्त है?",
+        "a": "हाँ। यह सेवा मुफ़्त है, इसमें पंजीकरण नहीं करना पड़ता और आप जितने चाहें उतने पासवर्ड बना सकते हैं।"
+      },
+      {
+        "q": "पासवर्ड की लंबाई कितनी रखनी चाहिए?",
+        "a": "रोज़मर्रा के अकाउंट के लिए 12–16 वर्ण ठीक रहते हैं; ज़रूरी सेवाओं और सर्वर के लिए 20 या उससे ज़्यादा रखें।"
+      },
+      {
+        "q": "I, O, l और | क्यों हटाए गए हैं?",
+        "a": "इन्हें 1, 0 और आपस में आसानी से गड़बड़ा दिया जाता है। इनके बिना पासवर्ड पढ़ना और हाथ से टाइप करना आसान हो जाता है।"
+      },
+      {
+        "q": "चिह्न शुरुआत या अंत में क्यों नहीं रखे जाते?",
+        "a": "कुछ सिस्टम कॉपी करते समय, शेल में या कॉन्फ़िग फ़ाइलों में किनारे के चिह्नों को गलत तरह से संभालते हैं। किनारों पर अक्षर या अंक रखने से पासवर्ड ज़्यादा भरोसेमंद ढंग से काम करता है।"
+      },
+      {
+        "q": "“दोहराव नहीं” का क्या मतलब है?",
+        "a": "लंबाई 61 तक हर वर्ण सिर्फ़ एक बार आता है; 61 से ऊपर अधिकतम दो बार। जब कोई सेवा दोहराव सीमित करती है तो यह काम आता है।"
+      },
+      {
+        "q": "क्या मुझे बनाया गया पासवर्ड याद रखना होगा?",
+        "a": "नहीं। उसे पासवर्ड मैनेजर में सहेजें और ऑटोफ़िल का इस्तेमाल करें।"
+      },
+      {
+        "q": "पासवर्ड की मजबूती कैसे आँकी जाती है?",
+        "a": "मीटर किसी खास स्ट्रिंग को नहीं, बल्कि जनरेशन सेटिंग (लंबाई और वर्णमाला) को आँकता है और एंट्रॉपी बिट्स में दिखाता है।"
+      },
+      {
+        "q": "एंट्रॉपी और बिट्स क्या हैं?",
+        "a": "एंट्रॉपी खोज-क्षेत्र का अनुमान देती है: एक जैसे हमले के मॉडल में बिट्स जितने ज़्यादा होंगे, पासवर्ड तोड़ने में उतना ही ज़्यादा समय लगेगा।"
+      },
+      {
+        "q": "जनरेटर की सेटिंग कैसे साझा करूँ?",
+        "a": "“लिंक कॉपी करें” इस्तेमाल करें: पते में सिर्फ़ सेटिंग होती है — पासवर्ड कभी नहीं।"
+      },
+      {
+        "q": "वर्ण क्यों हटाएँ?",
+        "a": "अगर कोई सेवा कुछ चिह्नों की अनुमति नहीं देती या पासवर्ड को ज़ोर से बोलकर बताना है, तो असुविधाजनक वर्णों को वर्णमाला से हटा दें।"
+      }
+    ],
+    "appName": "ऑनलाइन पासवर्ड जनरेटर",
+    "tipsLabel": "सुझाव:"
+  },
+  "ar": {
+    "title": "مولّد كلمات مرور عبر الإنترنت — كلمة مرور قوية في ثانية",
+    "description": "مولّد كلمات مرور مجاني عبر الإنترنت: حدّد الطول ومجموعات الأحرف واحصل على كلمة مرور قوية. يعمل في متصفحك ولا يُرسل أي شيء إلى الخادم.",
+    "heading": "مولّد كلمات المرور عبر الإنترنت",
+    "leadHtml": "هل تحتاج إلى كلمة مرور قوية للبريد الإلكتروني أو لحساب أو لخادم؟ <strong>مولّد كلمات المرور عبر الإنترنت</strong> لدينا ينشئ كلمة مرور عشوائية بنقرة واحدة. حدّد الطول، واختر مجموعات الأحرف، ثم اضغط «توليد». تُنشأ كلمة المرور في متصفحك ولا تُرسل إلى أي مكان.",
+    "benefitsTitle": "مزايا مولّد كلمات المرور عبر الإنترنت",
+    "benefits": [
+      "<strong>الخصوصية.</strong> تُولَّد كلمات المرور في المتصفح. لا يُرسل شيء إلى الخادم، لذا لا يراها غيرك.",
+      "<strong>مجاني وبلا تسجيل.</strong> افتح الصفحة واستخدمها. لا حاجة إلى حساب أو بريد إلكتروني أو تثبيت تطبيق.",
+      "<strong>إعدادات مرنة.</strong> اختر الطول وأي مزيج من الأرقام والأحرف الصغيرة والأحرف الكبيرة والرموز.",
+      "<strong>مؤشر القوة.</strong> اطّلع على الإنتروبيا بالبت والوقت التقديري للاختراق وفق الإعدادات الحالية.",
+      "<strong>إعدادات جاهزة حسب الغرض.</strong> Wi-Fi وshell وPIN وURL والإملاء — بنقرة واحدة.",
+      "<strong>رابط لمشاركة الإعدادات.</strong> انسخ الرابط وافتح الخيارات نفسها في مكان آخر — كلمة المرور لا تُضاف إلى الرابط أبدًا.",
+      "<strong>بلا تكرار.</strong> فعّل «بلا تكرار» لتقليل تكرار الأحرف (فريدة حتى الطول 61؛ وبحد أقصى مرتين بعد ذلك).",
+      "<strong>نسخ بنقرة واحدة.</strong> انقر على كلمة المرور لنسخها إلى الحافظة.",
+      "<strong>نتيجة سهلة القراءة.</strong> يمكن استبعاد الأحرف المتشابهة (I وO وl و|) لتسهيل إعادة كتابة كلمة المرور أو قراءتها بصوت عالٍ.",
+      "<strong>متوافق مع الخدمات.</strong> لا توضع الرموز في أول حرفين ولا في آخر حرفين، فتقلّ احتمالات رفض النماذج وسطر الأوامر والسكربتات لكلمة المرور.",
+      "<strong>سريع وخفيف.</strong> يعمل على الحاسوب والهاتف، ويدعم لغات كثيرة."
+    ],
+    "howTitle": "كيف تولّد كلمة مرور عبر الإنترنت",
+    "howSteps": [
+      "حدّد طول كلمة المرور بالزرّين «−» و«+».",
+      "اختر مجموعات الأحرف التي تحتاجها: أرقام، أحرف صغيرة، أحرف كبيرة، رموز.",
+      "فعّل «بلا تكرار» إن أردت.",
+      "اضغط «توليد».",
+      "انقر على كلمة المرور لنسخها، ثم احفظها في مدير كلمات المرور."
+    ],
+    "strongTitle": "ما الذي يجعل كلمة المرور قوية",
+    "strongLead": "تعتمد قوة كلمة المرور على طولها وتنوّع أحرفها. الكلمات البسيطة وتواريخ الميلاد والأسماء والتسلسلات مثل <code>123456</code> أو <code>qwerty</code> تُكسر في ثوانٍ. أما كلمة المرور العشوائية المولَّدة فتتجنب هذه الأنماط.",
+    "strongTips": [
+      "استخدم <strong>12–16 حرفًا على الأقل</strong>. وللحسابات الإدارية والخوادم يُفضَّل 20 حرفًا أو أكثر.",
+      "اجمع بين الأحرف الصغيرة والكبيرة والأرقام والرموز.",
+      "استخدم <strong>كلمة مرور فريدة</strong> لكل خدمة.",
+      "احفظ كلمات المرور في مدير كلمات المرور، لا في الملاحظات ولا في تطبيقات المراسلة.",
+      "فعّل المصادقة الثنائية أينما أمكن.",
+      "غيّر كلمة المرور إذا شككت في حدوث تسريب."
+    ],
+    "usesTitle": "فيمَ يُستخدم مولّد كلمات المرور",
+    "uses": [
+      "حسابات التواصل الاجتماعي والبريد الإلكتروني والخدمات المصرفية عبر الإنترنت والمتاجر؛",
+      "حسابات المسؤولين وSSH وقواعد البيانات ولوحات الاستضافة؛",
+      "راوترات Wi-Fi وأجهزة الشبكات؛",
+      "حسابات الخدمات وبيانات اعتماد API وبيئات الاختبار؛",
+      "كلمات مرور الأرشيفات والمستندات."
+    ],
+    "faqTitle": "الأسئلة الشائعة",
+    "faq": [
+      {
+        "q": "هل توليد كلمة مرور عبر الإنترنت آمن؟",
+        "a": "نعم. تُنشأ كلمة المرور محليًا في متصفحك ولا تُرسل إلى الخادم، لذلك لا يستطيع الموقع اعتراضها أو تخزينها."
+      },
+      {
+        "q": "هل المولّد مجاني؟",
+        "a": "نعم. الخدمة مجانية، بلا تسجيل وبلا حد لعدد كلمات المرور التي تنشئها."
+      },
+      {
+        "q": "ما طول كلمة المرور الذي أختاره؟",
+        "a": "للحسابات اليومية يُعدّ 12–16 حرفًا نطاقًا جيدًا؛ وللخدمات المهمة والخوادم استخدم 20 حرفًا أو أكثر."
+      },
+      {
+        "q": "لماذا تُستبعد الأحرف I وO وl و|؟",
+        "a": "يسهل الخلط بينها وبين 1 و0 وبين بعضها. وبدونها تصبح كلمات المرور أسهل في القراءة والكتابة يدويًا."
+      },
+      {
+        "q": "لماذا لا توضع الرموز في البداية أو النهاية؟",
+        "a": "بعض الأنظمة تتعامل بشكل خاطئ مع الرموز الطرفية عند النسخ أو في سطر الأوامر أو في ملفات الإعداد. إبقاء الأطراف أحرفًا وأرقامًا يجعل كلمة المرور تعمل بموثوقية أكبر."
+      },
+      {
+        "q": "ماذا يعني «بلا تكرار»؟",
+        "a": "حتى الطول 61 يظهر كل حرف مرة واحدة فقط؛ وفوق 61 يظهر مرتين كحد أقصى. مفيد عندما تقيّد الخدمة التكرار."
+      },
+      {
+        "q": "هل يجب أن أحفظ كلمة المرور المولَّدة؟",
+        "a": "لا. احفظها في مدير كلمات المرور واستخدم الملء التلقائي."
+      },
+      {
+        "q": "كيف تُحسب قوة كلمة المرور؟",
+        "a": "يقيّم المؤشر إعدادات التوليد (الطول ومجموعة الأحرف) لا سلسلة بعينها، ويعرض الإنتروبيا بالبت."
+      },
+      {
+        "q": "ما الإنتروبيا والبتات؟",
+        "a": "تقدّر الإنتروبيا حجم فضاء البحث: كلما زادت البتات طال وقت الاختراق في نموذج الهجوم نفسه."
+      },
+      {
+        "q": "كيف أشارك إعدادات المولّد؟",
+        "a": "استخدم «نسخ الرابط»: يحتوي العنوان على الإعدادات فقط — وليس على كلمة المرور نفسها أبدًا."
+      },
+      {
+        "q": "لماذا أستبعد بعض الأحرف؟",
+        "a": "إذا كانت خدمة ما تمنع بعض الرموز أو كنت تحتاج إلى قراءة كلمة المرور بصوت عالٍ، فاحذف الأحرف المزعجة من مجموعة الأحرف."
+      }
+    ],
+    "appName": "مولّد كلمات المرور عبر الإنترنت",
+    "tipsLabel": "توصيات:"
+  },
+  "bn": {
+    "title": "অনলাইন পাসওয়ার্ড জেনারেটর — এক সেকেন্ডে শক্তিশালী পাসওয়ার্ড",
+    "description": "বিনামূল্যে অনলাইন পাসওয়ার্ড জেনারেটর: দৈর্ঘ্য ও অক্ষরের সেট ঠিক করে শক্তিশালী পাসওয়ার্ড পান। এটি আপনার ব্রাউজারে চলে — সার্ভারে কিছুই পাঠানো হয় না।",
+    "heading": "অনলাইন পাসওয়ার্ড জেনারেটর",
+    "leadHtml": "ইমেইল, অ্যাকাউন্ট বা সার্ভারের জন্য শক্তিশালী পাসওয়ার্ড দরকার? আমাদের <strong>অনলাইন পাসওয়ার্ড জেনারেটর</strong> এক ক্লিকে র‍্যান্ডম পাসওয়ার্ড তৈরি করে। দৈর্ঘ্য ঠিক করুন, অক্ষরের সেট বেছে নিন এবং “তৈরি করুন” চাপুন। পাসওয়ার্ড আপনার ব্রাউজারেই তৈরি হয় এবং কোথাও পাঠানো হয় না।",
+    "benefitsTitle": "অনলাইন পাসওয়ার্ড জেনারেটরের সুবিধা",
+    "benefits": [
+      "<strong>গোপনীয়তা।</strong> পাসওয়ার্ড ব্রাউজারেই তৈরি হয়। সার্ভারে কিছু পাঠানো হয় না, তাই শুধু আপনিই সেগুলো দেখতে পান।",
+      "<strong>বিনামূল্যে, সাইন-আপ ছাড়া।</strong> পেজ খুলুন আর ব্যবহার করুন। অ্যাকাউন্ট, ইমেইল বা অ্যাপ ইনস্টল করার দরকার নেই।",
+      "<strong>নমনীয় সেটিংস।</strong> দৈর্ঘ্য বেছে নিন এবং সংখ্যা, ছোট হাতের অক্ষর, বড় হাতের অক্ষর ও চিহ্নের যেকোনো মিশ্রণ নিন।",
+      "<strong>শক্তি মিটার।</strong> বর্তমান সেটিংসের জন্য বিটে এনট্রপি এবং পাসওয়ার্ড ভাঙতে আনুমানিক কত সময় লাগবে তা দেখুন।",
+      "<strong>কাজ অনুযায়ী প্রিসেট।</strong> Wi-Fi, শেল, PIN, URL এবং মুখে বলার জন্য — এক ক্লিকে।",
+      "<strong>সেটিংস শেয়ার করার লিংক।</strong> URL কপি করে একই অপশন অন্য জায়গায় খুলুন — পাসওয়ার্ড কখনও লিংকে যায় না।",
+      "<strong>পুনরাবৃত্তি নয়।</strong> “পুনরাবৃত্তি নয়” চালু করুন যাতে অক্ষর কম পুনরাবৃত্ত হয় (দৈর্ঘ্য ৬১ পর্যন্ত প্রতিটি অক্ষর একবার; তার বেশি হলে সর্বোচ্চ দুইবার)।",
+      "<strong>এক ক্লিকে কপি।</strong> পাসওয়ার্ডে ক্লিক করলেই তা ক্লিপবোর্ডে কপি হয়ে যায়।",
+      "<strong>সহজে পড়ার মতো ফলাফল।</strong> দেখতে একরকম অক্ষর (I, O, l, |) বাদ দেওয়া যায়, ফলে পাসওয়ার্ড আবার টাইপ করা বা জোরে পড়া সহজ হয়।",
+      "<strong>সেবার সঙ্গে সামঞ্জস্যপূর্ণ।</strong> প্রথম ও শেষ দুটি অক্ষরে চিহ্ন রাখা হয় না, তাই ফর্ম, শেল ও স্ক্রিপ্ট পাসওয়ার্ড কম প্রত্যাখ্যান করে।",
+      "<strong>দ্রুত ও হালকা।</strong> কম্পিউটার ও মোবাইল দুটোতেই চলে এবং অনেক ভাষায় পাওয়া যায়।"
+    ],
+    "howTitle": "অনলাইনে পাসওয়ার্ড কীভাবে তৈরি করবেন",
+    "howSteps": [
+      "“−” ও “+” বোতাম দিয়ে পাসওয়ার্ডের দৈর্ঘ্য ঠিক করুন।",
+      "প্রয়োজনীয় অক্ষরের সেট বেছে নিন: সংখ্যা, ছোট হাতের অক্ষর, বড় হাতের অক্ষর, চিহ্ন।",
+      "চাইলে “পুনরাবৃত্তি নয়” চালু করুন।",
+      "“তৈরি করুন” চাপুন।",
+      "পাসওয়ার্ডে ক্লিক করে কপি করুন, তারপর পাসওয়ার্ড ম্যানেজারে সংরক্ষণ করুন।"
+    ],
+    "strongTitle": "কী একটি পাসওয়ার্ডকে শক্তিশালী করে",
+    "strongLead": "পাসওয়ার্ডের শক্তি নির্ভর করে দৈর্ঘ্য ও অক্ষরের বৈচিত্র্যের উপর। সহজ শব্দ, জন্মতারিখ, নাম এবং <code>123456</code> বা <code>qwerty</code>-এর মতো ক্রম কয়েক সেকেন্ডেই ভেঙে ফেলা যায়। জেনারেটরে তৈরি র‍্যান্ডম পাসওয়ার্ড এসব প্যাটার্ন এড়িয়ে চলে।",
+    "strongTips": [
+      "<strong>কমপক্ষে ১২–১৬ অক্ষর</strong> ব্যবহার করুন। অ্যাডমিন অ্যাকাউন্ট ও সার্ভারের জন্য ২০ বা তার বেশি ভালো।",
+      "ছোট হাতের অক্ষর, বড় হাতের অক্ষর, সংখ্যা ও চিহ্ন মিলিয়ে ব্যবহার করুন।",
+      "প্রতিটি সেবার জন্য <strong>আলাদা পাসওয়ার্ড</strong> ব্যবহার করুন।",
+      "পাসওয়ার্ড নোটে বা মেসেঞ্জারে নয়, পাসওয়ার্ড ম্যানেজারে রাখুন।",
+      "যেখানেই সম্ভব টু-ফ্যাক্টর অথেন্টিকেশন চালু করুন।",
+      "ফাঁস হয়েছে বলে সন্দেহ হলে পাসওয়ার্ড বদলে ফেলুন।"
+    ],
+    "usesTitle": "পাসওয়ার্ড জেনারেটর কীসের জন্য",
+    "uses": [
+      "সোশ্যাল অ্যাকাউন্ট, ইমেইল, অনলাইন ব্যাংকিং ও অনলাইন দোকান;",
+      "অ্যাডমিন অ্যাকাউন্ট, SSH, ডেটাবেস ও হোস্টিং প্যানেল;",
+      "Wi-Fi রাউটার ও নেটওয়ার্ক যন্ত্রপাতি;",
+      "সার্ভিস অ্যাকাউন্ট, API ক্রেডেনশিয়াল ও টেস্ট সার্ভার;",
+      "আর্কাইভ ও ডকুমেন্টের পাসওয়ার্ড।"
+    ],
+    "faqTitle": "প্রশ্নোত্তর",
+    "faq": [
+      {
+        "q": "অনলাইনে পাসওয়ার্ড তৈরি করা কি নিরাপদ?",
+        "a": "হ্যাঁ। পাসওয়ার্ড আপনার ব্রাউজারে স্থানীয়ভাবে তৈরি হয় এবং সার্ভারে পাঠানো হয় না, তাই সাইট সেটি আটকাতে বা সংরক্ষণ করতে পারে না।"
+      },
+      {
+        "q": "জেনারেটরটি কি বিনামূল্যে?",
+        "a": "হ্যাঁ। সেবাটি বিনামূল্যে, নিবন্ধন লাগে না এবং কতগুলো পাসওয়ার্ড তৈরি করবেন তার কোনো সীমা নেই।"
+      },
+      {
+        "q": "পাসওয়ার্ডের দৈর্ঘ্য কত রাখব?",
+        "a": "প্রতিদিনের অ্যাকাউন্টের জন্য ১২–১৬ অক্ষর ভালো; গুরুত্বপূর্ণ সেবা ও সার্ভারের জন্য ২০ বা তার বেশি রাখুন।"
+      },
+      {
+        "q": "I, O, l এবং | কেন বাদ দেওয়া হয়?",
+        "a": "এগুলো সহজেই ১, ০ এবং নিজেদের মধ্যে গুলিয়ে যায়। এগুলো ছাড়া পাসওয়ার্ড পড়া ও হাতে টাইপ করা সহজ হয়।"
+      },
+      {
+        "q": "চিহ্ন কেন শুরুতে বা শেষে বসানো হয় না?",
+        "a": "কিছু সিস্টেম কপি করার সময়, শেলে বা কনফিগ ফাইলে প্রান্তের চিহ্ন ঠিকমতো সামলাতে পারে না। প্রান্ত অক্ষর বা সংখ্যা রাখলে পাসওয়ার্ড আরও নির্ভরযোগ্যভাবে কাজ করে।"
+      },
+      {
+        "q": "“পুনরাবৃত্তি নয়” মানে কী?",
+        "a": "দৈর্ঘ্য ৬১ পর্যন্ত প্রতিটি অক্ষর শুধু একবার আসে; ৬১-এর বেশি হলে সর্বোচ্চ দুইবার। কোনো সেবা পুনরাবৃত্তি সীমিত করলে এটি কাজে লাগে।"
+      },
+      {
+        "q": "তৈরি করা পাসওয়ার্ড কি মুখস্থ রাখতে হবে?",
+        "a": "না। এটি পাসওয়ার্ড ম্যানেজারে সংরক্ষণ করুন এবং অটোফিল ব্যবহার করুন।"
+      },
+      {
+        "q": "পাসওয়ার্ডের শক্তি কীভাবে হিসাব করা হয়?",
+        "a": "মিটার নির্দিষ্ট কোনো স্ট্রিং নয়, বরং তৈরির সেটিংস (দৈর্ঘ্য ও বর্ণমালা) মূল্যায়ন করে এবং বিটে এনট্রপি দেখায়।"
+      },
+      {
+        "q": "এনট্রপি ও বিট কী?",
+        "a": "এনট্রপি অনুসন্ধানের পরিসরের আনুমানিক মাপ: একই আক্রমণ মডেলে বিট যত বেশি, পাসওয়ার্ড ভাঙতে সময় তত বেশি লাগে।"
+      },
+      {
+        "q": "জেনারেটরের সেটিংস কীভাবে শেয়ার করব?",
+        "a": "“লিংক কপি করুন” ব্যবহার করুন: ঠিকানায় শুধু সেটিংস থাকে — পাসওয়ার্ড কখনও নয়।"
+      },
+      {
+        "q": "অক্ষর কেন বাদ দেব?",
+        "a": "কোনো সেবা কিছু চিহ্ন নিষিদ্ধ করলে বা পাসওয়ার্ড জোরে পড়ে শোনাতে হলে অসুবিধাজনক অক্ষরগুলো বর্ণমালা থেকে সরিয়ে দিন।"
+      }
+    ],
+    "appName": "অনলাইন পাসওয়ার্ড জেনারেটর",
+    "tipsLabel": "পরামর্শ:"
+  },
+  "pt": {
+    "title": "Gerador de palavras-passe online — palavra-passe forte num segundo",
+    "description": "Gerador de palavras-passe online gratuito: defina o comprimento e os conjuntos de caracteres e obtenha uma palavra-passe forte. Funciona no navegador; nada é enviado ao servidor.",
+    "heading": "Gerador de palavras-passe online",
+    "leadHtml": "Precisa de uma palavra-passe forte para o e-mail, uma conta ou um servidor? O nosso <strong>gerador de palavras-passe online</strong> cria uma palavra-passe aleatória com um clique. Defina o comprimento, escolha os conjuntos de caracteres e carregue em Gerar. A palavra-passe é criada no seu navegador e nunca é enviada para lado nenhum.",
+    "benefitsTitle": "Vantagens de um gerador de palavras-passe online",
+    "benefits": [
+      "<strong>Privacidade.</strong> As palavras-passe são geradas no navegador. Nada é enviado ao servidor, por isso só você as pode ver.",
+      "<strong>Grátis e sem registo.</strong> Abra a página e use. Não é preciso conta, e-mail nem instalar aplicações.",
+      "<strong>Definições flexíveis.</strong> Escolha o comprimento e qualquer combinação de dígitos, minúsculas, maiúsculas e símbolos.",
+      "<strong>Medidor de força.</strong> Veja a entropia em bits e o tempo estimado para a quebrar com as definições atuais.",
+      "<strong>Predefinições por tarefa.</strong> Wi-Fi, shell, PIN, URL e ditado — com um clique.",
+      "<strong>Ligação para partilhar as definições.</strong> Copie o URL e abra as mesmas opções noutro dispositivo — a palavra-passe nunca vai na ligação.",
+      "<strong>Sem duplicados.</strong> Ative «sem duplicados» para limitar as repetições (únicos até ao comprimento 61; no máximo duas vezes acima disso).",
+      "<strong>Cópia com um clique.</strong> Clique numa palavra-passe para a copiar para a área de transferência.",
+      "<strong>Resultado legível.</strong> Os carateres ambíguos (I, O, l, |) podem ser excluídos, para que a palavra-passe seja mais fácil de reescrever ou de ler em voz alta.",
+      "<strong>Compatível com os serviços.</strong> Os símbolos ficam fora dos dois primeiros e dos dois últimos carateres, para que formulários, terminais e scripts rejeitem menos a palavra-passe.",
+      "<strong>Rápido e leve.</strong> Funciona no computador e no telemóvel, em vários idiomas."
+    ],
+    "howTitle": "Como gerar uma palavra-passe online",
+    "howSteps": [
+      "Defina o comprimento da palavra-passe com os botões «−» e «+».",
+      "Selecione os conjuntos de caracteres de que precisa: dígitos, minúsculas, maiúsculas, símbolos.",
+      "Se quiser, ative «sem duplicados».",
+      "Carregue em Gerar.",
+      "Clique numa palavra-passe para a copiar e guarde-a num gestor de palavras-passe."
+    ],
+    "strongTitle": "O que torna uma palavra-passe forte",
+    "strongLead": "A força de uma palavra-passe depende do comprimento e da variedade de caracteres. Palavras simples, datas de nascimento, nomes e sequências como <code>123456</code> ou <code>qwerty</code> são quebradas em segundos. Uma palavra-passe aleatória gerada evita esses padrões.",
+    "strongTips": [
+      "Use <strong>pelo menos 12–16 caracteres</strong>. Para contas de administrador e servidores, é melhor usar 20 ou mais.",
+      "Combine minúsculas, maiúsculas, dígitos e símbolos.",
+      "Use uma <strong>palavra-passe única</strong> para cada serviço.",
+      "Guarde as palavras-passe num gestor de palavras-passe, não em notas nem em aplicações de mensagens.",
+      "Ative a autenticação de dois fatores sempre que possível.",
+      "Mude a palavra-passe se suspeitar de uma fuga de dados."
+    ],
+    "usesTitle": "Para que serve um gerador de palavras-passe",
+    "uses": [
+      "redes sociais, e-mail, banca online e lojas;",
+      "contas de administrador, SSH, bases de dados e painéis de alojamento;",
+      "routers Wi-Fi e equipamento de rede;",
+      "contas de serviço, credenciais de API e ambientes de teste;",
+      "palavras-passe para arquivos e documentos."
+    ],
+    "faqTitle": "Perguntas frequentes",
+    "faq": [
+      {
+        "q": "É seguro gerar uma palavra-passe online?",
+        "a": "Sim. A palavra-passe é criada localmente no seu navegador e não é enviada ao servidor, por isso o site não a pode intercetar nem guardar."
+      },
+      {
+        "q": "O gerador é gratuito?",
+        "a": "Sim. O serviço é gratuito, sem registo e sem limite para o número de palavras-passe que cria."
+      },
+      {
+        "q": "Que comprimento de palavra-passe devo escolher?",
+        "a": "Para contas do dia a dia, 12–16 caracteres é um bom intervalo; para serviços importantes e servidores, use 20 ou mais."
+      },
+      {
+        "q": "Porque é que I, O, l e | são excluídos?",
+        "a": "São fáceis de confundir com 1, 0 e entre si. Sem eles, as palavras-passe são mais fáceis de ler e de escrever à mão."
+      },
+      {
+        "q": "Porque é que os símbolos não ficam no início nem no fim?",
+        "a": "Alguns sistemas tratam mal os símbolos nas extremidades ao copiar, em terminais ou em ficheiros de configuração. Manter as extremidades alfanuméricas faz a palavra-passe funcionar com mais fiabilidade."
+      },
+      {
+        "q": "O que significa «sem duplicados»?",
+        "a": "Até ao comprimento 61 cada caractere aparece só uma vez; acima de 61, no máximo duas vezes. Útil quando um serviço limita as repetições."
+      },
+      {
+        "q": "Preciso de memorizar a palavra-passe gerada?",
+        "a": "Não. Guarde-a num gestor de palavras-passe e use o preenchimento automático."
+      },
+      {
+        "q": "Como é calculada a força da palavra-passe?",
+        "a": "O medidor avalia as definições de geração (comprimento e alfabeto), não uma sequência específica, e mostra a entropia em bits."
+      },
+      {
+        "q": "O que são entropia e bits?",
+        "a": "A entropia estima o espaço de pesquisa: mais bits significam mais tempo para quebrar a palavra-passe com o mesmo modelo de ataque."
+      },
+      {
+        "q": "Como partilho as definições do gerador?",
+        "a": "Use Copiar ligação: o endereço contém apenas as definições — nunca a própria palavra-passe."
+      },
+      {
+        "q": "Porquê excluir caracteres?",
+        "a": "Se um serviço proíbe alguns símbolos ou precisa de ler a palavra-passe em voz alta, retire do alfabeto os caracteres incómodos."
+      }
+    ],
+    "appName": "Gerador de palavras-passe online",
+    "tipsLabel": "Recomendações:"
+  },
+  "fr": {
+    "title": "Générateur de mot de passe en ligne — mot de passe fort en une seconde",
+    "description": "Générateur de mot de passe en ligne gratuit : choisissez la longueur et les jeux de caractères pour obtenir un mot de passe fort. Il fonctionne dans votre navigateur, rien n’est envoyé au serveur.",
+    "heading": "Générateur de mot de passe en ligne",
+    "leadHtml": "Besoin d’un mot de passe fort pour votre messagerie, un compte ou un serveur ? Notre <strong>générateur de mot de passe en ligne</strong> crée un mot de passe aléatoire en un clic. Indiquez la longueur, choisissez les jeux de caractères et cliquez sur Générer. Le mot de passe est créé dans votre navigateur et n’est jamais envoyé nulle part.",
+    "benefitsTitle": "Avantages d’un générateur de mot de passe en ligne",
+    "benefits": [
+      "<strong>Confidentialité.</strong> Les mots de passe sont générés dans le navigateur. Rien n’est envoyé au serveur : vous seul pouvez les voir.",
+      "<strong>Gratuit, sans inscription.</strong> Ouvrez la page et utilisez-la. Aucun compte, e-mail ni installation d’application n’est nécessaire.",
+      "<strong>Réglages flexibles.</strong> Choisissez la longueur et n’importe quelle combinaison de chiffres, minuscules, majuscules et symboles.",
+      "<strong>Indicateur de robustesse.</strong> Consultez l’entropie en bits et le temps de crack estimé pour les réglages actuels.",
+      "<strong>Préréglages par usage.</strong> Wi-Fi, shell, PIN, URL et dictée — en un clic.",
+      "<strong>Lien de partage des réglages.</strong> Copiez l’URL et ouvrez les mêmes options ailleurs — le mot de passe ne figure jamais dans le lien.",
+      "<strong>Sans doublons.</strong> Activez « sans doublons » pour limiter les répétitions (uniques jusqu’à la longueur 61 ; deux fois au maximum au-delà).",
+      "<strong>Copie en un clic.</strong> Cliquez sur un mot de passe pour le copier dans le presse-papiers.",
+      "<strong>Résultat lisible.</strong> Les caractères ambigus (I, O, l, |) peuvent être exclus, ce qui facilite la saisie manuelle ou la lecture à voix haute.",
+      "<strong>Compatible avec les services.</strong> Les symboles sont écartés des deux premiers et des deux derniers caractères, de sorte que formulaires, terminaux et scripts rejettent moins souvent le mot de passe.",
+      "<strong>Rapide et léger.</strong> Fonctionne sur ordinateur comme sur mobile, dans de nombreuses langues."
+    ],
+    "howTitle": "Comment générer un mot de passe en ligne",
+    "howSteps": [
+      "Réglez la longueur du mot de passe avec les boutons « − » et « + ».",
+      "Sélectionnez les jeux de caractères voulus : chiffres, minuscules, majuscules, symboles.",
+      "Activez au besoin « sans doublons ».",
+      "Cliquez sur Générer.",
+      "Cliquez sur un mot de passe pour le copier, puis enregistrez-le dans un gestionnaire de mots de passe."
+    ],
+    "strongTitle": "Qu’est-ce qui rend un mot de passe fort",
+    "strongLead": "La robustesse d’un mot de passe dépend de sa longueur et de la variété des caractères. Les mots simples, les dates de naissance, les prénoms et les suites comme <code>123456</code> ou <code>qwerty</code> sont craqués en quelques secondes. Un mot de passe aléatoire généré évite ces schémas.",
+    "strongTips": [
+      "Utilisez <strong>au moins 12 à 16 caractères</strong>. Pour les comptes administrateur et les serveurs, mieux vaut 20 ou plus.",
+      "Combinez minuscules, majuscules, chiffres et symboles.",
+      "Utilisez un <strong>mot de passe unique</strong> pour chaque service.",
+      "Conservez vos mots de passe dans un gestionnaire, pas dans des notes ni des messageries.",
+      "Activez l’authentification à deux facteurs partout où c’est possible.",
+      "Changez un mot de passe si vous soupçonnez une fuite."
+    ],
+    "usesTitle": "À quoi sert un générateur de mot de passe",
+    "uses": [
+      "réseaux sociaux, messagerie, banque en ligne et boutiques ;",
+      "comptes administrateur, SSH, bases de données et panneaux d’hébergement ;",
+      "routeurs Wi-Fi et équipements réseau ;",
+      "comptes de service, identifiants d’API et environnements de test ;",
+      "mots de passe d’archives et de documents."
+    ],
+    "faqTitle": "FAQ",
+    "faq": [
+      {
+        "q": "Est-il sûr de générer un mot de passe en ligne ?",
+        "a": "Oui. Le mot de passe est créé localement dans votre navigateur et n’est pas envoyé au serveur : le site ne peut donc ni l’intercepter ni le stocker."
+      },
+      {
+        "q": "Le générateur est-il gratuit ?",
+        "a": "Oui. Le service est gratuit, sans inscription et sans limite sur le nombre de mots de passe créés."
+      },
+      {
+        "q": "Quelle longueur de mot de passe choisir ?",
+        "a": "Pour les comptes courants, 12 à 16 caractères conviennent bien ; pour les services importants et les serveurs, prenez 20 caractères ou plus."
+      },
+      {
+        "q": "Pourquoi I, O, l et | sont-ils exclus ?",
+        "a": "Ils se confondent facilement avec 1, 0 et entre eux. Sans eux, les mots de passe sont plus faciles à lire et à saisir à la main."
+      },
+      {
+        "q": "Pourquoi les symboles ne sont-ils pas placés au début ou à la fin ?",
+        "a": "Certains systèmes gèrent mal les symboles situés aux extrémités lors d’une copie, dans un terminal ou dans des fichiers de configuration. Garder des extrémités alphanumériques rend le mot de passe plus fiable."
+      },
+      {
+        "q": "Que signifie « sans doublons » ?",
+        "a": "Jusqu’à la longueur 61, chaque caractère n’apparaît qu’une fois ; au-delà de 61, deux fois au maximum. Pratique lorsqu’un service limite les répétitions."
+      },
+      {
+        "q": "Dois-je mémoriser le mot de passe généré ?",
+        "a": "Non. Enregistrez-le dans un gestionnaire de mots de passe et utilisez le remplissage automatique."
+      },
+      {
+        "q": "Comment la robustesse du mot de passe est-elle calculée ?",
+        "a": "L’indicateur évalue les réglages de génération (longueur et alphabet), et non une chaîne précise, et affiche l’entropie en bits."
+      },
+      {
+        "q": "Que sont l’entropie et les bits ?",
+        "a": "L’entropie estime l’espace de recherche : plus il y a de bits, plus le temps de crack est long avec le même modèle d’attaque."
+      },
+      {
+        "q": "Comment partager les réglages du générateur ?",
+        "a": "Utilisez Copier le lien : l’adresse ne contient que les réglages, jamais le mot de passe lui-même."
+      },
+      {
+        "q": "Pourquoi exclure des caractères ?",
+        "a": "Si un service interdit certains symboles ou si vous devez lire le mot de passe à voix haute, retirez de l’alphabet les caractères gênants."
+      }
+    ],
+    "appName": "Générateur de mot de passe en ligne",
+    "tipsLabel": "Recommandations :"
+  },
+  "de": {
+    "title": "Online-Passwortgenerator — starkes Passwort in einer Sekunde",
+    "description": "Kostenloser Online-Passwortgenerator: Länge und Zeichensätze festlegen und ein starkes Passwort erhalten. Läuft im Browser — nichts wird an den Server gesendet.",
+    "heading": "Online-Passwortgenerator",
+    "leadHtml": "Sie brauchen ein starkes Passwort für E-Mail, ein Konto oder einen Server? Unser <strong>Online-Passwortgenerator</strong> erstellt mit einem Klick ein zufälliges Passwort. Legen Sie die Länge fest, wählen Sie die Zeichensätze und klicken Sie auf Generieren. Das Passwort entsteht in Ihrem Browser und wird nirgendwohin gesendet.",
+    "benefitsTitle": "Vorteile eines Online-Passwortgenerators",
+    "benefits": [
+      "<strong>Datenschutz.</strong> Passwörter werden im Browser erzeugt. Nichts wird an den Server gesendet, sodass nur Sie sie sehen können.",
+      "<strong>Kostenlos, ohne Anmeldung.</strong> Seite öffnen und loslegen. Kein Konto, keine E-Mail und keine App-Installation nötig.",
+      "<strong>Flexible Einstellungen.</strong> Wählen Sie die Länge und eine beliebige Mischung aus Ziffern, Kleinbuchstaben, Großbuchstaben und Sonderzeichen.",
+      "<strong>Stärkeanzeige.</strong> Sehen Sie die Entropie in Bit und die geschätzte Knackzeit für die aktuellen Einstellungen.",
+      "<strong>Vorlagen für Aufgaben.</strong> WLAN, Shell, PIN, URL und Diktat — mit einem Klick.",
+      "<strong>Link zum Teilen der Einstellungen.</strong> Kopieren Sie die URL und öffnen Sie dieselben Optionen anderswo — das Passwort steht nie im Link.",
+      "<strong>Keine Duplikate.</strong> Aktivieren Sie „keine Duplikate“, damit Wiederholungen begrenzt werden (eindeutig bis Länge 61; darüber höchstens zweimal).",
+      "<strong>Kopieren mit einem Klick.</strong> Klicken Sie auf ein Passwort, um es in die Zwischenablage zu kopieren.",
+      "<strong>Gut lesbare Ausgabe.</strong> Verwechselbare Zeichen (I, O, l, |) lassen sich ausschließen, damit Passwörter leichter abzutippen oder vorzulesen sind.",
+      "<strong>Dienstfreundlich.</strong> Sonderzeichen stehen nicht an den ersten und letzten beiden Stellen, sodass Formulare, Shells und Skripte das Passwort seltener ablehnen.",
+      "<strong>Schnell und leicht.</strong> Funktioniert auf Desktop und Smartphone und ist in vielen Sprachen verfügbar."
+    ],
+    "howTitle": "So erzeugen Sie ein Passwort online",
+    "howSteps": [
+      "Stellen Sie die Passwortlänge mit den Schaltflächen „−“ und „+“ ein.",
+      "Wählen Sie die gewünschten Zeichensätze: Ziffern, Kleinbuchstaben, Großbuchstaben, Sonderzeichen.",
+      "Aktivieren Sie bei Bedarf „keine Duplikate“.",
+      "Klicken Sie auf Generieren.",
+      "Klicken Sie auf ein Passwort, um es zu kopieren, und speichern Sie es in einem Passwortmanager."
+    ],
+    "strongTitle": "Was ein Passwort stark macht",
+    "strongLead": "Die Stärke eines Passworts hängt von Länge und Zeichenvielfalt ab. Einfache Wörter, Geburtsdaten, Namen und Folgen wie <code>123456</code> oder <code>qwerty</code> sind in Sekunden geknackt. Ein zufällig erzeugtes Passwort vermeidet solche Muster.",
+    "strongTips": [
+      "Verwenden Sie <strong>mindestens 12–16 Zeichen</strong>. Für Administratorkonten und Server sind 20 und mehr besser.",
+      "Kombinieren Sie Kleinbuchstaben, Großbuchstaben, Ziffern und Sonderzeichen.",
+      "Nutzen Sie für jeden Dienst ein <strong>eigenes Passwort</strong>.",
+      "Bewahren Sie Passwörter in einem Passwortmanager auf, nicht in Notizen oder Messengern.",
+      "Aktivieren Sie die Zwei-Faktor-Authentifizierung, wo immer es geht.",
+      "Ändern Sie ein Passwort, wenn Sie ein Datenleck vermuten."
+    ],
+    "usesTitle": "Wofür ein Passwortgenerator gut ist",
+    "uses": [
+      "Social-Media-Konten, E-Mail, Online-Banking und Shops;",
+      "Administratorkonten, SSH, Datenbanken und Hosting-Panels;",
+      "WLAN-Router und Netzwerkgeräte;",
+      "Dienstkonten, API-Zugangsdaten und Testumgebungen;",
+      "Passwörter für Archive und Dokumente."
+    ],
+    "faqTitle": "Häufige Fragen",
+    "faq": [
+      {
+        "q": "Ist es sicher, ein Passwort online zu generieren?",
+        "a": "Ja. Das Passwort wird lokal in Ihrem Browser erstellt und nicht an den Server gesendet, sodass die Website es weder abfangen noch speichern kann."
+      },
+      {
+        "q": "Ist der Generator kostenlos?",
+        "a": "Ja. Der Dienst ist kostenlos, ohne Registrierung und ohne Begrenzung der Anzahl erzeugter Passwörter."
+      },
+      {
+        "q": "Welche Passwortlänge sollte ich wählen?",
+        "a": "Für alltägliche Konten sind 12–16 Zeichen ein guter Bereich; für wichtige Dienste und Server nehmen Sie 20 oder mehr."
+      },
+      {
+        "q": "Warum sind I, O, l und | ausgeschlossen?",
+        "a": "Sie lassen sich leicht mit 1, 0 und untereinander verwechseln. Ohne sie sind Passwörter leichter zu lesen und von Hand einzutippen."
+      },
+      {
+        "q": "Warum stehen Sonderzeichen nicht am Anfang oder Ende?",
+        "a": "Manche Systeme verarbeiten Sonderzeichen am Rand beim Kopieren, in Shells oder in Konfigurationsdateien fehlerhaft. Alphanumerische Ränder sorgen dafür, dass das Passwort zuverlässiger funktioniert."
+      },
+      {
+        "q": "Was bedeutet „keine Duplikate“?",
+        "a": "Bis Länge 61 kommt jedes Zeichen nur einmal vor; darüber höchstens zweimal. Praktisch, wenn ein Dienst Wiederholungen begrenzt."
+      },
+      {
+        "q": "Muss ich mir das generierte Passwort merken?",
+        "a": "Nein. Speichern Sie es in einem Passwortmanager und nutzen Sie die Autofill-Funktion."
+      },
+      {
+        "q": "Wie wird die Passwortstärke berechnet?",
+        "a": "Die Anzeige bewertet die Erzeugungseinstellungen (Länge und Alphabet), nicht eine bestimmte Zeichenfolge, und zeigt die Entropie in Bit."
+      },
+      {
+        "q": "Was sind Entropie und Bits?",
+        "a": "Die Entropie schätzt den Suchraum: Mehr Bits bedeuten bei gleichem Angriffsmodell eine längere Knackzeit."
+      },
+      {
+        "q": "Wie teile ich die Generator-Einstellungen?",
+        "a": "Nutzen Sie „Link kopieren“: Die Adresse enthält nur Einstellungen — niemals das Passwort selbst."
+      },
+      {
+        "q": "Warum Zeichen ausschließen?",
+        "a": "Wenn ein Dienst bestimmte Sonderzeichen verbietet oder Sie das Passwort vorlesen müssen, entfernen Sie die störenden Zeichen aus dem Alphabet."
+      }
+    ],
+    "appName": "Online-Passwortgenerator",
+    "tipsLabel": "Empfehlungen:"
+  },
+  "ja": {
+    "title": "オンラインパスワード生成 — 一瞬で強いパスワード",
+    "description": "無料のオンラインパスワード生成ツール。長さと文字種を指定して強いパスワードを作成。ブラウザ内で動作し、サーバーには何も送信されません。",
+    "heading": "オンラインパスワード生成",
+    "leadHtml": "メールやアカウント、サーバー用の強いパスワードが必要ですか？<strong>オンラインパスワード生成ツール</strong>なら、ワンクリックでランダムなパスワードを作成できます。長さを決めて文字種を選び、「生成」を押すだけ。パスワードはお使いのブラウザ内で作られ、どこにも送信されません。",
+    "benefitsTitle": "オンラインパスワード生成ツールのメリット",
+    "benefits": [
+      "<strong>プライバシー。</strong>パスワードはブラウザ内で生成されます。サーバーには何も送られないため、あなた以外には見えません。",
+      "<strong>無料・登録不要。</strong>ページを開いてすぐ使えます。アカウントもメールアドレスもアプリのインストールも不要です。",
+      "<strong>柔軟な設定。</strong>長さと、数字・小文字・大文字・記号の組み合わせを自由に選べます。",
+      "<strong>強度メーター。</strong>現在の設定でのエントロピー（ビット）と推定解読時間を確認できます。",
+      "<strong>用途別プリセット。</strong>Wi-Fi、シェル、PIN、URL、読み上げ用をワンクリックで切り替え。",
+      "<strong>設定共有リンク。</strong>URLをコピーすれば、別の環境で同じ設定を開けます。パスワード自体はリンクに含まれません。",
+      "<strong>重複なし。</strong>「重複なし」をオンにすると繰り返しを制限できます（長さ61までは重複なし、それ以上は最大2回まで）。",
+      "<strong>ワンクリックでコピー。</strong>パスワードをクリックするとクリップボードにコピーされます。",
+      "<strong>読みやすい出力。</strong>紛らわしい文字（I、O、l、|）を除外できるので、手入力や読み上げがしやすくなります。",
+      "<strong>サービスに優しい。</strong>先頭と末尾の2文字には記号を使わないため、フォームやシェル、スクリプトで拒否されにくくなります。",
+      "<strong>軽くて速い。</strong>パソコンでもスマートフォンでも動作し、多くの言語に対応しています。"
+    ],
+    "howTitle": "オンラインでパスワードを生成する方法",
+    "howSteps": [
+      "「−」と「+」ボタンでパスワードの長さを設定します。",
+      "必要な文字種（数字、小文字、大文字、記号）を選びます。",
+      "必要に応じて「重複なし」をオンにします。",
+      "「生成」を押します。",
+      "パスワードをクリックしてコピーし、パスワードマネージャーに保存します。"
+    ],
+    "strongTitle": "強いパスワードとは",
+    "strongLead": "パスワードの強さは長さと文字の種類の多さで決まります。単純な単語、誕生日、名前、<code>123456</code> や <code>qwerty</code> のような並びは数秒で破られます。生成ツールが作るランダムなパスワードなら、こうしたパターンを避けられます。",
+    "strongTips": [
+      "<strong>最低でも12〜16文字</strong>を使いましょう。管理者アカウントやサーバーには20文字以上がおすすめです。",
+      "小文字・大文字・数字・記号を組み合わせましょう。",
+      "サービスごとに<strong>固有のパスワード</strong>を使いましょう。",
+      "パスワードはメモやメッセンジャーではなく、パスワードマネージャーに保管しましょう。",
+      "可能な限り二要素認証を有効にしましょう。",
+      "漏えいの疑いがあるときはパスワードを変更しましょう。"
+    ],
+    "usesTitle": "パスワード生成ツールの用途",
+    "uses": [
+      "SNS、メール、ネットバンキング、ショッピングサイト；",
+      "管理者アカウント、SSH、データベース、ホスティングの管理画面；",
+      "Wi-Fiルーターやネットワーク機器；",
+      "サービスアカウント、APIの認証情報、テスト環境；",
+      "アーカイブや文書のパスワード。"
+    ],
+    "faqTitle": "よくある質問",
+    "faq": [
+      {
+        "q": "オンラインでパスワードを生成しても安全ですか？",
+        "a": "はい。パスワードはブラウザ内でローカルに作成され、サーバーには送信されないため、サイト側が傍受したり保存したりすることはできません。"
+      },
+      {
+        "q": "このジェネレーターは無料ですか？",
+        "a": "はい。無料で、登録も不要です。作成できるパスワードの数にも制限はありません。"
+      },
+      {
+        "q": "パスワードの長さはどれくらいにすべきですか？",
+        "a": "日常的なアカウントなら12〜16文字が目安です。重要なサービスやサーバーでは20文字以上にしてください。"
+      },
+      {
+        "q": "なぜ I、O、l、| が除外されるのですか？",
+        "a": "1や0、そしてお互いに間違えやすい文字だからです。除くことで、読みやすく手入力もしやすくなります。"
+      },
+      {
+        "q": "なぜ記号を先頭や末尾に置かないのですか？",
+        "a": "コピー時やシェル、設定ファイルで、端にある記号を正しく扱えないシステムがあります。端を英数字にすると、パスワードがより確実に動作します。"
+      },
+      {
+        "q": "「重複なし」とはどういう意味ですか？",
+        "a": "長さ61までは各文字が1回だけ、61を超える場合は最大2回まで登場します。サービス側で繰り返しが制限されているときに便利です。"
+      },
+      {
+        "q": "生成したパスワードは覚える必要がありますか？",
+        "a": "いいえ。パスワードマネージャーに保存し、自動入力を使ってください。"
+      },
+      {
+        "q": "パスワードの強度はどのように計算されますか？",
+        "a": "メーターは特定の文字列ではなく、生成設定（長さと文字セット）を評価し、エントロピーをビットで表示します。"
+      },
+      {
+        "q": "エントロピーとビットとは何ですか？",
+        "a": "エントロピーは探索空間の大きさの目安です。同じ攻撃モデルなら、ビット数が多いほど解読に時間がかかります。"
+      },
+      {
+        "q": "ジェネレーターの設定を共有するには？",
+        "a": "「リンクをコピー」を使ってください。アドレスに含まれるのは設定だけで、パスワード自体は含まれません。"
+      },
+      {
+        "q": "なぜ文字を除外するのですか？",
+        "a": "サービスが一部の記号を禁止している場合や、パスワードを声に出して伝える必要がある場合は、扱いにくい文字を文字セットから外してください。"
+      }
+    ],
+    "appName": "オンラインパスワード生成",
+    "tipsLabel": "推奨："
+  },
+  "id": {
+    "title": "Generator kata sandi online — kata sandi kuat dalam sedetik",
+    "description": "Generator kata sandi online gratis: atur panjang dan set karakter, lalu dapatkan kata sandi yang kuat. Berjalan di browser Anda — tidak ada yang dikirim ke server.",
+    "heading": "Generator kata sandi online",
+    "leadHtml": "Butuh kata sandi yang kuat untuk email, akun, atau server? <strong>Generator kata sandi online</strong> kami membuat kata sandi acak hanya dengan satu klik. Atur panjangnya, pilih set karakter, lalu tekan Buat. Kata sandi dibuat di browser Anda dan tidak pernah dikirim ke mana pun.",
+    "benefitsTitle": "Manfaat generator kata sandi online",
+    "benefits": [
+      "<strong>Privasi.</strong> Kata sandi dibuat di browser. Tidak ada yang dikirim ke server, sehingga hanya Anda yang bisa melihatnya.",
+      "<strong>Gratis, tanpa pendaftaran.</strong> Buka halaman dan langsung pakai. Tidak perlu akun, email, atau memasang aplikasi.",
+      "<strong>Pengaturan fleksibel.</strong> Pilih panjang dan kombinasi apa pun dari angka, huruf kecil, huruf besar, dan simbol.",
+      "<strong>Pengukur kekuatan.</strong> Lihat entropi dalam bit dan perkiraan waktu untuk membobolnya berdasarkan pengaturan saat ini.",
+      "<strong>Preset sesuai tugas.</strong> Wi-Fi, shell, PIN, URL, dan dikte — cukup satu klik.",
+      "<strong>Tautan untuk membagikan pengaturan.</strong> Salin URL dan buka opsi yang sama di tempat lain — kata sandi tidak pernah masuk ke tautan.",
+      "<strong>Tanpa duplikat.</strong> Aktifkan “tanpa duplikat” agar pengulangan dibatasi (unik hingga panjang 61; paling banyak dua kali di atasnya).",
+      "<strong>Salin dengan satu klik.</strong> Klik kata sandi untuk menyalinnya ke papan klip.",
+      "<strong>Hasil mudah dibaca.</strong> Karakter yang mirip (I, O, l, |) bisa dikecualikan, sehingga kata sandi lebih mudah diketik ulang atau dibacakan.",
+      "<strong>Ramah layanan.</strong> Simbol tidak ditempatkan di dua karakter pertama dan terakhir, sehingga formulir, shell, dan skrip lebih jarang menolak kata sandi.",
+      "<strong>Cepat dan ringan.</strong> Berfungsi di komputer dan ponsel, dengan banyak pilihan bahasa."
+    ],
+    "howTitle": "Cara membuat kata sandi online",
+    "howSteps": [
+      "Atur panjang kata sandi dengan tombol “−” dan “+”.",
+      "Pilih set karakter yang Anda perlukan: angka, huruf kecil, huruf besar, simbol.",
+      "Jika perlu, aktifkan “tanpa duplikat”.",
+      "Tekan Buat.",
+      "Klik kata sandi untuk menyalinnya, lalu simpan di pengelola kata sandi."
+    ],
+    "strongTitle": "Apa yang membuat kata sandi kuat",
+    "strongLead": "Kekuatan kata sandi bergantung pada panjang dan keragaman karakter. Kata sederhana, tanggal lahir, nama, dan urutan seperti <code>123456</code> atau <code>qwerty</code> bisa dibobol dalam hitungan detik. Kata sandi acak dari generator menghindari pola-pola tersebut.",
+    "strongTips": [
+      "Gunakan <strong>minimal 12–16 karakter</strong>. Untuk akun admin dan server, 20 karakter atau lebih lebih baik.",
+      "Gabungkan huruf kecil, huruf besar, angka, dan simbol.",
+      "Gunakan <strong>kata sandi yang unik</strong> untuk setiap layanan.",
+      "Simpan kata sandi di pengelola kata sandi, bukan di catatan atau aplikasi pesan.",
+      "Aktifkan autentikasi dua faktor di mana pun memungkinkan.",
+      "Ganti kata sandi jika Anda curiga ada kebocoran."
+    ],
+    "usesTitle": "Untuk apa generator kata sandi",
+    "uses": [
+      "akun media sosial, email, perbankan online, dan toko online;",
+      "akun admin, SSH, basis data, dan panel hosting;",
+      "router Wi-Fi dan perangkat jaringan;",
+      "akun layanan, kredensial API, dan lingkungan pengujian;",
+      "kata sandi untuk arsip dan dokumen."
+    ],
+    "faqTitle": "FAQ",
+    "faq": [
+      {
+        "q": "Apakah aman membuat kata sandi secara online?",
+        "a": "Ya. Kata sandi dibuat secara lokal di browser Anda dan tidak dikirim ke server, sehingga situs tidak bisa menyadap atau menyimpannya."
+      },
+      {
+        "q": "Apakah generator ini gratis?",
+        "a": "Ya. Layanan ini gratis, tanpa pendaftaran, dan tanpa batas jumlah kata sandi yang bisa Anda buat."
+      },
+      {
+        "q": "Berapa panjang kata sandi yang sebaiknya dipilih?",
+        "a": "Untuk akun sehari-hari, 12–16 karakter sudah baik; untuk layanan penting dan server, gunakan 20 karakter atau lebih."
+      },
+      {
+        "q": "Mengapa I, O, l, dan | dikecualikan?",
+        "a": "Karakter itu mudah tertukar dengan 1, 0, dan satu sama lain. Tanpa karakter tersebut, kata sandi lebih mudah dibaca dan diketik manual."
+      },
+      {
+        "q": "Mengapa simbol tidak ditempatkan di awal atau akhir?",
+        "a": "Beberapa sistem salah menangani simbol di tepi saat menyalin, di shell, atau di berkas konfigurasi. Menjaga tepi tetap huruf dan angka membuat kata sandi bekerja lebih andal."
+      },
+      {
+        "q": "Apa arti “tanpa duplikat”?",
+        "a": "Hingga panjang 61, setiap karakter hanya muncul sekali; di atas 61, paling banyak dua kali. Berguna jika suatu layanan membatasi pengulangan."
+      },
+      {
+        "q": "Apakah saya perlu menghafal kata sandi yang dibuat?",
+        "a": "Tidak. Simpan di pengelola kata sandi dan gunakan isi otomatis."
+      },
+      {
+        "q": "Bagaimana kekuatan kata sandi dihitung?",
+        "a": "Pengukur menilai pengaturan pembuatan (panjang dan alfabet), bukan string tertentu, dan menampilkan entropi dalam bit."
+      },
+      {
+        "q": "Apa itu entropi dan bit?",
+        "a": "Entropi memperkirakan ruang pencarian: semakin banyak bit, semakin lama waktu untuk membobolnya dengan model serangan yang sama."
+      },
+      {
+        "q": "Bagaimana cara membagikan pengaturan generator?",
+        "a": "Gunakan Salin tautan: alamat hanya berisi pengaturan — tidak pernah kata sandinya."
+      },
+      {
+        "q": "Mengapa perlu mengecualikan karakter?",
+        "a": "Jika suatu layanan melarang beberapa simbol atau Anda perlu membacakan kata sandi, hapus karakter yang menyulitkan dari alfabet."
+      }
+    ],
+    "appName": "Generator kata sandi online",
+    "tipsLabel": "Rekomendasi:"
+  },
+  "pa": {
+    "title": "ਆਨਲਾਈਨ ਪਾਸਵਰਡ ਜਨਰੇਟਰ — ਇੱਕ ਸਕਿੰਟ ਵਿੱਚ ਮਜ਼ਬੂਤ ਪਾਸਵਰਡ",
+    "description": "ਮੁਫ਼ਤ ਆਨਲਾਈਨ ਪਾਸਵਰਡ ਜਨਰੇਟਰ: ਲੰਬਾਈ ਅਤੇ ਅੱਖਰ ਸੈੱਟ ਚੁਣੋ ਅਤੇ ਮਜ਼ਬੂਤ ਪਾਸਵਰਡ ਲਵੋ। ਇਹ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਚੱਲਦਾ ਹੈ — ਸਰਵਰ ਨੂੰ ਕੁਝ ਨਹੀਂ ਭੇਜਿਆ ਜਾਂਦਾ।",
+    "heading": "ਆਨਲਾਈਨ ਪਾਸਵਰਡ ਜਨਰੇਟਰ",
+    "leadHtml": "ਈਮੇਲ, ਖਾਤੇ ਜਾਂ ਸਰਵਰ ਲਈ ਮਜ਼ਬੂਤ ਪਾਸਵਰਡ ਚਾਹੀਦਾ ਹੈ? ਸਾਡਾ <strong>ਆਨਲਾਈਨ ਪਾਸਵਰਡ ਜਨਰੇਟਰ</strong> ਇੱਕ ਕਲਿੱਕ ਵਿੱਚ ਬੇਤਰਤੀਬ ਪਾਸਵਰਡ ਬਣਾ ਦਿੰਦਾ ਹੈ। ਲੰਬਾਈ ਤੈਅ ਕਰੋ, ਅੱਖਰ ਸੈੱਟ ਚੁਣੋ ਅਤੇ “ਬਣਾਓ” ਦਬਾਓ। ਪਾਸਵਰਡ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਹੀ ਬਣਦਾ ਹੈ ਅਤੇ ਕਿਤੇ ਨਹੀਂ ਭੇਜਿਆ ਜਾਂਦਾ।",
+    "benefitsTitle": "ਆਨਲਾਈਨ ਪਾਸਵਰਡ ਜਨਰੇਟਰ ਦੇ ਫ਼ਾਇਦੇ",
+    "benefits": [
+      "<strong>ਗੋਪਨੀਯਤਾ।</strong> ਪਾਸਵਰਡ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਹੀ ਬਣਦੇ ਹਨ। ਸਰਵਰ ਨੂੰ ਕੁਝ ਨਹੀਂ ਭੇਜਿਆ ਜਾਂਦਾ, ਇਸ ਲਈ ਉਹਨਾਂ ਨੂੰ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਦੇਖ ਸਕਦੇ ਹੋ।",
+      "<strong>ਮੁਫ਼ਤ, ਬਿਨਾਂ ਸਾਈਨ-ਅੱਪ।</strong> ਪੰਨਾ ਖੋਲ੍ਹੋ ਅਤੇ ਵਰਤੋ। ਖਾਤੇ, ਈਮੇਲ ਜਾਂ ਐਪ ਇੰਸਟਾਲ ਕਰਨ ਦੀ ਲੋੜ ਨਹੀਂ।",
+      "<strong>ਲਚਕਦਾਰ ਸੈਟਿੰਗਾਂ।</strong> ਲੰਬਾਈ ਚੁਣੋ ਅਤੇ ਅੰਕਾਂ, ਛੋਟੇ ਅੱਖਰਾਂ, ਵੱਡੇ ਅੱਖਰਾਂ ਅਤੇ ਚਿੰਨ੍ਹਾਂ ਦਾ ਕੋਈ ਵੀ ਮੇਲ ਚੁਣੋ।",
+      "<strong>ਮਜ਼ਬੂਤੀ ਮੀਟਰ।</strong> ਮੌਜੂਦਾ ਸੈਟਿੰਗਾਂ ਲਈ ਬਿੱਟਾਂ ਵਿੱਚ ਐਂਟਰੋਪੀ ਅਤੇ ਪਾਸਵਰਡ ਤੋੜਨ ਦਾ ਅੰਦਾਜ਼ਨ ਸਮਾਂ ਦੇਖੋ।",
+      "<strong>ਕੰਮ ਅਨੁਸਾਰ ਪ੍ਰੀਸੈੱਟ।</strong> Wi-Fi, ਸ਼ੈੱਲ, PIN, URL ਅਤੇ ਬੋਲ ਕੇ ਦੱਸਣ ਲਈ — ਇੱਕ ਕਲਿੱਕ ਵਿੱਚ।",
+      "<strong>ਸੈਟਿੰਗਾਂ ਸਾਂਝੀਆਂ ਕਰਨ ਵਾਲਾ ਲਿੰਕ।</strong> URL ਕਾਪੀ ਕਰੋ ਅਤੇ ਉਹੀ ਵਿਕਲਪ ਕਿਤੇ ਹੋਰ ਖੋਲ੍ਹੋ — ਪਾਸਵਰਡ ਕਦੇ ਲਿੰਕ ਵਿੱਚ ਨਹੀਂ ਜਾਂਦਾ।",
+      "<strong>ਦੁਹਰਾਓ ਨਹੀਂ।</strong> “ਦੁਹਰਾਓ ਨਹੀਂ” ਚਾਲੂ ਕਰੋ ਤਾਂ ਜੋ ਅੱਖਰ ਘੱਟ ਦੁਹਰਾਏ ਜਾਣ (ਲੰਬਾਈ 61 ਤੱਕ ਹਰ ਅੱਖਰ ਇੱਕ ਵਾਰ; ਉਸ ਤੋਂ ਵੱਧ ਹੋਣ ’ਤੇ ਵੱਧ ਤੋਂ ਵੱਧ ਦੋ ਵਾਰ)।",
+      "<strong>ਇੱਕ ਕਲਿੱਕ ਵਿੱਚ ਕਾਪੀ।</strong> ਪਾਸਵਰਡ ’ਤੇ ਕਲਿੱਕ ਕਰੋ ਅਤੇ ਉਹ ਕਲਿੱਪਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਜਾਵੇਗਾ।",
+      "<strong>ਪੜ੍ਹਨ ਵਿੱਚ ਆਸਾਨ ਨਤੀਜਾ।</strong> ਰਲਦੇ-ਮਿਲਦੇ ਅੱਖਰ (I, O, l, |) ਹਟਾਏ ਜਾ ਸਕਦੇ ਹਨ, ਤਾਂ ਜੋ ਪਾਸਵਰਡ ਦੁਬਾਰਾ ਟਾਈਪ ਕਰਨਾ ਜਾਂ ਬੋਲ ਕੇ ਦੱਸਣਾ ਆਸਾਨ ਹੋਵੇ।",
+      "<strong>ਸੇਵਾਵਾਂ ਲਈ ਅਨੁਕੂਲ।</strong> ਚਿੰਨ੍ਹ ਪਹਿਲੇ ਅਤੇ ਆਖ਼ਰੀ ਦੋ ਅੱਖਰਾਂ ਵਿੱਚ ਨਹੀਂ ਰੱਖੇ ਜਾਂਦੇ, ਇਸ ਲਈ ਫਾਰਮ, ਸ਼ੈੱਲ ਅਤੇ ਸਕ੍ਰਿਪਟਾਂ ਪਾਸਵਰਡ ਨੂੰ ਘੱਟ ਰੱਦ ਕਰਦੀਆਂ ਹਨ।",
+      "<strong>ਤੇਜ਼ ਅਤੇ ਹਲਕਾ।</strong> ਕੰਪਿਊਟਰ ਅਤੇ ਮੋਬਾਈਲ ਦੋਵਾਂ ’ਤੇ ਚੱਲਦਾ ਹੈ ਅਤੇ ਕਈ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਉਪਲਬਧ ਹੈ।"
+    ],
+    "howTitle": "ਆਨਲਾਈਨ ਪਾਸਵਰਡ ਕਿਵੇਂ ਬਣਾਈਏ",
+    "howSteps": [
+      "“−” ਅਤੇ “+” ਬਟਨਾਂ ਨਾਲ ਪਾਸਵਰਡ ਦੀ ਲੰਬਾਈ ਤੈਅ ਕਰੋ।",
+      "ਲੋੜੀਂਦੇ ਅੱਖਰ ਸੈੱਟ ਚੁਣੋ: ਅੰਕ, ਛੋਟੇ ਅੱਖਰ, ਵੱਡੇ ਅੱਖਰ, ਚਿੰਨ੍ਹ।",
+      "ਚਾਹੋ ਤਾਂ “ਦੁਹਰਾਓ ਨਹੀਂ” ਚਾਲੂ ਕਰੋ।",
+      "“ਬਣਾਓ” ਦਬਾਓ।",
+      "ਪਾਸਵਰਡ ’ਤੇ ਕਲਿੱਕ ਕਰਕੇ ਉਸਨੂੰ ਕਾਪੀ ਕਰੋ, ਫਿਰ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਵਿੱਚ ਸੰਭਾਲ ਲਵੋ।"
+    ],
+    "strongTitle": "ਪਾਸਵਰਡ ਨੂੰ ਮਜ਼ਬੂਤ ਕੀ ਬਣਾਉਂਦਾ ਹੈ",
+    "strongLead": "ਪਾਸਵਰਡ ਦੀ ਮਜ਼ਬੂਤੀ ਉਸਦੀ ਲੰਬਾਈ ਅਤੇ ਅੱਖਰਾਂ ਦੀ ਵੰਨ-ਸੁਵੰਨਤਾ ’ਤੇ ਨਿਰਭਰ ਕਰਦੀ ਹੈ। ਸਾਦੇ ਸ਼ਬਦ, ਜਨਮ ਤਾਰੀਖਾਂ, ਨਾਮ ਅਤੇ <code>123456</code> ਜਾਂ <code>qwerty</code> ਵਰਗੇ ਕ੍ਰਮ ਕੁਝ ਸਕਿੰਟਾਂ ਵਿੱਚ ਤੋੜ ਲਏ ਜਾਂਦੇ ਹਨ। ਜਨਰੇਟਰ ਨਾਲ ਬਣਿਆ ਬੇਤਰਤੀਬ ਪਾਸਵਰਡ ਅਜਿਹੇ ਪੈਟਰਨਾਂ ਤੋਂ ਬਚਦਾ ਹੈ।",
+    "strongTips": [
+      "<strong>ਘੱਟੋ-ਘੱਟ 12–16 ਅੱਖਰ</strong> ਵਰਤੋ। ਐਡਮਿਨ ਖਾਤਿਆਂ ਅਤੇ ਸਰਵਰਾਂ ਲਈ 20 ਜਾਂ ਵੱਧ ਬਿਹਤਰ ਹਨ।",
+      "ਛੋਟੇ ਅੱਖਰ, ਵੱਡੇ ਅੱਖਰ, ਅੰਕ ਅਤੇ ਚਿੰਨ੍ਹ ਮਿਲਾ ਕੇ ਵਰਤੋ।",
+      "ਹਰ ਸੇਵਾ ਲਈ <strong>ਵੱਖਰਾ ਪਾਸਵਰਡ</strong> ਵਰਤੋ।",
+      "ਪਾਸਵਰਡ ਨੋਟਸ ਜਾਂ ਮੈਸੇਂਜਰਾਂ ਵਿੱਚ ਨਹੀਂ, ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਵਿੱਚ ਰੱਖੋ।",
+      "ਜਿੱਥੇ ਵੀ ਹੋ ਸਕੇ, ਦੋ-ਪੜਾਅ ਪ੍ਰਮਾਣੀਕਰਨ ਚਾਲੂ ਕਰੋ।",
+      "ਲੀਕ ਦਾ ਸ਼ੱਕ ਹੋਵੇ ਤਾਂ ਪਾਸਵਰਡ ਬਦਲ ਦਿਓ।"
+    ],
+    "usesTitle": "ਪਾਸਵਰਡ ਜਨਰੇਟਰ ਕਿਸ ਲਈ ਹੈ",
+    "uses": [
+      "ਸੋਸ਼ਲ ਖਾਤੇ, ਈਮੇਲ, ਆਨਲਾਈਨ ਬੈਂਕਿੰਗ ਅਤੇ ਆਨਲਾਈਨ ਦੁਕਾਨਾਂ;",
+      "ਐਡਮਿਨ ਖਾਤੇ, SSH, ਡੇਟਾਬੇਸ ਅਤੇ ਹੋਸਟਿੰਗ ਪੈਨਲ;",
+      "Wi-Fi ਰਾਊਟਰ ਅਤੇ ਨੈੱਟਵਰਕ ਉਪਕਰਨ;",
+      "ਸਰਵਿਸ ਖਾਤੇ, API ਕ੍ਰੈਡੈਂਸ਼ਲ ਅਤੇ ਟੈਸਟ ਸਰਵਰ;",
+      "ਆਰਕਾਈਵਾਂ ਅਤੇ ਦਸਤਾਵੇਜ਼ਾਂ ਦੇ ਪਾਸਵਰਡ।"
+    ],
+    "faqTitle": "ਸਵਾਲ-ਜਵਾਬ",
+    "faq": [
+      {
+        "q": "ਕੀ ਆਨਲਾਈਨ ਪਾਸਵਰਡ ਬਣਾਉਣਾ ਸੁਰੱਖਿਅਤ ਹੈ?",
+        "a": "ਹਾਂ। ਪਾਸਵਰਡ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਸਥਾਨਕ ਤੌਰ ’ਤੇ ਬਣਦਾ ਹੈ ਅਤੇ ਸਰਵਰ ਨੂੰ ਨਹੀਂ ਭੇਜਿਆ ਜਾਂਦਾ, ਇਸ ਲਈ ਸਾਈਟ ਉਸਨੂੰ ਨਾ ਫੜ ਸਕਦੀ ਹੈ ਅਤੇ ਨਾ ਸੰਭਾਲ ਸਕਦੀ ਹੈ।"
+      },
+      {
+        "q": "ਕੀ ਇਹ ਜਨਰੇਟਰ ਮੁਫ਼ਤ ਹੈ?",
+        "a": "ਹਾਂ। ਇਹ ਸੇਵਾ ਮੁਫ਼ਤ ਹੈ, ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਦੀ ਲੋੜ ਨਹੀਂ ਅਤੇ ਤੁਸੀਂ ਜਿੰਨੇ ਚਾਹੋ ਪਾਸਵਰਡ ਬਣਾ ਸਕਦੇ ਹੋ।"
+      },
+      {
+        "q": "ਪਾਸਵਰਡ ਦੀ ਲੰਬਾਈ ਕਿੰਨੀ ਰੱਖਣੀ ਚਾਹੀਦੀ ਹੈ?",
+        "a": "ਰੋਜ਼ਾਨਾ ਖਾਤਿਆਂ ਲਈ 12–16 ਅੱਖਰ ਠੀਕ ਹਨ; ਜ਼ਰੂਰੀ ਸੇਵਾਵਾਂ ਅਤੇ ਸਰਵਰਾਂ ਲਈ 20 ਜਾਂ ਵੱਧ ਰੱਖੋ।"
+      },
+      {
+        "q": "I, O, l ਅਤੇ | ਕਿਉਂ ਹਟਾਏ ਗਏ ਹਨ?",
+        "a": "ਇਹਨਾਂ ਨੂੰ 1, 0 ਅਤੇ ਆਪਸ ਵਿੱਚ ਆਸਾਨੀ ਨਾਲ ਗ਼ਲਤ ਸਮਝ ਲਿਆ ਜਾਂਦਾ ਹੈ। ਇਹਨਾਂ ਤੋਂ ਬਿਨਾਂ ਪਾਸਵਰਡ ਪੜ੍ਹਨਾ ਅਤੇ ਹੱਥ ਨਾਲ ਟਾਈਪ ਕਰਨਾ ਆਸਾਨ ਹੁੰਦਾ ਹੈ।"
+      },
+      {
+        "q": "ਚਿੰਨ੍ਹ ਸ਼ੁਰੂ ਜਾਂ ਅੰਤ ਵਿੱਚ ਕਿਉਂ ਨਹੀਂ ਰੱਖੇ ਜਾਂਦੇ?",
+        "a": "ਕੁਝ ਸਿਸਟਮ ਕਾਪੀ ਕਰਦੇ ਸਮੇਂ, ਸ਼ੈੱਲ ਵਿੱਚ ਜਾਂ ਕੌਂਫਿਗ ਫ਼ਾਈਲਾਂ ਵਿੱਚ ਕਿਨਾਰੇ ਦੇ ਚਿੰਨ੍ਹਾਂ ਨੂੰ ਗ਼ਲਤ ਤਰ੍ਹਾਂ ਸੰਭਾਲਦੇ ਹਨ। ਕਿਨਾਰਿਆਂ ’ਤੇ ਅੱਖਰ ਜਾਂ ਅੰਕ ਰੱਖਣ ਨਾਲ ਪਾਸਵਰਡ ਵੱਧ ਭਰੋਸੇਯੋਗ ਢੰਗ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ।"
+      },
+      {
+        "q": "“ਦੁਹਰਾਓ ਨਹੀਂ” ਦਾ ਕੀ ਮਤਲਬ ਹੈ?",
+        "a": "ਲੰਬਾਈ 61 ਤੱਕ ਹਰ ਅੱਖਰ ਸਿਰਫ਼ ਇੱਕ ਵਾਰ ਆਉਂਦਾ ਹੈ; 61 ਤੋਂ ਉੱਪਰ ਵੱਧ ਤੋਂ ਵੱਧ ਦੋ ਵਾਰ। ਜਦੋਂ ਕੋਈ ਸੇਵਾ ਦੁਹਰਾਓ ਸੀਮਤ ਕਰਦੀ ਹੈ ਤਾਂ ਇਹ ਕੰਮ ਆਉਂਦਾ ਹੈ।"
+      },
+      {
+        "q": "ਕੀ ਮੈਨੂੰ ਬਣਾਇਆ ਪਾਸਵਰਡ ਯਾਦ ਰੱਖਣਾ ਪਵੇਗਾ?",
+        "a": "ਨਹੀਂ। ਉਸਨੂੰ ਪਾਸਵਰਡ ਮੈਨੇਜਰ ਵਿੱਚ ਸੰਭਾਲੋ ਅਤੇ ਆਟੋਫਿਲ ਵਰਤੋ।"
+      },
+      {
+        "q": "ਪਾਸਵਰਡ ਦੀ ਮਜ਼ਬੂਤੀ ਕਿਵੇਂ ਗਿਣੀ ਜਾਂਦੀ ਹੈ?",
+        "a": "ਮੀਟਰ ਕਿਸੇ ਖ਼ਾਸ ਸਟ੍ਰਿੰਗ ਨੂੰ ਨਹੀਂ, ਸਗੋਂ ਬਣਾਉਣ ਦੀਆਂ ਸੈਟਿੰਗਾਂ (ਲੰਬਾਈ ਅਤੇ ਵਰਣਮਾਲਾ) ਨੂੰ ਪਰਖਦਾ ਹੈ ਅਤੇ ਐਂਟਰੋਪੀ ਬਿੱਟਾਂ ਵਿੱਚ ਦਿਖਾਉਂਦਾ ਹੈ।"
+      },
+      {
+        "q": "ਐਂਟਰੋਪੀ ਅਤੇ ਬਿੱਟ ਕੀ ਹਨ?",
+        "a": "ਐਂਟਰੋਪੀ ਖੋਜ ਦੇ ਘੇਰੇ ਦਾ ਅੰਦਾਜ਼ਾ ਦਿੰਦੀ ਹੈ: ਇੱਕੋ ਜਿਹੇ ਹਮਲੇ ਦੇ ਮਾਡਲ ਵਿੱਚ ਬਿੱਟ ਜਿੰਨੇ ਵੱਧ ਹੋਣਗੇ, ਪਾਸਵਰਡ ਤੋੜਨ ਵਿੱਚ ਓਨਾ ਹੀ ਵੱਧ ਸਮਾਂ ਲੱਗੇਗਾ।"
+      },
+      {
+        "q": "ਜਨਰੇਟਰ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਕਿਵੇਂ ਸਾਂਝੀਆਂ ਕਰਾਂ?",
+        "a": "“ਲਿੰਕ ਕਾਪੀ ਕਰੋ” ਵਰਤੋ: ਪਤੇ ਵਿੱਚ ਸਿਰਫ਼ ਸੈਟਿੰਗਾਂ ਹੁੰਦੀਆਂ ਹਨ — ਪਾਸਵਰਡ ਕਦੇ ਨਹੀਂ।"
+      },
+      {
+        "q": "ਅੱਖਰ ਕਿਉਂ ਹਟਾਈਏ?",
+        "a": "ਜੇ ਕੋਈ ਸੇਵਾ ਕੁਝ ਚਿੰਨ੍ਹਾਂ ਦੀ ਮਨਾਹੀ ਕਰਦੀ ਹੈ ਜਾਂ ਪਾਸਵਰਡ ਉੱਚੀ ਬੋਲ ਕੇ ਦੱਸਣਾ ਹੈ, ਤਾਂ ਅਸੁਵਿਧਾਜਨਕ ਅੱਖਰਾਂ ਨੂੰ ਵਰਣਮਾਲਾ ਵਿੱਚੋਂ ਹਟਾ ਦਿਓ।"
+      }
+    ],
+    "appName": "ਆਨਲਾਈਨ ਪਾਸਵਰਡ ਜਨਰੇਟਰ",
+    "tipsLabel": "ਸੁਝਾਅ:"
+  },
+  "jv": {
+    "title": "Generator sandi online — sandi kuwat sedhela",
+    "description": "Generator sandi online gratis: atur dawa lan set karakter, entuk sandi kuwat. Mlaku ing browser sampeyan — ora ana sing dikirim menyang server.",
+    "heading": "Generator sandi online",
+    "leadHtml": "Butuh sandi kuwat kanggo email, akun, utawa server? <strong>Generator sandi online</strong> kita nggawe sandi acak mung kanthi sak klik. Atur dawane, pilih set karakter, banjur pencet Gawe. Sandi digawe ing browser sampeyan lan ora tau dikirim menyang ngendi wae.",
+    "benefitsTitle": "Kaluwihan generator sandi online",
+    "benefits": [
+      "<strong>Privasi.</strong> Sandi digawe ing browser. Ora ana sing dikirim menyang server, mula mung sampeyan sing bisa ndeleng.",
+      "<strong>Gratis, tanpa daftar.</strong> Bukak kaca lan langsung nganggo. Ora perlu akun, email, utawa masang aplikasi.",
+      "<strong>Setelan fleksibel.</strong> Pilih dawa lan campuran apa wae saka angka, aksara cilik, aksara gedhe, lan simbol.",
+      "<strong>Pangukur kekuwatan.</strong> Deleng entropi ing bit lan kira-kira wektu kanggo mbobol miturut setelan saiki.",
+      "<strong>Preset miturut kabutuhan.</strong> Wi-Fi, shell, PIN, URL, lan dikte — mung sak klik.",
+      "<strong>Pranala kanggo nuduhake setelan.</strong> Salin URL lan bukak pilihan sing padha ing papan liya — sandi ora tau mlebu ing pranala.",
+      "<strong>Tanpa dobel.</strong> Aktifake “tanpa dobel” supaya baleni diwatesi (unik nganti dawa 61; paling akeh kaping pindho yen luwih).",
+      "<strong>Salin sak klik.</strong> Klik sandi kanggo nyalin menyang clipboard.",
+      "<strong>Asil gampang diwaca.</strong> Karakter sing meh padha (I, O, l, |) bisa disingkirake, supaya sandi luwih gampang diketik maneh utawa diwaca banter.",
+      "<strong>Ramah layanan.</strong> Simbol ora diselehake ing rong karakter sing pisanan lan pungkasan, supaya formulir, shell, lan skrip luwih arang nolak sandi.",
+      "<strong>Cepet lan entheng.</strong> Bisa ing komputer lan ponsel, kanthi akeh basa."
+    ],
+    "howTitle": "Carane nggawe sandi online",
+    "howSteps": [
+      "Atur dawane sandi nganggo tombol “−” lan “+”.",
+      "Pilih set karakter sing dibutuhake: angka, aksara cilik, aksara gedhe, simbol.",
+      "Yen perlu, aktifake “tanpa dobel”.",
+      "Pencet Gawe.",
+      "Klik sandi kanggo nyalin, banjur simpen ing manajer sandi."
+    ],
+    "strongTitle": "Apa sing nggawe sandi kuwat",
+    "strongLead": "Kekuwatan sandi gumantung marang dawa lan macem-macem karakter. Tembung prasaja, tanggal lahir, jeneng, lan urutan kaya <code>123456</code> utawa <code>qwerty</code> bisa dibobol ing sawetara detik. Sandi acak saka generator ngindhari pola-pola kuwi.",
+    "strongTips": [
+      "Gunakna <strong>paling ora 12–16 karakter</strong>. Kanggo akun admin lan server, 20 utawa luwih luwih becik.",
+      "Gabungake aksara cilik, aksara gedhe, angka, lan simbol.",
+      "Gunakna <strong>sandi sing unik</strong> kanggo saben layanan.",
+      "Simpen sandi ing manajer sandi, aja ing catetan utawa aplikasi pesen.",
+      "Aktifake otentikasi rong faktor ing endi wae sing bisa.",
+      "Ganti sandi yen sampeyan curiga ana bocor."
+    ],
+    "usesTitle": "Generator sandi kanggo apa",
+    "uses": [
+      "akun media sosial, email, perbankan online, lan toko online;",
+      "akun admin, SSH, basis data, lan panel hosting;",
+      "router Wi-Fi lan piranti jaringan;",
+      "akun layanan, kredensial API, lan lingkungan uji coba;",
+      "sandi kanggo arsip lan dokumen."
+    ],
+    "faqTitle": "FAQ",
+    "faq": [
+      {
+        "q": "Apa aman nggawe sandi online?",
+        "a": "Aman. Sandi digawe lokal ing browser sampeyan lan ora dikirim menyang server, mula situs ora bisa nyegat utawa nyimpen."
+      },
+      {
+        "q": "Apa generator iki gratis?",
+        "a": "Ya. Layanan iki gratis, tanpa registrasi lan tanpa watesan cacahe sandi sing bisa digawe."
+      },
+      {
+        "q": "Dawa sandi sing kudu dipilih pira?",
+        "a": "Kanggo akun saben dina, 12–16 karakter wis apik; kanggo layanan penting lan server, gunakna 20 utawa luwih."
+      },
+      {
+        "q": "Yagene I, O, l, lan | disingkirake?",
+        "a": "Karakter kuwi gampang kecampur karo 1, 0, lan siji lan sijine. Tanpa kuwi, sandi luwih gampang diwaca lan diketik manual."
+      },
+      {
+        "q": "Yagene simbol ora diselehake ing wiwitan utawa pungkasan?",
+        "a": "Sawetara sistem salah nangani simbol ing pinggir nalika nyalin, ing shell, utawa ing berkas konfigurasi. Yen pinggir tetep aksara lan angka, sandi luwih dipercaya anggone mlaku."
+      },
+      {
+        "q": "Apa tegese “tanpa dobel”?",
+        "a": "Nganti dawa 61 saben karakter mung metu sapisan; yen luwih saka 61, paling akeh kaping pindho. Migunani yen layanan mbatesi baleni."
+      },
+      {
+        "q": "Apa aku kudu apalake sandi sing digawe?",
+        "a": "Ora. Simpen ing manajer sandi lan gunakna isi otomatis."
+      },
+      {
+        "q": "Kekuwatan sandi diitung kepiye?",
+        "a": "Pangukur nilai setelan nggawe (dawa lan alfabet), dudu string tartamtu, lan nuduhake entropi ing bit."
+      },
+      {
+        "q": "Entropi lan bit kuwi apa?",
+        "a": "Entropi ngira-ngira ruang panelusuran: saya akeh bit, saya suwe wektu kanggo mbobol kanthi model serangan sing padha."
+      },
+      {
+        "q": "Kepiye carane nuduhake setelan generator?",
+        "a": "Gunakna Salin pranala: alamat mung isi setelan — ora tau sandine dhewe."
+      },
+      {
+        "q": "Yagene karakter disingkirake?",
+        "a": "Yen layanan nglarang sawetara simbol utawa sampeyan kudu maca sandi kanthi banter, busak karakter sing ngganggu saka alfabet."
+      }
+    ],
+    "appName": "Generator sandi online",
+    "tipsLabel": "Saran:"
+  },
+  "te": {
+    "title": "ఆన్‌లైన్ పాస్‌వర్డ్ జనరేటర్ — ఒక సెకనులో బలమైన పాస్‌వర్డ్",
+    "description": "ఉచిత ఆన్‌లైన్ పాస్‌వర్డ్ జనరేటర్: పొడవు మరియు అక్షరాల సెట్‌లను ఎంచుకుని బలమైన పాస్‌వర్డ్ పొందండి. ఇది మీ బ్రౌజర్‌లోనే నడుస్తుంది — సర్వర్‌కు ఏమీ పంపబడదు.",
+    "heading": "ఆన్‌లైన్ పాస్‌వర్డ్ జనరేటర్",
+    "leadHtml": "ఇమెయిల్, ఖాతా లేదా సర్వర్ కోసం బలమైన పాస్‌వర్డ్ కావాలా? మా <strong>ఆన్‌లైన్ పాస్‌వర్డ్ జనరేటర్</strong> ఒక్క క్లిక్‌లో యాదృచ్ఛిక పాస్‌వర్డ్‌ను తయారు చేస్తుంది. పొడవు సెట్ చేయండి, అక్షరాల సెట్‌లను ఎంచుకోండి, “జనరేట్ చేయి” నొక్కండి. పాస్‌వర్డ్ మీ బ్రౌజర్‌లోనే తయారవుతుంది, ఎక్కడికీ పంపబడదు.",
+    "benefitsTitle": "ఆన్‌లైన్ పాస్‌వర్డ్ జనరేటర్ ప్రయోజనాలు",
+    "benefits": [
+      "<strong>గోప్యత.</strong> పాస్‌వర్డ్‌లు బ్రౌజర్‌లోనే తయారవుతాయి. సర్వర్‌కు ఏమీ పంపబడదు, కాబట్టి వాటిని మీరు మాత్రమే చూడగలరు.",
+      "<strong>ఉచితం, సైన్-అప్ అవసరం లేదు.</strong> పేజీ తెరిచి వాడండి. ఖాతా, ఇమెయిల్ లేదా యాప్ ఇన్‌స్టాల్ అవసరం లేదు.",
+      "<strong>సరళమైన సెట్టింగ్‌లు.</strong> పొడవును, అలాగే అంకెలు, చిన్న అక్షరాలు, పెద్ద అక్షరాలు, చిహ్నాల ఏ కలయికనైనా ఎంచుకోండి.",
+      "<strong>బలం మీటర్.</strong> ప్రస్తుత సెట్టింగ్‌లకు బిట్లలో ఎంట్రోపీని, పాస్‌వర్డ్ ఛేదించడానికి అంచనా సమయాన్ని చూడండి.",
+      "<strong>పనుల ప్రకారం ప్రీసెట్‌లు.</strong> Wi-Fi, షెల్, PIN, URL, డిక్టేషన్ — ఒక్క క్లిక్‌లో.",
+      "<strong>సెట్టింగ్‌లను పంచుకునే లింక్.</strong> URL కాపీ చేసి అవే ఎంపికలను మరెక్కడైనా తెరవండి — పాస్‌వర్డ్ ఎప్పుడూ లింక్‌లో ఉండదు.",
+      "<strong>రెండుసార్లు రాకుండా.</strong> “పునరావృతం వద్దు” ఆన్ చేస్తే అక్షరాల పునరావృతం పరిమితమవుతుంది (పొడవు 61 వరకు ప్రతి అక్షరం ఒక్కసారే; అంతకంటే ఎక్కువైతే గరిష్టంగా రెండుసార్లు).",
+      "<strong>ఒక్క క్లిక్‌లో కాపీ.</strong> పాస్‌వర్డ్‌పై క్లిక్ చేస్తే అది క్లిప్‌బోర్డ్‌కు కాపీ అవుతుంది.",
+      "<strong>చదవడానికి సులభమైన ఫలితం.</strong> గందరగోళపరిచే అక్షరాలు (I, O, l, |) మినహాయించవచ్చు, దీంతో పాస్‌వర్డ్‌ను మళ్లీ టైప్ చేయడం లేదా గట్టిగా చదవడం సులభం.",
+      "<strong>సేవలకు అనుకూలం.</strong> చిహ్నాలు మొదటి, చివరి రెండు అక్షరాల్లో ఉంచబడవు, కాబట్టి ఫారమ్‌లు, షెల్‌లు, స్క్రిప్ట్‌లు పాస్‌వర్డ్‌ను తిరస్కరించే అవకాశం తక్కువ.",
+      "<strong>వేగం, తేలిక.</strong> కంప్యూటర్, మొబైల్ రెండింటిలోనూ పనిచేస్తుంది, అనేక భాషల్లో అందుబాటులో ఉంది."
+    ],
+    "howTitle": "ఆన్‌లైన్‌లో పాస్‌వర్డ్ ఎలా తయారు చేయాలి",
+    "howSteps": [
+      "“−”, “+” బటన్‌లతో పాస్‌వర్డ్ పొడవును సెట్ చేయండి.",
+      "అవసరమైన అక్షరాల సెట్‌లను ఎంచుకోండి: అంకెలు, చిన్న అక్షరాలు, పెద్ద అక్షరాలు, చిహ్నాలు.",
+      "కావాలంటే “పునరావృతం వద్దు” ఆన్ చేయండి.",
+      "“జనరేట్ చేయి” నొక్కండి.",
+      "పాస్‌వర్డ్‌పై క్లిక్ చేసి కాపీ చేసి, పాస్‌వర్డ్ మేనేజర్‌లో భద్రపరచండి."
+    ],
+    "strongTitle": "పాస్‌వర్డ్‌ను బలంగా చేసేది ఏమిటి",
+    "strongLead": "పాస్‌వర్డ్ బలం దాని పొడవు, అక్షరాల వైవిధ్యంపై ఆధారపడి ఉంటుంది. సాధారణ పదాలు, పుట్టిన తేదీలు, పేర్లు, <code>123456</code> లేదా <code>qwerty</code> వంటి వరుసలు కొన్ని సెకన్లలోనే ఛేదించబడతాయి. జనరేటర్ తయారు చేసే యాదృచ్ఛిక పాస్‌వర్డ్ ఇలాంటి నమూనాలను తప్పించుకుంటుంది.",
+    "strongTips": [
+      "<strong>కనీసం 12–16 అక్షరాలు</strong> వాడండి. అడ్మిన్ ఖాతాలు, సర్వర్‌లకు 20 లేదా అంతకంటే ఎక్కువ మంచిది.",
+      "చిన్న అక్షరాలు, పెద్ద అక్షరాలు, అంకెలు, చిహ్నాలను కలపండి.",
+      "ప్రతి సేవకు <strong>ప్రత్యేకమైన పాస్‌వర్డ్</strong> వాడండి.",
+      "పాస్‌వర్డ్‌లను నోట్స్‌లో లేదా మెసెంజర్‌లలో కాకుండా పాస్‌వర్డ్ మేనేజర్‌లో ఉంచండి.",
+      "వీలైన చోటల్లా రెండు-దశల ధృవీకరణను ఆన్ చేయండి.",
+      "లీక్ అయిందని అనుమానం ఉంటే పాస్‌వర్డ్ మార్చండి."
+    ],
+    "usesTitle": "పాస్‌వర్డ్ జనరేటర్ దేనికి ఉపయోగపడుతుంది",
+    "uses": [
+      "సోషల్ ఖాతాలు, ఇమెయిల్, ఆన్‌లైన్ బ్యాంకింగ్, ఆన్‌లైన్ షాపులు;",
+      "అడ్మిన్ ఖాతాలు, SSH, డేటాబేస్‌లు, హోస్టింగ్ ప్యానెల్‌లు;",
+      "Wi-Fi రౌటర్లు, నెట్‌వర్క్ పరికరాలు;",
+      "సర్వీస్ ఖాతాలు, API క్రెడెన్షియల్స్, టెస్ట్ సర్వర్‌లు;",
+      "ఆర్కైవ్‌లు, డాక్యుమెంట్‌ల పాస్‌వర్డ్‌లు."
+    ],
+    "faqTitle": "ప్రశ్నలు",
+    "faq": [
+      {
+        "q": "ఆన్‌లైన్‌లో పాస్‌వర్డ్ తయారు చేయడం సురక్షితమేనా?",
+        "a": "అవును. పాస్‌వర్డ్ మీ బ్రౌజర్‌లో స్థానికంగా తయారవుతుంది, సర్వర్‌కు పంపబడదు, కాబట్టి సైట్ దాన్ని అడ్డగించలేదు, నిల్వ చేయలేదు."
+      },
+      {
+        "q": "జనరేటర్ ఉచితమా?",
+        "a": "అవును. సేవ ఉచితం, నమోదు అవసరం లేదు, ఎన్ని పాస్‌వర్డ్‌లైనా తయారు చేసుకోవచ్చు."
+      },
+      {
+        "q": "పాస్‌వర్డ్ పొడవు ఎంత ఎంచుకోవాలి?",
+        "a": "రోజువారీ ఖాతాలకు 12–16 అక్షరాలు మంచి పరిధి; ముఖ్యమైన సేవలు, సర్వర్‌లకు 20 లేదా అంతకంటే ఎక్కువ వాడండి."
+      },
+      {
+        "q": "I, O, l, | ఎందుకు మినహాయించబడ్డాయి?",
+        "a": "ఇవి 1, 0 తో, అలాగే ఒకదానితో ఒకటి సులభంగా గందరగోళపడతాయి. అవి లేకుంటే పాస్‌వర్డ్ చదవడం, చేత్తో టైప్ చేయడం సులభం."
+      },
+      {
+        "q": "చిహ్నాలు మొదట్లో లేదా చివర్లో ఎందుకు ఉంచరు?",
+        "a": "కొన్ని సిస్టమ్‌లు కాపీ చేసేటప్పుడు, షెల్‌లో లేదా కాన్ఫిగ్ ఫైళ్లలో అంచు చిహ్నాలను తప్పుగా నిర్వహిస్తాయి. అంచులు అక్షరాలు, అంకెలతో ఉంటే పాస్‌వర్డ్ మరింత నమ్మకంగా పనిచేస్తుంది."
+      },
+      {
+        "q": "“పునరావృతం వద్దు” అంటే ఏమిటి?",
+        "a": "పొడవు 61 వరకు ప్రతి అక్షరం ఒక్కసారే వస్తుంది; 61 దాటితే గరిష్టంగా రెండుసార్లు. సేవ పునరావృతాలను పరిమితం చేసినప్పుడు ఉపయోగపడుతుంది."
+      },
+      {
+        "q": "తయారైన పాస్‌వర్డ్‌ను నేను గుర్తుంచుకోవాలా?",
+        "a": "అవసరం లేదు. దాన్ని పాస్‌వర్డ్ మేనేజర్‌లో భద్రపరచి ఆటోఫిల్ వాడండి."
+      },
+      {
+        "q": "పాస్‌వర్డ్ బలాన్ని ఎలా లెక్కిస్తారు?",
+        "a": "మీటర్ నిర్దిష్ట స్ట్రింగ్‌ను కాదు, తయారీ సెట్టింగ్‌లను (పొడవు, అక్షరమాల) అంచనా వేసి ఎంట్రోపీని బిట్లలో చూపిస్తుంది."
+      },
+      {
+        "q": "ఎంట్రోపీ, బిట్లు అంటే ఏమిటి?",
+        "a": "ఎంట్రోపీ అన్వేషణ పరిధిని అంచనా వేస్తుంది: ఒకే దాడి నమూనాలో బిట్లు ఎక్కువైతే ఛేదించడానికి ఎక్కువ సమయం పడుతుంది."
+      },
+      {
+        "q": "జనరేటర్ సెట్టింగ్‌లను ఎలా పంచుకోవాలి?",
+        "a": "“లింక్ కాపీ చేయి” వాడండి: చిరునామాలో సెట్టింగ్‌లు మాత్రమే ఉంటాయి — పాస్‌వర్డ్ ఎప్పుడూ ఉండదు."
+      },
+      {
+        "q": "అక్షరాలను ఎందుకు మినహాయించాలి?",
+        "a": "ఏదైనా సేవ కొన్ని చిహ్నాలను నిషేధిస్తే లేదా పాస్‌వర్డ్‌ను గట్టిగా చదవాల్సి వస్తే, ఇబ్బంది కలిగించే అక్షరాలను అక్షరమాల నుండి తొలగించండి."
+      }
+    ],
+    "appName": "ఆన్‌లైన్ పాస్‌వర్డ్ జనరేటర్",
+    "tipsLabel": "సిఫార్సులు:"
+  },
+  "tr": {
+    "title": "Çevrimiçi parola oluşturucu — bir saniyede güçlü parola",
+    "description": "Ücretsiz çevrimiçi parola oluşturucu: uzunluğu ve karakter kümelerini seçin, güçlü bir parola alın. Tarayıcınızda çalışır — sunucuya hiçbir şey gönderilmez.",
+    "heading": "Çevrimiçi parola oluşturucu",
+    "leadHtml": "E-posta, hesap veya sunucu için güçlü bir parolaya mı ihtiyacınız var? <strong>Çevrimiçi parola oluşturucumuz</strong> tek tıkla rastgele bir parola üretir. Uzunluğu belirleyin, karakter kümelerini seçin ve Oluştur’a basın. Parola tarayıcınızda oluşturulur ve hiçbir yere gönderilmez.",
+    "benefitsTitle": "Çevrimiçi parola oluşturucunun avantajları",
+    "benefits": [
+      "<strong>Gizlilik.</strong> Parolalar tarayıcıda üretilir. Sunucuya hiçbir şey gönderilmez, bu yüzden onları yalnızca siz görebilirsiniz.",
+      "<strong>Ücretsiz, kayıt gerekmez.</strong> Sayfayı açın ve kullanın. Hesap, e-posta ya da uygulama kurulumu gerekmez.",
+      "<strong>Esnek ayarlar.</strong> Uzunluğu ve rakam, küçük harf, büyük harf ile sembollerin istediğiniz karışımını seçin.",
+      "<strong>Güç göstergesi.</strong> Mevcut ayarlar için bit cinsinden entropiyi ve tahmini kırılma süresini görün.",
+      "<strong>Göreve göre hazır ayarlar.</strong> Wi-Fi, kabuk, PIN, URL ve dikte — tek tıkla.",
+      "<strong>Paylaşılabilir ayar bağlantısı.</strong> URL’yi kopyalayın ve aynı seçenekleri başka yerde açın — parola asla bağlantıda yer almaz.",
+      "<strong>Tekrarsız.</strong> Tekrarların sınırlanması için “tekrarsız” seçeneğini açın (61 uzunluğa kadar benzersiz; üzerinde en fazla iki kez).",
+      "<strong>Tek tıkla kopyalama.</strong> Bir parolaya tıklayarak panoya kopyalayın.",
+      "<strong>Okunaklı çıktı.</strong> Karıştırılabilen karakterler (I, O, l, |) hariç tutulabilir; böylece parolayı yeniden yazmak veya sesli okumak kolaylaşır.",
+      "<strong>Hizmetlerle uyumlu.</strong> Semboller ilk ve son iki karaktere konmaz; böylece formlar, kabuklar ve betikler parolayı daha az reddeder.",
+      "<strong>Hızlı ve hafif.</strong> Masaüstünde ve mobilde çalışır, birçok dilde sunulur."
+    ],
+    "howTitle": "Çevrimiçi parola nasıl oluşturulur",
+    "howSteps": [
+      "“−” ve “+” düğmeleriyle parola uzunluğunu ayarlayın.",
+      "İhtiyacınız olan karakter kümelerini seçin: rakamlar, küçük harfler, büyük harfler, semboller.",
+      "İsterseniz “tekrarsız” seçeneğini açın.",
+      "Oluştur’a basın.",
+      "Kopyalamak için bir parolaya tıklayın, ardından parola yöneticisine kaydedin."
+    ],
+    "strongTitle": "Güçlü bir parolayı ne yapar",
+    "strongLead": "Parola gücü uzunluğa ve karakter çeşitliliğine bağlıdır. Basit sözcükler, doğum tarihleri, isimler ve <code>123456</code> ya da <code>qwerty</code> gibi diziler saniyeler içinde kırılır. Üretilen rastgele bir parola bu kalıplardan kaçınır.",
+    "strongTips": [
+      "<strong>En az 12–16 karakter</strong> kullanın. Yönetici hesapları ve sunucular için 20 ve üzeri daha iyidir.",
+      "Küçük harf, büyük harf, rakam ve sembolleri birleştirin.",
+      "Her hizmet için <strong>benzersiz bir parola</strong> kullanın.",
+      "Parolaları notlarda veya mesajlaşma uygulamalarında değil, parola yöneticisinde saklayın.",
+      "Mümkün olan her yerde iki adımlı doğrulamayı açın.",
+      "Sızıntıdan şüphelenirseniz parolayı değiştirin."
+    ],
+    "usesTitle": "Parola oluşturucu ne işe yarar",
+    "uses": [
+      "sosyal hesaplar, e-posta, internet bankacılığı ve mağazalar;",
+      "yönetici hesapları, SSH, veritabanları ve hosting panelleri;",
+      "Wi-Fi yönlendiricileri ve ağ cihazları;",
+      "servis hesapları, API kimlik bilgileri ve test ortamları;",
+      "arşivler ve belgeler için parolalar."
+    ],
+    "faqTitle": "SSS",
+    "faq": [
+      {
+        "q": "Çevrimiçi parola oluşturmak güvenli mi?",
+        "a": "Evet. Parola tarayıcınızda yerel olarak oluşturulur ve sunucuya gönderilmez; bu yüzden site onu ele geçiremez ya da saklayamaz."
+      },
+      {
+        "q": "Oluşturucu ücretsiz mi?",
+        "a": "Evet. Hizmet ücretsizdir, kayıt gerektirmez ve oluşturabileceğiniz parola sayısında sınır yoktur."
+      },
+      {
+        "q": "Hangi parola uzunluğunu seçmeliyim?",
+        "a": "Gündelik hesaplar için 12–16 karakter iyi bir aralıktır; önemli hizmetler ve sunucular için 20 veya daha fazlasını kullanın."
+      },
+      {
+        "q": "I, O, l ve | neden hariç tutuluyor?",
+        "a": "1, 0 ve birbirleriyle kolayca karıştırılırlar. Onlar olmadan parolalar daha kolay okunur ve elle yazılır."
+      },
+      {
+        "q": "Semboller neden başa veya sona konmuyor?",
+        "a": "Bazı sistemler kenardaki sembolleri kopyalarken, kabukta veya yapılandırma dosyalarında yanlış işler. Kenarların harf ve rakam olması parolanın daha güvenilir çalışmasını sağlar."
+      },
+      {
+        "q": "“Tekrarsız” ne demek?",
+        "a": "61 uzunluğa kadar her karakter yalnızca bir kez geçer; 61’in üzerinde en fazla iki kez. Bir hizmet tekrarları sınırladığında işe yarar."
+      },
+      {
+        "q": "Üretilen parolayı ezberlemem gerekir mi?",
+        "a": "Hayır. Parola yöneticisine kaydedin ve otomatik doldurmayı kullanın."
+      },
+      {
+        "q": "Parola gücü nasıl hesaplanır?",
+        "a": "Gösterge belirli bir diziyi değil, üretim ayarlarını (uzunluk ve alfabe) puanlar ve entropiyi bit cinsinden gösterir."
+      },
+      {
+        "q": "Entropi ve bit nedir?",
+        "a": "Entropi arama uzayını tahmin eder: aynı saldırı modelinde bit sayısı arttıkça kırılma süresi uzar."
+      },
+      {
+        "q": "Oluşturucu ayarlarını nasıl paylaşırım?",
+        "a": "Bağlantıyı kopyala’yı kullanın: adres yalnızca ayarları içerir — parolanın kendisini asla."
+      },
+      {
+        "q": "Neden karakter hariç tutulur?",
+        "a": "Bir hizmet bazı sembolleri yasaklıyorsa veya parolayı sesli okumanız gerekiyorsa, can sıkıcı karakterleri alfabeden çıkarın."
+      }
+    ],
+    "appName": "Çevrimiçi parola oluşturucu",
+    "tipsLabel": "Öneriler:"
+  },
+  "ko": {
+    "title": "온라인 비밀번호 생성기 — 순식간에 강한 비밀번호",
+    "description": "무료 온라인 비밀번호 생성기: 길이와 문자 집합을 설정하면 강한 비밀번호를 만들어 드립니다. 브라우저에서 동작하며 서버로는 아무것도 전송되지 않습니다.",
+    "heading": "온라인 비밀번호 생성기",
+    "leadHtml": "이메일, 계정, 서버에 쓸 강한 비밀번호가 필요하신가요? <strong>온라인 비밀번호 생성기</strong>가 클릭 한 번으로 무작위 비밀번호를 만들어 드립니다. 길이를 정하고 문자 집합을 고른 뒤 ‘생성’을 누르세요. 비밀번호는 브라우저에서 만들어지며 어디로도 전송되지 않습니다.",
+    "benefitsTitle": "온라인 비밀번호 생성기의 장점",
+    "benefits": [
+      "<strong>개인정보 보호.</strong> 비밀번호는 브라우저에서 생성됩니다. 서버로 아무것도 전송되지 않으므로 본인만 볼 수 있습니다.",
+      "<strong>무료, 가입 불필요.</strong> 페이지를 열고 바로 사용하세요. 계정, 이메일, 앱 설치가 필요 없습니다.",
+      "<strong>유연한 설정.</strong> 길이와 숫자, 소문자, 대문자, 기호의 원하는 조합을 선택할 수 있습니다.",
+      "<strong>강도 표시기.</strong> 현재 설정의 엔트로피(비트)와 예상 해독 시간을 확인할 수 있습니다.",
+      "<strong>용도별 프리셋.</strong> Wi-Fi, 셸, PIN, URL, 받아쓰기용을 한 번의 클릭으로 선택하세요.",
+      "<strong>설정 공유 링크.</strong> URL을 복사해 다른 곳에서 같은 옵션을 열 수 있습니다. 비밀번호는 링크에 절대 포함되지 않습니다.",
+      "<strong>중복 없음.</strong> ‘중복 없음’을 켜면 반복이 제한됩니다(길이 61까지는 모두 다른 문자, 그 이상은 최대 두 번).",
+      "<strong>클릭 한 번으로 복사.</strong> 비밀번호를 클릭하면 클립보드로 복사됩니다.",
+      "<strong>읽기 쉬운 결과.</strong> 헷갈리기 쉬운 문자(I, O, l, |)를 제외할 수 있어 비밀번호를 다시 입력하거나 소리 내어 읽기가 쉬워집니다.",
+      "<strong>서비스 친화적.</strong> 기호는 처음과 끝 두 글자에 쓰이지 않으므로 양식, 셸, 스크립트에서 비밀번호가 거부될 가능성이 줄어듭니다.",
+      "<strong>빠르고 가벼움.</strong> 데스크톱과 모바일 모두에서 작동하며 다양한 언어를 지원합니다."
+    ],
+    "howTitle": "온라인으로 비밀번호를 만드는 방법",
+    "howSteps": [
+      "‘−’와 ‘+’ 버튼으로 비밀번호 길이를 설정하세요.",
+      "필요한 문자 집합을 선택하세요: 숫자, 소문자, 대문자, 기호.",
+      "원하면 ‘중복 없음’을 켜세요.",
+      "‘생성’을 누르세요.",
+      "비밀번호를 클릭해 복사한 다음 비밀번호 관리자에 저장하세요."
+    ],
+    "strongTitle": "강한 비밀번호란",
+    "strongLead": "비밀번호의 강도는 길이와 문자의 다양성에 달려 있습니다. 단순한 단어, 생년월일, 이름, 그리고 <code>123456</code>이나 <code>qwerty</code> 같은 나열은 몇 초 만에 뚫립니다. 생성기가 만든 무작위 비밀번호는 이런 패턴을 피합니다.",
+    "strongTips": [
+      "<strong>최소 12~16자</strong>를 사용하세요. 관리자 계정과 서버에는 20자 이상이 더 좋습니다.",
+      "소문자, 대문자, 숫자, 기호를 섞어서 사용하세요.",
+      "서비스마다 <strong>고유한 비밀번호</strong>를 사용하세요.",
+      "비밀번호는 메모장이나 메신저가 아니라 비밀번호 관리자에 보관하세요.",
+      "가능한 모든 곳에서 2단계 인증을 켜세요.",
+      "유출이 의심되면 비밀번호를 변경하세요."
+    ],
+    "usesTitle": "비밀번호 생성기는 어디에 쓰나요",
+    "uses": [
+      "소셜 계정, 이메일, 인터넷 뱅킹, 쇼핑몰;",
+      "관리자 계정, SSH, 데이터베이스, 호스팅 패널;",
+      "Wi-Fi 공유기와 네트워크 장비;",
+      "서비스 계정, API 자격 증명, 테스트 환경;",
+      "압축 파일과 문서의 비밀번호."
+    ],
+    "faqTitle": "자주 묻는 질문",
+    "faq": [
+      {
+        "q": "온라인에서 비밀번호를 생성해도 안전한가요?",
+        "a": "네. 비밀번호는 브라우저에서 로컬로 생성되고 서버로 전송되지 않으므로 사이트가 가로채거나 저장할 수 없습니다."
+      },
+      {
+        "q": "생성기는 무료인가요?",
+        "a": "네. 무료이며 회원 가입이 필요 없고, 만들 수 있는 비밀번호 개수에도 제한이 없습니다."
+      },
+      {
+        "q": "비밀번호 길이는 얼마로 해야 하나요?",
+        "a": "일상적인 계정에는 12~16자가 적당하고, 중요한 서비스와 서버에는 20자 이상을 사용하세요."
+      },
+      {
+        "q": "왜 I, O, l, |가 제외되나요?",
+        "a": "1, 0 그리고 서로 쉽게 헷갈리기 때문입니다. 이 문자들을 빼면 비밀번호를 읽고 직접 입력하기가 더 쉬워집니다."
+      },
+      {
+        "q": "왜 기호를 처음이나 끝에 두지 않나요?",
+        "a": "일부 시스템은 복사할 때, 셸에서, 또는 설정 파일에서 가장자리의 기호를 잘못 처리합니다. 양 끝을 영문자와 숫자로 두면 비밀번호가 더 안정적으로 동작합니다."
+      },
+      {
+        "q": "‘중복 없음’은 무슨 뜻인가요?",
+        "a": "길이 61까지는 각 문자가 한 번만 나오고, 61을 넘으면 최대 두 번 나옵니다. 서비스가 반복을 제한할 때 유용합니다."
+      },
+      {
+        "q": "생성된 비밀번호를 외워야 하나요?",
+        "a": "아니요. 비밀번호 관리자에 저장하고 자동 완성을 사용하세요."
+      },
+      {
+        "q": "비밀번호 강도는 어떻게 계산되나요?",
+        "a": "표시기는 특정 문자열이 아니라 생성 설정(길이와 문자 집합)을 평가하며, 엔트로피를 비트로 보여 줍니다."
+      },
+      {
+        "q": "엔트로피와 비트란 무엇인가요?",
+        "a": "엔트로피는 탐색 공간의 크기를 추정한 값입니다. 같은 공격 모델에서는 비트가 많을수록 해독에 더 오랜 시간이 걸립니다."
+      },
+      {
+        "q": "생성기 설정은 어떻게 공유하나요?",
+        "a": "‘링크 복사’를 사용하세요. 주소에는 설정만 들어 있고 비밀번호 자체는 절대 들어가지 않습니다."
+      },
+      {
+        "q": "왜 문자를 제외하나요?",
+        "a": "서비스에서 일부 기호를 금지하거나 비밀번호를 소리 내어 읽어야 할 때, 불편한 문자를 문자 집합에서 빼면 됩니다."
+      }
+    ],
+    "appName": "온라인 비밀번호 생성기",
+    "tipsLabel": "권장:"
+  },
+  "mr": {
+    "title": "ऑनलाइन पासवर्ड जनरेटर — एका सेकंदात मजबूत पासवर्ड",
+    "description": "मोफत ऑनलाइन पासवर्ड जनरेटर: लांबी आणि अक्षरसंच निवडा आणि मजबूत पासवर्ड मिळवा. तो तुमच्या ब्राउझरमध्येच चालतो — सर्व्हरला काहीही पाठवले जात नाही.",
+    "heading": "ऑनलाइन पासवर्ड जनरेटर",
+    "leadHtml": "ईमेल, खाते किंवा सर्व्हरसाठी मजबूत पासवर्ड हवा आहे? आमचा <strong>ऑनलाइन पासवर्ड जनरेटर</strong> एका क्लिकमध्ये यादृच्छिक पासवर्ड तयार करतो. लांबी ठरवा, अक्षरसंच निवडा आणि “तयार करा” दाबा. पासवर्ड तुमच्या ब्राउझरमध्येच तयार होतो आणि कुठेही पाठवला जात नाही.",
+    "benefitsTitle": "ऑनलाइन पासवर्ड जनरेटरचे फायदे",
+    "benefits": [
+      "<strong>गोपनीयता.</strong> पासवर्ड ब्राउझरमध्येच तयार होतात. सर्व्हरला काहीही पाठवले जात नाही, त्यामुळे ते फक्त तुम्हीच पाहू शकता.",
+      "<strong>मोफत, साइन-अपशिवाय.</strong> पेज उघडा आणि वापरा. खाते, ईमेल किंवा अ‍ॅप इन्स्टॉल करण्याची गरज नाही.",
+      "<strong>लवचिक सेटिंग्ज.</strong> लांबी निवडा आणि अंक, लहान अक्षरे, मोठी अक्षरे व चिन्हांचे कोणतेही मिश्रण निवडा.",
+      "<strong>ताकद मीटर.</strong> सध्याच्या सेटिंग्जसाठी बिटमध्ये एंट्रॉपी आणि पासवर्ड फोडण्यासाठी लागणारा अंदाजे वेळ पाहा.",
+      "<strong>कामानुसार प्रीसेट.</strong> Wi-Fi, शेल, PIN, URL आणि बोलून सांगण्यासाठी — एका क्लिकमध्ये.",
+      "<strong>सेटिंग्ज शेअर करण्याची लिंक.</strong> URL कॉपी करा आणि तेच पर्याय दुसरीकडे उघडा — पासवर्ड कधीही लिंकमध्ये जात नाही.",
+      "<strong>पुनरावृत्ती नाही.</strong> “पुनरावृत्ती नको” चालू करा म्हणजे अक्षरांची पुनरावृत्ती मर्यादित राहते (लांबी ६१ पर्यंत प्रत्येक अक्षर एकदाच; त्यापुढे जास्तीत जास्त दोनदा).",
+      "<strong>एका क्लिकमध्ये कॉपी.</strong> पासवर्डवर क्लिक करा आणि तो क्लिपबोर्डवर कॉपी होईल.",
+      "<strong>वाचायला सोपा निकाल.</strong> गोंधळात टाकणारी अक्षरे (I, O, l, |) वगळता येतात, त्यामुळे पासवर्ड पुन्हा टाइप करणे किंवा मोठ्याने वाचणे सोपे होते.",
+      "<strong>सेवांशी सुसंगत.</strong> चिन्हे पहिल्या आणि शेवटच्या दोन अक्षरांत ठेवली जात नाहीत, त्यामुळे फॉर्म, शेल आणि स्क्रिप्ट पासवर्ड कमी वेळा नाकारतात.",
+      "<strong>जलद आणि हलके.</strong> संगणक आणि मोबाइल दोन्हीवर चालते आणि अनेक भाषांमध्ये उपलब्ध आहे."
+    ],
+    "howTitle": "ऑनलाइन पासवर्ड कसा तयार करावा",
+    "howSteps": [
+      "“−” आणि “+” बटणांनी पासवर्डची लांबी ठरवा.",
+      "आवश्यक अक्षरसंच निवडा: अंक, लहान अक्षरे, मोठी अक्षरे, चिन्हे.",
+      "हवे असल्यास “पुनरावृत्ती नको” चालू करा.",
+      "“तयार करा” दाबा.",
+      "पासवर्डवर क्लिक करून तो कॉपी करा आणि पासवर्ड मॅनेजरमध्ये जतन करा."
+    ],
+    "strongTitle": "मजबूत पासवर्ड कशाने बनतो",
+    "strongLead": "पासवर्डची ताकद त्याच्या लांबीवर आणि अक्षरांच्या विविधतेवर अवलंबून असते. साधे शब्द, जन्मतारखा, नावे आणि <code>123456</code> किंवा <code>qwerty</code> सारखे क्रम काही सेकंदांत फोडले जातात. जनरेटरने तयार केलेला यादृच्छिक पासवर्ड असे नमुने टाळतो.",
+    "strongTips": [
+      "<strong>किमान १२–१६ अक्षरे</strong> वापरा. अ‍ॅडमिन खाती आणि सर्व्हरसाठी २० किंवा जास्त उत्तम.",
+      "लहान अक्षरे, मोठी अक्षरे, अंक आणि चिन्हे एकत्र वापरा.",
+      "प्रत्येक सेवेसाठी <strong>वेगळा पासवर्ड</strong> वापरा.",
+      "पासवर्ड नोट्स किंवा मेसेंजरमध्ये नाही, तर पासवर्ड मॅनेजरमध्ये ठेवा.",
+      "शक्य तिथे दोन-टप्प्यांची पडताळणी चालू करा.",
+      "लीक झाल्याचा संशय असल्यास पासवर्ड बदला."
+    ],
+    "usesTitle": "पासवर्ड जनरेटर कशासाठी आहे",
+    "uses": [
+      "सोशल खाती, ईमेल, ऑनलाइन बँकिंग आणि ऑनलाइन दुकाने;",
+      "अ‍ॅडमिन खाती, SSH, डेटाबेस आणि होस्टिंग पॅनेल;",
+      "Wi-Fi राउटर आणि नेटवर्क उपकरणे;",
+      "सर्व्हिस खाती, API क्रेडेन्शियल्स आणि चाचणी सर्व्हर;",
+      "आर्काइव्ह आणि दस्तऐवजांचे पासवर्ड."
+    ],
+    "faqTitle": "प्रश्न",
+    "faq": [
+      {
+        "q": "ऑनलाइन पासवर्ड तयार करणे सुरक्षित आहे का?",
+        "a": "होय. पासवर्ड तुमच्या ब्राउझरमध्ये स्थानिक पातळीवर तयार होतो आणि सर्व्हरला पाठवला जात नाही, त्यामुळे साइट तो अडवू किंवा साठवू शकत नाही."
+      },
+      {
+        "q": "जनरेटर मोफत आहे का?",
+        "a": "होय. सेवा मोफत आहे, नोंदणी लागत नाही आणि तुम्ही किती पासवर्ड तयार करता यावर मर्यादा नाही."
+      },
+      {
+        "q": "पासवर्डची लांबी किती निवडावी?",
+        "a": "रोजच्या खात्यांसाठी १२–१६ अक्षरे योग्य आहेत; महत्त्वाच्या सेवा आणि सर्व्हरसाठी २० किंवा जास्त वापरा."
+      },
+      {
+        "q": "I, O, l आणि | का वगळले आहेत?",
+        "a": "ते १, ० आणि एकमेकांशी सहज गोंधळले जातात. त्यांच्याशिवाय पासवर्ड वाचणे आणि हाताने टाइप करणे सोपे होते."
+      },
+      {
+        "q": "चिन्हे सुरुवातीला किंवा शेवटी का ठेवली जात नाहीत?",
+        "a": "काही प्रणाली कॉपी करताना, शेलमध्ये किंवा कॉन्फिग फाइलमध्ये काठावरील चिन्हे चुकीची हाताळतात. काठावर अक्षरे किंवा अंक ठेवल्यास पासवर्ड अधिक विश्वासार्हपणे चालतो."
+      },
+      {
+        "q": "“पुनरावृत्ती नको” म्हणजे काय?",
+        "a": "लांबी ६१ पर्यंत प्रत्येक अक्षर फक्त एकदाच येते; ६१ पेक्षा जास्त असल्यास जास्तीत जास्त दोनदा. सेवा पुनरावृत्ती मर्यादित करत असल्यास उपयोगी."
+      },
+      {
+        "q": "तयार केलेला पासवर्ड मला लक्षात ठेवावा लागेल का?",
+        "a": "नाही. तो पासवर्ड मॅनेजरमध्ये जतन करा आणि ऑटोफिल वापरा."
+      },
+      {
+        "q": "पासवर्डची ताकद कशी मोजली जाते?",
+        "a": "मीटर विशिष्ट स्ट्रिंग नाही तर निर्मितीच्या सेटिंग्ज (लांबी आणि वर्णमाला) तपासतो आणि एंट्रॉपी बिटमध्ये दाखवतो."
+      },
+      {
+        "q": "एंट्रॉपी आणि बिट म्हणजे काय?",
+        "a": "एंट्रॉपी शोधाच्या व्याप्तीचा अंदाज देते: त्याच हल्ल्याच्या मॉडेलमध्ये बिट जास्त असतील तर पासवर्ड फोडायला जास्त वेळ लागतो."
+      },
+      {
+        "q": "जनरेटरच्या सेटिंग्ज कशा शेअर करायच्या?",
+        "a": "“लिंक कॉपी करा” वापरा: पत्त्यात फक्त सेटिंग्ज असतात — पासवर्ड कधीही नाही."
+      },
+      {
+        "q": "अक्षरे का वगळावीत?",
+        "a": "एखादी सेवा काही चिन्हांना मनाई करत असेल किंवा पासवर्ड मोठ्याने वाचून दाखवायचा असेल, तर त्रासदायक अक्षरे वर्णमालेतून काढून टाका."
+      }
+    ],
+    "appName": "ऑनलाइन पासवर्ड जनरेटर",
+    "tipsLabel": "शिफारसी:"
+  },
+  "vi": {
+    "title": "Trình tạo mật khẩu trực tuyến — mật khẩu mạnh trong một giây",
+    "description": "Trình tạo mật khẩu trực tuyến miễn phí: chọn độ dài và bộ ký tự để có mật khẩu mạnh. Chạy ngay trong trình duyệt — không có gì được gửi lên máy chủ.",
+    "heading": "Trình tạo mật khẩu trực tuyến",
+    "leadHtml": "Cần một mật khẩu mạnh cho email, tài khoản hay máy chủ? <strong>Trình tạo mật khẩu trực tuyến</strong> của chúng tôi tạo mật khẩu ngẫu nhiên chỉ với một cú nhấp. Đặt độ dài, chọn bộ ký tự rồi nhấn Tạo. Mật khẩu được tạo ngay trong trình duyệt của bạn và không bao giờ được gửi đi đâu cả.",
+    "benefitsTitle": "Lợi ích của trình tạo mật khẩu trực tuyến",
+    "benefits": [
+      "<strong>Riêng tư.</strong> Mật khẩu được tạo trong trình duyệt. Không có gì được gửi lên máy chủ, nên chỉ mình bạn nhìn thấy chúng.",
+      "<strong>Miễn phí, không cần đăng ký.</strong> Mở trang và dùng ngay. Không cần tài khoản, email hay cài đặt ứng dụng.",
+      "<strong>Tùy chỉnh linh hoạt.</strong> Chọn độ dài và bất kỳ tổ hợp nào của chữ số, chữ thường, chữ hoa và ký hiệu.",
+      "<strong>Thang đo độ mạnh.</strong> Xem entropy tính bằng bit và thời gian bẻ khóa ước tính cho thiết lập hiện tại.",
+      "<strong>Cấu hình có sẵn theo nhu cầu.</strong> Wi-Fi, shell, PIN, URL và đọc chính tả — chỉ một cú nhấp.",
+      "<strong>Liên kết chia sẻ thiết lập.</strong> Sao chép URL và mở cùng các tùy chọn ở nơi khác — mật khẩu không bao giờ nằm trong liên kết.",
+      "<strong>Không trùng ký tự.</strong> Bật “không trùng lặp” để hạn chế lặp lại (duy nhất đến độ dài 61; tối đa hai lần nếu dài hơn).",
+      "<strong>Sao chép một chạm.</strong> Nhấp vào mật khẩu để sao chép vào bộ nhớ tạm.",
+      "<strong>Kết quả dễ đọc.</strong> Có thể loại các ký tự dễ nhầm (I, O, l, |) để mật khẩu dễ gõ lại hoặc đọc to hơn.",
+      "<strong>Thân thiện với dịch vụ.</strong> Ký hiệu không nằm ở hai ký tự đầu và hai ký tự cuối, nên biểu mẫu, shell và script ít từ chối mật khẩu hơn.",
+      "<strong>Nhanh và nhẹ.</strong> Hoạt động trên máy tính và điện thoại, hỗ trợ nhiều ngôn ngữ."
+    ],
+    "howTitle": "Cách tạo mật khẩu trực tuyến",
+    "howSteps": [
+      "Đặt độ dài mật khẩu bằng các nút “−” và “+”.",
+      "Chọn bộ ký tự bạn cần: chữ số, chữ thường, chữ hoa, ký hiệu.",
+      "Bật “không trùng lặp” nếu muốn.",
+      "Nhấn Tạo.",
+      "Nhấp vào mật khẩu để sao chép, rồi lưu vào trình quản lý mật khẩu."
+    ],
+    "strongTitle": "Điều gì làm nên một mật khẩu mạnh",
+    "strongLead": "Độ mạnh của mật khẩu phụ thuộc vào độ dài và sự đa dạng của ký tự. Từ đơn giản, ngày sinh, tên và các chuỗi như <code>123456</code> hay <code>qwerty</code> bị bẻ khóa trong vài giây. Mật khẩu ngẫu nhiên do trình tạo sinh ra tránh được những mẫu này.",
+    "strongTips": [
+      "Dùng <strong>ít nhất 12–16 ký tự</strong>. Với tài khoản quản trị và máy chủ, nên dùng từ 20 ký tự trở lên.",
+      "Kết hợp chữ thường, chữ hoa, chữ số và ký hiệu.",
+      "Dùng <strong>mật khẩu riêng</strong> cho từng dịch vụ.",
+      "Lưu mật khẩu trong trình quản lý mật khẩu, đừng lưu trong ghi chú hay ứng dụng nhắn tin.",
+      "Bật xác thực hai yếu tố ở bất cứ đâu có thể.",
+      "Đổi mật khẩu nếu bạn nghi ngờ bị lộ."
+    ],
+    "usesTitle": "Trình tạo mật khẩu dùng để làm gì",
+    "uses": [
+      "tài khoản mạng xã hội, email, ngân hàng trực tuyến và cửa hàng;",
+      "tài khoản quản trị, SSH, cơ sở dữ liệu và bảng điều khiển hosting;",
+      "router Wi-Fi và thiết bị mạng;",
+      "tài khoản dịch vụ, thông tin xác thực API và môi trường thử nghiệm;",
+      "mật khẩu cho tệp nén và tài liệu."
+    ],
+    "faqTitle": "Câu hỏi thường gặp",
+    "faq": [
+      {
+        "q": "Tạo mật khẩu trực tuyến có an toàn không?",
+        "a": "Có. Mật khẩu được tạo cục bộ trong trình duyệt của bạn và không gửi lên máy chủ, nên trang web không thể chặn hay lưu nó."
+      },
+      {
+        "q": "Trình tạo này có miễn phí không?",
+        "a": "Có. Dịch vụ miễn phí, không cần đăng ký và không giới hạn số mật khẩu bạn tạo."
+      },
+      {
+        "q": "Tôi nên chọn mật khẩu dài bao nhiêu?",
+        "a": "Với tài khoản thông thường, 12–16 ký tự là khoảng tốt; với dịch vụ quan trọng và máy chủ, hãy dùng 20 ký tự trở lên."
+      },
+      {
+        "q": "Tại sao loại bỏ I, O, l và |?",
+        "a": "Chúng dễ bị nhầm với 1, 0 và nhầm lẫn lẫn nhau. Bỏ chúng đi, mật khẩu dễ đọc và gõ tay hơn."
+      },
+      {
+        "q": "Tại sao ký hiệu không đặt ở đầu hoặc cuối?",
+        "a": "Một số hệ thống xử lý sai ký hiệu ở rìa khi sao chép, trong shell hoặc trong tệp cấu hình. Giữ hai đầu là chữ và số giúp mật khẩu hoạt động ổn định hơn."
+      },
+      {
+        "q": "“Không trùng lặp” nghĩa là gì?",
+        "a": "Đến độ dài 61, mỗi ký tự chỉ xuất hiện một lần; trên 61, tối đa hai lần. Tiện khi dịch vụ giới hạn việc lặp ký tự."
+      },
+      {
+        "q": "Tôi có cần ghi nhớ mật khẩu đã tạo không?",
+        "a": "Không. Hãy lưu nó trong trình quản lý mật khẩu và dùng tự động điền."
+      },
+      {
+        "q": "Độ mạnh mật khẩu được tính như thế nào?",
+        "a": "Thang đo đánh giá thiết lập tạo (độ dài và bảng ký tự), không phải một chuỗi cụ thể, và hiển thị entropy bằng bit."
+      },
+      {
+        "q": "Entropy và bit là gì?",
+        "a": "Entropy ước lượng không gian tìm kiếm: với cùng mô hình tấn công, càng nhiều bit thì thời gian bẻ khóa càng lâu."
+      },
+      {
+        "q": "Làm sao chia sẻ thiết lập của trình tạo?",
+        "a": "Dùng Sao chép liên kết: địa chỉ chỉ chứa thiết lập — không bao giờ chứa chính mật khẩu."
+      },
+      {
+        "q": "Tại sao cần loại trừ ký tự?",
+        "a": "Nếu một dịch vụ cấm một số ký hiệu hoặc bạn cần đọc to mật khẩu, hãy bỏ các ký tự bất tiện khỏi bảng ký tự."
+      }
+    ],
+    "appName": "Trình tạo mật khẩu trực tuyến",
+    "tipsLabel": "Khuyến nghị:"
+  },
+  "ta": {
+    "title": "ஆன்லைன் கடவுச்சொல் உருவாக்கி — ஒரு நொடியில் வலுவான கடவுச்சொல்",
+    "description": "இலவச ஆன்லைன் கடவுச்சொல் உருவாக்கி: நீளத்தையும் எழுத்துத் தொகுப்புகளையும் தேர்ந்தெடுத்து வலுவான கடவுச்சொல்லைப் பெறுங்கள். இது உங்கள் உலாவியிலேயே இயங்குகிறது — சேவையகத்துக்கு எதுவும் அனுப்பப்படாது.",
+    "heading": "ஆன்லைன் கடவுச்சொல் உருவாக்கி",
+    "leadHtml": "மின்னஞ்சல், கணக்கு அல்லது சேவையகத்துக்கு வலுவான கடவுச்சொல் வேண்டுமா? எங்கள் <strong>ஆன்லைன் கடவுச்சொல் உருவாக்கி</strong> ஒரே கிளிக்கில் சீரற்ற கடவுச்சொல்லை உருவாக்கும். நீளத்தை அமையுங்கள், எழுத்துத் தொகுப்புகளைத் தேர்ந்தெடுங்கள், “உருவாக்கு” என்பதை அழுத்துங்கள். கடவுச்சொல் உங்கள் உலாவியிலேயே உருவாகிறது; எங்கும் அனுப்பப்படாது.",
+    "benefitsTitle": "ஆன்லைன் கடவுச்சொல் உருவாக்கியின் நன்மைகள்",
+    "benefits": [
+      "<strong>தனியுரிமை.</strong> கடவுச்சொற்கள் உலாவியிலேயே உருவாகின்றன. சேவையகத்துக்கு எதுவும் அனுப்பப்படாததால் அவற்றை நீங்கள் மட்டுமே பார்க்க முடியும்.",
+      "<strong>இலவசம், பதிவு தேவையில்லை.</strong> பக்கத்தைத் திறந்து பயன்படுத்துங்கள். கணக்கு, மின்னஞ்சல் அல்லது செயலி நிறுவல் தேவையில்லை.",
+      "<strong>நெகிழ்வான அமைப்புகள்.</strong> நீளத்தையும், எண்கள், சிறிய எழுத்துகள், பெரிய எழுத்துகள், குறியீடுகளின் எந்தக் கலவையையும் தேர்ந்தெடுங்கள்.",
+      "<strong>வலிமை அளவீடு.</strong> தற்போதைய அமைப்புகளுக்கான பிட்களில் என்ட்ரோபியையும், உடைக்க ஆகும் மதிப்பிடப்பட்ட நேரத்தையும் பாருங்கள்.",
+      "<strong>பணிக்கேற்ற முன்னமைவுகள்.</strong> Wi-Fi, ஷெல், PIN, URL, சொல்வதெழுதுதல் — ஒரே கிளிக்கில்.",
+      "<strong>அமைப்புகளைப் பகிரும் இணைப்பு.</strong> URL-ஐ நகலெடுத்து அதே விருப்பங்களை வேறிடத்தில் திறங்கள் — கடவுச்சொல் இணைப்பில் ஒருபோதும் இருக்காது.",
+      "<strong>மீண்டும் வராது.</strong> “மறுபடியும் வேண்டாம்” என்பதை இயக்கினால் திரும்பத் திரும்ப வருவது வரம்புக்குள் இருக்கும் (நீளம் 61 வரை ஒவ்வொரு எழுத்தும் ஒருமுறை; அதற்கு மேல் அதிகபட்சம் இருமுறை).",
+      "<strong>ஒரே கிளிக்கில் நகல்.</strong> கடவுச்சொல்லைக் கிளிக் செய்தால் அது கிளிப்போர்டுக்கு நகலாகும்.",
+      "<strong>படிக்க எளிதான முடிவு.</strong> குழப்பும் எழுத்துகளை (I, O, l, |) விலக்கலாம்; இதனால் கடவுச்சொல்லை மீண்டும் தட்டச்சு செய்வதும் உரக்கப் படிப்பதும் எளிதாகும்.",
+      "<strong>சேவைகளுக்கு ஏற்றது.</strong> குறியீடுகள் முதல் இரண்டு, கடைசி இரண்டு எழுத்துகளில் வைக்கப்படுவதில்லை; அதனால் படிவங்கள், ஷெல்கள், ஸ்கிரிப்ட்கள் கடவுச்சொல்லை நிராகரிப்பது குறைவு.",
+      "<strong>வேகமானது, எடை குறைந்தது.</strong> கணினியிலும் மொபைலிலும் இயங்கும்; பல மொழிகளில் கிடைக்கிறது."
+    ],
+    "howTitle": "ஆன்லைனில் கடவுச்சொல்லை எப்படி உருவாக்குவது",
+    "howSteps": [
+      "“−”, “+” பொத்தான்களால் கடவுச்சொல்லின் நீளத்தை அமையுங்கள்.",
+      "தேவையான எழுத்துத் தொகுப்புகளைத் தேர்ந்தெடுங்கள்: எண்கள், சிறிய எழுத்துகள், பெரிய எழுத்துகள், குறியீடுகள்.",
+      "விரும்பினால் “மறுபடியும் வேண்டாம்” என்பதை இயக்குங்கள்.",
+      "“உருவாக்கு” என்பதை அழுத்துங்கள்.",
+      "கடவுச்சொல்லைக் கிளிக் செய்து நகலெடுத்து, கடவுச்சொல் மேலாளரில் சேமியுங்கள்."
+    ],
+    "strongTitle": "கடவுச்சொல்லை வலுவாக்குவது எது",
+    "strongLead": "கடவுச்சொல்லின் வலிமை அதன் நீளத்தையும் எழுத்து வகைகளின் பன்முகத்தன்மையையும் சார்ந்தது. எளிய சொற்கள், பிறந்த தேதிகள், பெயர்கள், <code>123456</code> அல்லது <code>qwerty</code> போன்ற வரிசைகள் சில நொடிகளில் உடைக்கப்படுகின்றன. உருவாக்கி தரும் சீரற்ற கடவுச்சொல் இத்தகைய வடிவங்களைத் தவிர்க்கிறது.",
+    "strongTips": [
+      "<strong>குறைந்தது 12–16 எழுத்துகள்</strong> பயன்படுத்துங்கள். நிர்வாகக் கணக்குகள், சேவையகங்களுக்கு 20 அல்லது அதற்கு மேல் சிறந்தது.",
+      "சிறிய எழுத்துகள், பெரிய எழுத்துகள், எண்கள், குறியீடுகளைக் கலந்து பயன்படுத்துங்கள்.",
+      "ஒவ்வொரு சேவைக்கும் <strong>தனித்துவமான கடவுச்சொல்</strong> பயன்படுத்துங்கள்.",
+      "கடவுச்சொற்களைக் குறிப்புகளிலோ மெசஞ்சர்களிலோ அல்ல, கடவுச்சொல் மேலாளரில் வையுங்கள்.",
+      "முடிந்த இடங்களில் எல்லாம் இரு-காரணி அங்கீகாரத்தை இயக்குங்கள்.",
+      "கசிவு இருக்கலாம் என்று சந்தேகித்தால் கடவுச்சொல்லை மாற்றுங்கள்."
+    ],
+    "usesTitle": "கடவுச்சொல் உருவாக்கி எதற்காக",
+    "uses": [
+      "சமூக ஊடகக் கணக்குகள், மின்னஞ்சல், இணைய வங்கி, ஆன்லைன் கடைகள்;",
+      "நிர்வாகக் கணக்குகள், SSH, தரவுத்தளங்கள், ஹோஸ்டிங் பேனல்கள்;",
+      "Wi-Fi ரவுட்டர்கள், பிணைய சாதனங்கள்;",
+      "சேவைக் கணக்குகள், API சான்றுகள், சோதனைச் சூழல்கள்;",
+      "காப்பகங்கள், ஆவணங்களுக்கான கடவுச்சொற்கள்."
+    ],
+    "faqTitle": "கேள்விகள்",
+    "faq": [
+      {
+        "q": "ஆன்லைனில் கடவுச்சொல்லை உருவாக்குவது பாதுகாப்பானதா?",
+        "a": "ஆம். கடவுச்சொல் உங்கள் உலாவியில் உள்ளூரிலேயே உருவாகிறது; சேவையகத்துக்கு அனுப்பப்படாது, எனவே தளம் அதை இடைமறிக்கவோ சேமிக்கவோ முடியாது."
+      },
+      {
+        "q": "உருவாக்கி இலவசமா?",
+        "a": "ஆம். சேவை இலவசம், பதிவு தேவையில்லை, எத்தனை கடவுச்சொற்கள் வேண்டுமானாலும் உருவாக்கலாம்."
+      },
+      {
+        "q": "கடவுச்சொல்லின் நீளம் எவ்வளவு தேர்ந்தெடுக்க வேண்டும்?",
+        "a": "அன்றாடக் கணக்குகளுக்கு 12–16 எழுத்துகள் நல்ல வரம்பு; முக்கியமான சேவைகள், சேவையகங்களுக்கு 20 அல்லது அதற்கு மேல் பயன்படுத்துங்கள்."
+      },
+      {
+        "q": "I, O, l, | ஏன் விலக்கப்படுகின்றன?",
+        "a": "அவை 1, 0 உடனும், ஒன்றுக்கொன்றும் எளிதில் குழப்பமடையும். அவை இல்லாவிட்டால் கடவுச்சொல்லைப் படிப்பதும் கையால் தட்டச்சு செய்வதும் எளிது."
+      },
+      {
+        "q": "குறியீடுகள் ஏன் தொடக்கத்திலோ முடிவிலோ வைக்கப்படுவதில்லை?",
+        "a": "சில அமைப்புகள் நகலெடுக்கும்போதும், ஷெல்லிலும், கட்டமைப்பு கோப்புகளிலும் ஓரத்திலுள்ள குறியீடுகளைத் தவறாகக் கையாளும். ஓரங்களில் எழுத்தும் எண்ணும் இருந்தால் கடவுச்சொல் இன்னும் நம்பகமாக வேலை செய்யும்."
+      },
+      {
+        "q": "“மறுபடியும் வேண்டாம்” என்றால் என்ன?",
+        "a": "நீளம் 61 வரை ஒவ்வொரு எழுத்தும் ஒருமுறை மட்டுமே வரும்; 61-க்கு மேல் அதிகபட்சம் இருமுறை. ஒரு சேவை திரும்பத் திரும்ப வருவதைக் கட்டுப்படுத்தும்போது பயனுள்ளது."
+      },
+      {
+        "q": "உருவாக்கிய கடவுச்சொல்லை நான் மனப்பாடம் செய்ய வேண்டுமா?",
+        "a": "வேண்டாம். அதைக் கடவுச்சொல் மேலாளரில் சேமித்து தானியங்கு நிரப்பலைப் பயன்படுத்துங்கள்."
+      },
+      {
+        "q": "கடவுச்சொல் வலிமை எப்படிக் கணக்கிடப்படுகிறது?",
+        "a": "அளவீடு குறிப்பிட்ட சரத்தை அல்ல, உருவாக்க அமைப்புகளை (நீளம், எழுத்துத் தொகுப்பு) மதிப்பிட்டு என்ட்ரோபியை பிட்களில் காட்டுகிறது."
+      },
+      {
+        "q": "என்ட்ரோபி, பிட்கள் என்றால் என்ன?",
+        "a": "என்ட்ரோபி தேடல் வெளியை மதிப்பிடுகிறது: ஒரே தாக்குதல் மாதிரியில் பிட்கள் அதிகமானால் உடைக்க ஆகும் நேரம் நீளும்."
+      },
+      {
+        "q": "உருவாக்கியின் அமைப்புகளை எப்படிப் பகிர்வது?",
+        "a": "“இணைப்பை நகலெடு” என்பதைப் பயன்படுத்துங்கள்: முகவரியில் அமைப்புகள் மட்டுமே இருக்கும் — கடவுச்சொல் ஒருபோதும் இருக்காது."
+      },
+      {
+        "q": "எழுத்துகளை ஏன் விலக்க வேண்டும்?",
+        "a": "ஒரு சேவை சில குறியீடுகளைத் தடை செய்தாலோ, கடவுச்சொல்லை உரக்கப் படிக்க வேண்டியிருந்தாலோ, சிரமம் தரும் எழுத்துகளை எழுத்துத் தொகுப்பிலிருந்து நீக்குங்கள்."
+      }
+    ],
+    "appName": "ஆன்லைன் கடவுச்சொல் உருவாக்கி",
+    "tipsLabel": "பரிந்துரைகள்:"
+  },
+  "it": {
+    "title": "Generatore di password online — password forte in un secondo",
+    "description": "Generatore di password online gratuito: imposta lunghezza e set di caratteri e ottieni una password forte. Funziona nel browser: non viene inviato nulla al server.",
+    "heading": "Generatore di password online",
+    "leadHtml": "Ti serve una password forte per la posta, un account o un server? Il nostro <strong>generatore di password online</strong> crea una password casuale con un solo clic. Imposta la lunghezza, scegli i set di caratteri e premi Genera. La password viene creata nel tuo browser e non viene mai inviata da nessuna parte.",
+    "benefitsTitle": "Vantaggi di un generatore di password online",
+    "benefits": [
+      "<strong>Privacy.</strong> Le password vengono generate nel browser. Non viene inviato nulla al server, quindi solo tu puoi vederle.",
+      "<strong>Gratis, senza registrazione.</strong> Apri la pagina e usala. Non servono account, e-mail né l’installazione di app.",
+      "<strong>Impostazioni flessibili.</strong> Scegli la lunghezza e qualsiasi combinazione di cifre, minuscole, maiuscole e simboli.",
+      "<strong>Indicatore di robustezza.</strong> Vedi l’entropia in bit e il tempo stimato per violarla con le impostazioni attuali.",
+      "<strong>Preset per attività.</strong> Wi-Fi, shell, PIN, URL e dettatura: con un clic.",
+      "<strong>Link per condividere le impostazioni.</strong> Copia l’URL e apri le stesse opzioni altrove: la password non finisce mai nel link.",
+      "<strong>Senza duplicati.</strong> Attiva «senza duplicati» per limitare le ripetizioni (univoci fino a lunghezza 61; al massimo due volte oltre).",
+      "<strong>Copia con un clic.</strong> Clicca su una password per copiarla negli appunti.",
+      "<strong>Risultato leggibile.</strong> I caratteri ambigui (I, O, l, |) possono essere esclusi, così la password è più facile da ridigitare o da leggere ad alta voce.",
+      "<strong>Compatibile con i servizi.</strong> I simboli restano fuori dai primi e dagli ultimi due caratteri, così moduli, shell e script rifiutano meno spesso la password.",
+      "<strong>Veloce e leggero.</strong> Funziona su desktop e dispositivi mobili, in molte lingue."
+    ],
+    "howTitle": "Come generare una password online",
+    "howSteps": [
+      "Imposta la lunghezza della password con i pulsanti «−» e «+».",
+      "Seleziona i set di caratteri che ti servono: cifre, minuscole, maiuscole, simboli.",
+      "Se vuoi, attiva «senza duplicati».",
+      "Premi Genera.",
+      "Clicca su una password per copiarla, poi salvala in un gestore di password."
+    ],
+    "strongTitle": "Cosa rende forte una password",
+    "strongLead": "La robustezza di una password dipende dalla lunghezza e dalla varietà dei caratteri. Parole semplici, date di nascita, nomi e sequenze come <code>123456</code> o <code>qwerty</code> vengono violate in pochi secondi. Una password casuale generata evita questi schemi.",
+    "strongTips": [
+      "Usa <strong>almeno 12–16 caratteri</strong>. Per account amministratore e server meglio 20 o più.",
+      "Combina minuscole, maiuscole, cifre e simboli.",
+      "Usa una <strong>password unica</strong> per ogni servizio.",
+      "Conserva le password in un gestore di password, non in note o messaggerie.",
+      "Attiva l’autenticazione a due fattori ovunque sia possibile.",
+      "Cambia la password se sospetti una fuga di dati."
+    ],
+    "usesTitle": "A cosa serve un generatore di password",
+    "uses": [
+      "social, posta elettronica, home banking e negozi online;",
+      "account amministratore, SSH, database e pannelli di hosting;",
+      "router Wi-Fi e apparati di rete;",
+      "account di servizio, credenziali API e ambienti di test;",
+      "password per archivi e documenti."
+    ],
+    "faqTitle": "Domande frequenti",
+    "faq": [
+      {
+        "q": "È sicuro generare una password online?",
+        "a": "Sì. La password viene creata localmente nel tuo browser e non viene inviata al server, quindi il sito non può intercettarla né memorizzarla."
+      },
+      {
+        "q": "Il generatore è gratuito?",
+        "a": "Sì. Il servizio è gratuito, senza registrazione e senza limiti al numero di password che crei."
+      },
+      {
+        "q": "Che lunghezza della password devo scegliere?",
+        "a": "Per gli account di tutti i giorni 12–16 caratteri sono un buon intervallo; per servizi importanti e server usa 20 caratteri o più."
+      },
+      {
+        "q": "Perché I, O, l e | sono esclusi?",
+        "a": "Si confondono facilmente con 1, 0 e tra loro. Senza di essi le password sono più facili da leggere e da digitare a mano."
+      },
+      {
+        "q": "Perché i simboli non sono all’inizio o alla fine?",
+        "a": "Alcuni sistemi gestiscono male i simboli agli estremi quando si copia, nelle shell o nei file di configurazione. Mantenere alfanumerici gli estremi rende la password più affidabile."
+      },
+      {
+        "q": "Cosa significa «senza duplicati»?",
+        "a": "Fino a lunghezza 61 ogni carattere compare una sola volta; oltre 61, al massimo due volte. Utile quando un servizio limita le ripetizioni."
+      },
+      {
+        "q": "Devo memorizzare la password generata?",
+        "a": "No. Salvala in un gestore di password e usa il riempimento automatico."
+      },
+      {
+        "q": "Come viene calcolata la robustezza della password?",
+        "a": "L’indicatore valuta le impostazioni di generazione (lunghezza e alfabeto), non una stringa specifica, e mostra l’entropia in bit."
+      },
+      {
+        "q": "Cosa sono l’entropia e i bit?",
+        "a": "L’entropia stima lo spazio di ricerca: più bit significano un tempo di violazione più lungo con lo stesso modello di attacco."
+      },
+      {
+        "q": "Come condivido le impostazioni del generatore?",
+        "a": "Usa Copia link: l’indirizzo contiene solo le impostazioni, mai la password."
+      },
+      {
+        "q": "Perché escludere dei caratteri?",
+        "a": "Se un servizio vieta alcuni simboli o devi leggere la password ad alta voce, togli dall’alfabeto i caratteri scomodi."
+      }
+    ],
+    "appName": "Generatore di password online",
+    "tipsLabel": "Raccomandazioni:"
+  },
+  "fa": {
+    "title": "تولیدکننده گذرواژه آنلاین — گذرواژه قوی در یک ثانیه",
+    "description": "تولیدکننده رایگان گذرواژه آنلاین: طول و مجموعه نویسه‌ها را تنظیم کنید و گذرواژه قوی بگیرید. در مرورگر شما اجرا می‌شود و چیزی به سرور ارسال نمی‌شود.",
+    "heading": "تولیدکننده گذرواژه آنلاین",
+    "leadHtml": "برای ایمیل، حساب کاربری یا سرور به گذرواژه قوی نیاز دارید؟ <strong>تولیدکننده گذرواژه آنلاین</strong> ما با یک کلیک گذرواژه‌ای تصادفی می‌سازد. طول را تنظیم کنید، مجموعه نویسه‌ها را انتخاب کنید و «تولید» را بزنید. گذرواژه در مرورگر شما ساخته می‌شود و هیچ‌جا ارسال نمی‌شود.",
+    "benefitsTitle": "مزایای تولیدکننده گذرواژه آنلاین",
+    "benefits": [
+      "<strong>حریم خصوصی.</strong> گذرواژه‌ها در مرورگر تولید می‌شوند. چیزی به سرور ارسال نمی‌شود، بنابراین فقط شما آن‌ها را می‌بینید.",
+      "<strong>رایگان و بدون ثبت‌نام.</strong> صفحه را باز کنید و استفاده کنید. نیازی به حساب، ایمیل یا نصب برنامه نیست.",
+      "<strong>تنظیمات انعطاف‌پذیر.</strong> طول و هر ترکیبی از ارقام، حروف کوچک، حروف بزرگ و نمادها را انتخاب کنید.",
+      "<strong>نمایشگر قدرت.</strong> آنتروپی بر حسب بیت و زمان تقریبی شکستن را برای تنظیمات فعلی ببینید.",
+      "<strong>پیش‌تنظیم‌های کاربردی.</strong> Wi-Fi، شل، PIN، URL و دیکته — با یک کلیک.",
+      "<strong>پیوند اشتراک تنظیمات.</strong> نشانی را کپی کنید و همان گزینه‌ها را جای دیگری باز کنید — گذرواژه هرگز در پیوند نمی‌آید.",
+      "<strong>بدون تکرار.</strong> گزینه «بدون تکرار» را روشن کنید تا تکرار نویسه‌ها محدود شود (تا طول ۶۱ یکتا؛ بالاتر از آن حداکثر دو بار).",
+      "<strong>کپی با یک کلیک.</strong> روی گذرواژه کلیک کنید تا در کلیپ‌بورد کپی شود.",
+      "<strong>خروجی خوانا.</strong> نویسه‌های شبیه به هم (I، O، l، |) را می‌توان حذف کرد تا تایپ دوباره یا خواندن با صدای بلند آسان‌تر شود.",
+      "<strong>سازگار با سرویس‌ها.</strong> نمادها در دو نویسه اول و دو نویسه آخر قرار نمی‌گیرند، پس فرم‌ها، شل‌ها و اسکریپت‌ها کمتر گذرواژه را رد می‌کنند.",
+      "<strong>سریع و سبک.</strong> روی رایانه و موبایل کار می‌کند و به زبان‌های بسیاری در دسترس است."
+    ],
+    "howTitle": "چگونه گذرواژه را آنلاین تولید کنیم",
+    "howSteps": [
+      "طول گذرواژه را با دکمه‌های «−» و «+» تنظیم کنید.",
+      "مجموعه نویسه‌های مورد نیاز را انتخاب کنید: ارقام، حروف کوچک، حروف بزرگ، نمادها.",
+      "در صورت نیاز «بدون تکرار» را روشن کنید.",
+      "«تولید» را بزنید.",
+      "برای کپی روی گذرواژه کلیک کنید و آن را در مدیر گذرواژه ذخیره کنید."
+    ],
+    "strongTitle": "چه چیزی گذرواژه را قوی می‌کند",
+    "strongLead": "قدرت گذرواژه به طول و تنوع نویسه‌ها بستگی دارد. واژه‌های ساده، تاریخ تولد، نام‌ها و دنباله‌هایی مثل <code>123456</code> یا <code>qwerty</code> در چند ثانیه شکسته می‌شوند. گذرواژه تصادفی تولیدشده از این الگوها دوری می‌کند.",
+    "strongTips": [
+      "حداقل <strong>۱۲ تا ۱۶ نویسه</strong> استفاده کنید. برای حساب‌های مدیر و سرورها ۲۰ نویسه یا بیشتر بهتر است.",
+      "حروف کوچک، حروف بزرگ، ارقام و نمادها را با هم ترکیب کنید.",
+      "برای هر سرویس از یک <strong>گذرواژه یکتا</strong> استفاده کنید.",
+      "گذرواژه‌ها را در مدیر گذرواژه نگه دارید، نه در یادداشت‌ها یا پیام‌رسان‌ها.",
+      "هر جا ممکن است احراز هویت دومرحله‌ای را فعال کنید.",
+      "اگر به نشت گذرواژه مشکوک شدید، آن را تغییر دهید."
+    ],
+    "usesTitle": "تولیدکننده گذرواژه به چه کاری می‌آید",
+    "uses": [
+      "حساب‌های شبکه‌های اجتماعی، ایمیل، بانکداری اینترنتی و فروشگاه‌ها؛",
+      "حساب‌های مدیر، SSH، پایگاه‌های داده و پنل‌های هاستینگ؛",
+      "مودم‌ها و روترهای Wi-Fi و تجهیزات شبکه؛",
+      "حساب‌های سرویس، اعتبارنامه‌های API و محیط‌های آزمایشی؛",
+      "گذرواژه برای آرشیوها و اسناد."
+    ],
+    "faqTitle": "پرسش‌های متداول",
+    "faq": [
+      {
+        "q": "آیا تولید گذرواژه آنلاین امن است؟",
+        "a": "بله. گذرواژه به‌صورت محلی در مرورگر شما ساخته می‌شود و به سرور ارسال نمی‌شود، بنابراین سایت نمی‌تواند آن را دریافت یا ذخیره کند."
+      },
+      {
+        "q": "آیا این تولیدکننده رایگان است؟",
+        "a": "بله. سرویس رایگان است، بدون ثبت‌نام و بدون محدودیت در تعداد گذرواژه‌هایی که می‌سازید."
+      },
+      {
+        "q": "چه طولی برای گذرواژه انتخاب کنم؟",
+        "a": "برای حساب‌های روزمره ۱۲ تا ۱۶ نویسه بازه خوبی است؛ برای سرویس‌های مهم و سرورها ۲۰ نویسه یا بیشتر استفاده کنید."
+      },
+      {
+        "q": "چرا I، O، l و | حذف شده‌اند؟",
+        "a": "این نویسه‌ها به‌راحتی با ۱، ۰ و با یکدیگر اشتباه گرفته می‌شوند. بدون آن‌ها خواندن و تایپ دستی گذرواژه آسان‌تر است."
+      },
+      {
+        "q": "چرا نمادها در ابتدا یا انتها قرار نمی‌گیرند؟",
+        "a": "بعضی سامانه‌ها هنگام کپی، در شل یا در فایل‌های پیکربندی نمادهای کناری را درست پردازش نمی‌کنند. حرفی و عددی بودن دو سر گذرواژه باعث می‌شود قابل‌اعتمادتر کار کند."
+      },
+      {
+        "q": "«بدون تکرار» یعنی چه؟",
+        "a": "تا طول ۶۱ هر نویسه فقط یک بار می‌آید؛ بالاتر از ۶۱ حداکثر دو بار. وقتی سرویسی تکرار را محدود می‌کند مفید است."
+      },
+      {
+        "q": "آیا باید گذرواژه تولیدشده را حفظ کنم؟",
+        "a": "نه. آن را در مدیر گذرواژه ذخیره کنید و از پر کردن خودکار استفاده کنید."
+      },
+      {
+        "q": "قدرت گذرواژه چگونه محاسبه می‌شود؟",
+        "a": "نمایشگر تنظیمات تولید (طول و الفبا) را امتیاز می‌دهد، نه یک رشته مشخص را، و آنتروپی را بر حسب بیت نشان می‌دهد."
+      },
+      {
+        "q": "آنتروپی و بیت چیست؟",
+        "a": "آنتروپی فضای جست‌وجو را تخمین می‌زند: با همان مدل حمله، بیت بیشتر یعنی زمان شکستن طولانی‌تر."
+      },
+      {
+        "q": "تنظیمات تولیدکننده را چگونه به اشتراک بگذارم؟",
+        "a": "از «کپی پیوند» استفاده کنید: نشانی فقط تنظیمات را دارد — هرگز خود گذرواژه را ندارد."
+      },
+      {
+        "q": "چرا نویسه‌ها را حذف کنیم؟",
+        "a": "اگر سرویسی برخی نمادها را ممنوع کرده یا باید گذرواژه را با صدای بلند بخوانید، نویسه‌های مزاحم را از الفبا حذف کنید."
+      }
+    ],
+    "appName": "تولیدکننده گذرواژه آنلاین",
+    "tipsLabel": "پیشنهادها:"
+  },
+  "tlh": {
+    "title": "password chenmoHwI' — HoS password lup wa'",
+    "description": "tlhab password chenmoHwI': chuq 'ej Seghmey yIwIv, HoS password yIje'. browserDaq neH chenmoH — serverDaq pagh lup.",
+    "heading": "password chenmoHwI'",
+    "leadHtml": "HoS password DaneH'a' email, account, pagh server vaD? maH <strong>password chenmoHwI'</strong> wa' mI'chuq lup chenmoH. chuq yIwIv, Seghmey yIwIv, 'ej “chenmoH” yIpuv. password browserDaq neH chen 'ej pagh Daq lup.",
+    "benefitsTitle": "chenmoHwI' QaQghachmey",
+    "benefits": [
+      "<strong>pegh.</strong> password browserDaq chenmoH. serverDaq pagh lup, vaj SoH neH ngIlbogh.",
+      "<strong>tlhab, register pagh.</strong> ngeH yIpoSmoH 'ej yIlo'. account, email, app 'ej chenmoH ra'be'.",
+      "<strong>Seghmey QaQ.</strong> chuq yIwIv 'ej mI'mey, bIngDaq ghItlhmey, 'aqtaDaq ghItlhmey, tlhaQmey yIwIv.",
+      "<strong>HoS lo'wI'.</strong> HoSghach bitmey 'ej Hoch Qap poH yIlegh.",
+      "<strong>Qu' Seghmey.</strong> Wi-Fi, shell, PIN, URL, 'ej ghItlhmey — wa' mIn.",
+      "<strong>Seghmey jaw.</strong> URL yIlaj 'ej Daq latlh yIpoSmoH — password jawDaq pagh 'oH.",
+      "<strong>pagh nIteb.</strong> “nIteb pagh” yIpuv, vaj ghItlh wa'logh neH (chuq 61 chen wa'logh; 61 Dub cha'logh).",
+      "<strong>wa' mIn lutlhaj.</strong> password yIDel 'ej clipboardDaq vIlaj.",
+      "<strong>QaQ legh.</strong> ghItlh yajbe'bogh (I, O, l, |) yIpe', vaj password legh 'ej jatlh QaQ law'.",
+      "<strong>Qu' vaD QaQ.</strong> tlhaQmey wa' cha' 'ej Qav cha' ghItlhDaq pagh, vaj form, shell, script password lonpIj Dabe'.",
+      "<strong>Qapla' 'ej Doch Dun.</strong> computerDaq 'ej mobileDaq tu'lu', Hol law' ghaj."
+    ],
+    "howTitle": "chay' password chenmoH",
+    "howSteps": [
+      "“−” 'ej “+” mIncheghmeyDaq password chuq yIchenmoH.",
+      "Seghmey DaneHbogh yIwIv: mI'mey, bIng ghItlhmey, 'aqta' ghItlhmey, tlhaQmey.",
+      "DaneH chugh, “nIteb pagh” yIpuv.",
+      "“chenmoH” yIpuv.",
+      "password yIDel, vaj password pol'Daq yIpol."
+    ],
+    "strongTitle": "nuq 'oH HoS password'e'",
+    "strongLead": "password HoSghach chuq 'ej ghItlh Segh ngaQ. mu' So'be'bogh, DIS jaj, pong, 'ej <code>123456</code> pagh <code>qwerty</code> cha'DIch tlhegh pIj. chenmoHwI' password mIw nIv vItu'be'.",
+    "strongTips": [
+      "<strong>puS 12–16 ghItlh</strong> yIlo'. admin 'ej server vaD 20 pagh law' QaQ.",
+      "bIng ghItlhmey, 'aqta' ghItlhmey, mI'mey, tlhaQmey yIngaQmoH.",
+      "Hoch Qu' vaD <strong>wa' password pagh latlh</strong> yIlo'.",
+      "password pol'Daq yIpol, notesDaq pagh messengerDaq pagh.",
+      "chaQ chaw'lI' Daq Hoch, cha'DIch yajmeH ngoq yIpuv.",
+      "password lupta' DaQub chugh, yIchoH."
+    ],
+    "usesTitle": "nuqvaD chenmoHwI'",
+    "uses": [
+      "ngeHbej account, email, bank, 'ej loDnI' bochmey;",
+      "admin account, SSH, data Dochmey, 'ej hosting Daq;",
+      "Wi-Fi router 'ej network Duj;",
+      "Qu' account, API ngoq, 'ej test Daq;",
+      "archive 'ej ghItlh vaD password."
+    ],
+    "faqTitle": "yaj 'e' yIqel",
+    "faq": [
+      {
+        "q": "password chenmoH 'ej Daq 'oH Qapla'?",
+        "a": "HIja'. password browserDaq neH chenmoH 'ej serverDaq pagh lup, vaj Daq 'oH laj 'ej pol Dabe'."
+      },
+      {
+        "q": "chenmoHwI' tlhab'a'?",
+        "a": "HIja'. Qu' tlhab, register pagh, 'ej password mI'chuq tlhap Dabe'."
+      },
+      {
+        "q": "nuq password chuq vIwIv?",
+        "a": "jaj Qu' account vaD 12–16 ghItlh QaQ; Qu' tlhIngan 'ej server vaD 20 pagh law' yIlo'."
+      },
+      {
+        "q": "'oH vIngDaq I, O, l, 'ej | pe'?",
+        "a": "1, 0, 'ej wa'DIch wa'DIch yaj Daqbe'. pagh 'oH, password legh 'ej ghItlh QaQ law'."
+      },
+      {
+        "q": "tlhaQmey ghItlh wa'DIch pagh Qav ghItlhDaq pagh 'oH?",
+        "a": "Qu' latlh yIDel, shell, config ghItlhDaq tlhaQ lop Qagh. lop ghItlh mI'mey pagh ghItlhmey, vaj password Qapla' law'."
+      },
+      {
+        "q": "“nIteb pagh” nuq 'oH?",
+        "a": "chuq 61 chen, ghItlh wa'logh neH; 61 Dub, cha'logh. Qu' nIteb chaw'be'chugh QaQ."
+      },
+      {
+        "q": "password chenmoHta' vIqaw vay'?",
+        "a": "ghobe'. password pol'Daq yIpol 'ej autofill yIlo'."
+      },
+      {
+        "q": "password HoSghach chay' mI'?",
+        "a": "lo'wI' password neH ghItlh ngIlbe'; chenmoH Seghmey (chuq 'ej alphabet) ngIl, 'ej HoSghach bitmeyDaq 'oH."
+      },
+      {
+        "q": "HoSghach 'ej bit nuq?",
+        "a": "HoSghach Sam Daq ngIl: bit law' chugh, poH law' password tlhegh wa' Qu' mIw ngaQ."
+      },
+      {
+        "q": "chenmoHwI' Seghmey chay' jaw vIje'?",
+        "a": "“jaw yIDel” yIpuv: Daq Seghmey neH ghaj — password pagh."
+      },
+      {
+        "q": "ghItlh yIpe' vIngDaq?",
+        "a": "Qu' ghItlh chaw'be' pagh password jatlh DaneH chugh, ghItlh QaQbe' alphabetDaq yIpe'."
+      }
+    ],
+    "appName": "password chenmoHwI'",
+    "tipsLabel": "qeqmey:"
+  },
+};
