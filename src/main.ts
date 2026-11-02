@@ -447,7 +447,6 @@ async function copyPassword(el: HTMLButtonElement, value: string): Promise<void>
 }
 
 function renderPasswords(passwords: string[]): void {
-  resultsEl.replaceChildren();
   const fragment = document.createDocumentFragment();
 
   for (const password of passwords) {
@@ -471,7 +470,7 @@ function renderPasswords(passwords: string[]): void {
     fragment.append(btn);
   }
 
-  resultsEl.append(fragment);
+  resultsEl.replaceChildren(fragment);
 }
 
 function fallbackCopyText(text: string): boolean {

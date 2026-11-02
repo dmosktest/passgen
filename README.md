@@ -1,8 +1,8 @@
-# passgen
+﻿# passgen
 
 Online password generator. Passwords are created in the browser with Web Crypto and are not sent to the server.
 
-**Version:** `1.3.1`  
+**Version:** `1.3.3`  
 **Live:** https://passgen.dmosk.net
 
 ## Stack
@@ -43,46 +43,8 @@ npm install
 npm run dev
 ```
 
-Open `/ru/`, `/en/`, `/zh/`, and other locale codes (in Vite dev the root redirects to `/ru/`).
+Open `/ru/` (or another locale). Optionally run the stats helper separately if you want the shared counter.
 
 ```bash
-npm run build
-npm run preview
+node stats-api/server.mjs
 ```
-
-Production-oriented build with indexing enabled:
-
-```bash
-# Windows (cmd)
-set VITE_SITE_ORIGIN=https://passgen.dmosk.net
-set VITE_ALLOW_INDEX=true
-npm run build
-
-# Unix
-VITE_SITE_ORIGIN=https://passgen.dmosk.net VITE_ALLOW_INDEX=true npm run build
-```
-
-## Presets
-
-Add a row in `src/presets.ts` (`id`, localized `name` / `hint`, `values`). UI and URL handling pick it up automatically. For `shell` / `url`, restrict symbols with `specialsAllowlist`.
-
-## Layout
-
-```text
-.
-  package.json
-  vite.config.ts
-  index.html
-  sw.template.js          # → dist/sw.js on build
-  public/                 # robots, sitemap, 404, redirects, flags/, manifest
-  scripts/
-    gen-i18n.mjs
-    seo-full-bodies.mjs
-  src/
-  stats-api/              # generation counter used by Vite / local API
-  data/stats/             # total.txt (not committed)
-```
-
-## License
-
-Source published for reference. Product site: https://passgen.dmosk.net
