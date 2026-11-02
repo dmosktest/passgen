@@ -1,8 +1,9 @@
-﻿# passgen
+# passgen
 
 Online password generator. Passwords are created in the browser with Web Crypto and are not sent to the server.
 
 **Version:** `1.3.3`  
+**License:** [MIT](LICENSE)
 **Live:** https://passgen.dmosk.net
 
 ## Stack
